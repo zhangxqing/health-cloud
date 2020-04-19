@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.health.cloud</groupId>
+        <artifactId>health-cloud</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>health-common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>health-common-core</module>
+        <module>health-common-redis</module>
+        <module>health-common-log</module>
+        <module>health-common-auth</module>
+        <module>health-common-swagger</module>
+    </modules>
+</project>

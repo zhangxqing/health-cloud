@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.health.eureka</groupId>
+    <artifactId>health-eureka</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <name>health-eureka</name>
+    <description>eureka注册服务中心</description>
+    <parent>
+        <groupId>com.health.cloud</groupId>
+        <artifactId>health-cloud</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+    </parent>
+    <dependencies>
+        <!--eureka注册服务中心-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork> <!-- 如果没有该配置，devtools不会生效 -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
