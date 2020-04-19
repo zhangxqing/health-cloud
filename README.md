@@ -31,7 +31,7 @@ health-cloud
 |
 ├──health-service --微服务
 |  |
-|  ├──ruoyi-system --系统业务
+|  ├──health-system --系统业务
 
 ```
 
