@@ -1,7 +1,7 @@
 package com.health.system.util;
 
-import com.ruoyi.common.utils.security.Md5Utils;
-import com.ruoyi.system.domain.SysUser;
+import com.health.common.utils.security.Md5Utils;
+import com.health.system.domain.SysUser;
 
 public class PasswordUtil
 {

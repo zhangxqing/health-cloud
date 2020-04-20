@@ -1,7 +1,7 @@
 package com.health.system.feign;
 
+import com.health.common.constant.ServiceNameConstants;
 import com.health.system.feign.factory.RemoteLogFallbackFactory;
-import com.ruoyi.common.constant.ServiceNameConstants;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

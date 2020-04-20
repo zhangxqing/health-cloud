@@ -219,7 +219,11 @@
     </dependencyManagement>
 
     <modules>
+        <module>health-common</module>
         <module>health-eureka</module>
+        <module>health-gateway</module>
+        <module>health-service-api</module>
+        <module>health-service</module>
     </modules>
     <packaging>pom</packaging>
 

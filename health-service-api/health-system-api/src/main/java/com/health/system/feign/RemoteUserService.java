@@ -1,9 +1,9 @@
 package com.health.system.feign;
 
+import com.health.common.constant.ServiceNameConstants;
+import com.health.common.core.domain.R;
 import com.health.system.domain.SysUser;
 import com.health.system.feign.factory.RemoteUserFallbackFactory;
-import com.ruoyi.common.constant.ServiceNameConstants;
-import com.ruoyi.common.core.domain.R;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

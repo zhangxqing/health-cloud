@@ -1,6 +1,6 @@
 package com.health.system.domain;
 
-import com.ruoyi.common.core.domain.BaseEntity;
+import com.health.common.core.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
