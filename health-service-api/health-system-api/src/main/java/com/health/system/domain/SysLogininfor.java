@@ -156,4 +156,6 @@ public class SysLogininfor extends BaseEntity
             .append("loginTime", getLoginTime())
             .toString();
     }
+
+
 }
