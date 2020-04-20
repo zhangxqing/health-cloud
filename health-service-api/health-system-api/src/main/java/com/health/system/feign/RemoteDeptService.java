@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @date 2019-05-20
  */
 @FeignClient(name = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteDeptFallbackFactory.class)
-public interface RemoteDeptService
-{
+public interface RemoteDeptService {
+
     @GetMapping("dept/get/{deptId}")
-    public SysDept selectSysDeptByDeptId(@PathVariable("deptId") long deptId);
+    SysDept selectSysDeptByDeptId(@PathVariable("deptId") long deptId);
 }

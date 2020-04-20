@@ -6,22 +6,20 @@ import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author zq
+ */
 @Slf4j
 @Component
-public class RemoteDeptFallbackFactory implements FallbackFactory<RemoteDeptService>
-{/* (non-Javadoc)
-  * @see feign.hystrix.FallbackFactory#create(java.lang.Throwable)
-  */
+public class RemoteDeptFallbackFactory implements FallbackFactory<RemoteDeptService> {
+
     @Override
-    public RemoteDeptService create(Throwable throwable)
-    {
+    public RemoteDeptService create(Throwable throwable) {
         log.error(throwable.getMessage());
-        return new RemoteDeptService()
-        {
+        return new RemoteDeptService() {
 
             @Override
-            public SysDept selectSysDeptByDeptId(long deptId)
-            {
+            public SysDept selectSysDeptByDeptId(long deptId) {
                 return null;
             }
         };

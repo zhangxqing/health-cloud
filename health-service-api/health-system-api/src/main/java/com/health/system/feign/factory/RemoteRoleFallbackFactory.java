@@ -6,21 +6,19 @@ import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author zq
+ */
 @Slf4j
 @Component
-public class RemoteRoleFallbackFactory implements FallbackFactory<RemoteRoleService>
-{/* (non-Javadoc)
-  * @see feign.hystrix.FallbackFactory#create(java.lang.Throwable)
-  */
+public class RemoteRoleFallbackFactory implements FallbackFactory<RemoteRoleService> {
+
     @Override
-    public RemoteRoleService create(Throwable throwable)
-    {
+    public RemoteRoleService create(Throwable throwable) {
         log.error(throwable.getMessage());
-        return new RemoteRoleService()
-        {
+        return new RemoteRoleService() {
             @Override
-            public SysRole selectSysRoleByRoleId(long roleId)
-            {
+            public SysRole selectSysRoleByRoleId(long roleId) {
                 return null;
             }
         };

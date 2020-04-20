@@ -8,18 +8,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.health.system.domain.SysLogininfor;
 import com.health.system.domain.SysOperLog;
 
+
 /**
  * 日志Feign服务层
- *
- * @author zmr
- * @date 2019-05-20
+ * @author zq
  */
 @FeignClient(name = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteLogFallbackFactory.class)
-public interface RemoteLogService
-{
+public interface RemoteLogService {
+
     @PostMapping("operLog/save")
-    public void insertOperlog(@RequestBody SysOperLog operLog);
+    void insertOperlog(@RequestBody SysOperLog operLog);
 
     @PostMapping("logininfor/save")
-    public void insertLoginlog(@RequestBody SysLogininfor logininfor);
+    void insertLoginlog(@RequestBody SysLogininfor logininfor);
 }

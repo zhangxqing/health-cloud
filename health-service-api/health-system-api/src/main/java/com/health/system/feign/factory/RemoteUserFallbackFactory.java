@@ -9,46 +9,41 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
+/**
+ * @author zq
+ */
 @Slf4j
 @Component
-public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserService>
-{
+public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserService> {
     @Override
-    public RemoteUserService create(Throwable throwable)
-    {
+    public RemoteUserService create(Throwable throwable) {
         log.error(throwable.getMessage());
-        return new RemoteUserService()
-        {
+        return new RemoteUserService() {
             @Override
-            public SysUser selectSysUserByUsername(String username)
-            {
+            public SysUser selectSysUserByUsername(String username) {
                 return null;
             }
 
             @Override
-            public R updateUserLoginRecord(SysUser user)
-            {
+            public R updateUserLoginRecord(SysUser user) {
                 return R.error();
             }
 
             @Override
-            public SysUser selectSysUserByUserId(long userId)
-            {
+            public SysUser selectSysUserByUserId(long userId) {
                 SysUser user = new SysUser();
-                user.setUserId(0l);
+                user.setUserId(0L);
                 user.setLoginName("no user");
                 return user;
             }
 
             @Override
-            public Set<Long> selectUserIdsHasRoles(String roleId)
-            {
+            public Set<Long> selectUserIdsHasRoles(String roleId) {
                 return null;
             }
 
             @Override
-            public Set<Long> selectUserIdsInDepts(String deptIds)
-            {
+            public Set<Long> selectUserIdsInDepts(String deptIds) {
                 return null;
             }
         };

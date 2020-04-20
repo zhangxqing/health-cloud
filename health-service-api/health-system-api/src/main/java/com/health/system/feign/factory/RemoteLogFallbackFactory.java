@@ -7,24 +7,22 @@ import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author zq
+ */
 @Slf4j
 @Component
-public class RemoteLogFallbackFactory implements FallbackFactory<RemoteLogService>
-{
+public class RemoteLogFallbackFactory implements FallbackFactory<RemoteLogService> {
     @Override
-    public RemoteLogService create(Throwable throwable)
-    {
+    public RemoteLogService create(Throwable throwable) {
         log.error(throwable.getMessage());
-        return new RemoteLogService()
-        {
+        return new RemoteLogService() {
             @Override
-            public void insertOperlog(SysOperLog operLog)
-            {
+            public void insertOperlog(SysOperLog operLog) {
             }
 
             @Override
-            public void insertLoginlog(SysLogininfor logininfor)
-            {
+            public void insertLoginlog(SysLogininfor logininfor) {
             }
         };
     }

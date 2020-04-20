@@ -16,33 +16,33 @@ import java.util.Set;
  * @date 2019-05-20
  */
 @FeignClient(name = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteUserFallbackFactory.class)
-public interface RemoteUserService
-{
+public interface RemoteUserService {
     @GetMapping("user/get/{userId}")
-    public SysUser selectSysUserByUserId(@PathVariable("userId") long userId);
+    SysUser selectSysUserByUserId(@PathVariable("userId") long userId);
 
     @GetMapping("user/find/{username}")
-    public SysUser selectSysUserByUsername(@PathVariable("username") String username);
+    SysUser selectSysUserByUsername(@PathVariable("username") String username);
 
     @PostMapping("user/update/login")
-    public R updateUserLoginRecord(@RequestBody SysUser user);
+    R updateUserLoginRecord(@RequestBody SysUser user);
 
     /**
      * 查询拥有当前角色的所有用户
-     * @param auditor
+     *
+     * @param roleIds 角色id集合
      * @return
      * @author zmr
      */
     @GetMapping("user/hasRoles")
-    public Set<Long> selectUserIdsHasRoles(@RequestParam("roleIds") String roleIds);
+    Set<Long> selectUserIdsHasRoles(@RequestParam("roleIds") String roleIds);
 
     /**
      * 查询所有当前部门中的用户
      *
-     * @param deptId
+     * @param deptIds 部门id集合
      * @return
      * @author zmr
      */
     @GetMapping("user/inDepts")
-    public Set<Long> selectUserIdsInDepts(@RequestParam("deptIds") String deptIds);
+    Set<Long> selectUserIdsInDepts(@RequestParam("deptIds") String deptIds);
 }
