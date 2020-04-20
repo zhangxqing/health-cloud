@@ -1,8 +1,8 @@
 package com.health.system.feign.factory;
 
-import com.ruoyi.system.domain.SysLogininfor;
-import com.ruoyi.system.domain.SysOperLog;
-import com.ruoyi.system.feign.RemoteLogService;
+import com.health.system.domain.SysLogininfor;
+import com.health.system.domain.SysOperLog;
+import com.health.system.feign.RemoteLogService;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.health.system.feign.factory;
 
-import com.ruoyi.system.domain.SysDept;
-import com.ruoyi.system.feign.RemoteDeptService;
+import com.health.system.domain.SysDept;
+import com.health.system.feign.RemoteDeptService;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

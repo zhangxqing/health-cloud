@@ -1,6 +1,6 @@
 package com.health.system.feign.factory;
 
-import com.ruoyi.system.feign.RemoteMenuService;
+import com.health.system.feign.RemoteMenuService;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

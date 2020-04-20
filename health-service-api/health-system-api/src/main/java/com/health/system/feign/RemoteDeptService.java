@@ -1,8 +1,8 @@
 package com.health.system.feign;
 
+import com.health.system.domain.SysDept;
+import com.health.system.feign.factory.RemoteDeptFallbackFactory;
 import com.ruoyi.common.constant.ServiceNameConstants;
-import com.ruoyi.system.domain.SysDept;
-import com.ruoyi.system.feign.factory.RemoteDeptFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
