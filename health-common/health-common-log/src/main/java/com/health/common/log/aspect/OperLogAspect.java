@@ -155,6 +155,8 @@ public class OperLogAspect
         operLog.setOperParam(StringUtils.substring(params, 0, 2000));
     }
 
+
+
     /**
      * 是否存在注解，如果存在就获取
      */
