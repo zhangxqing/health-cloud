@@ -49,7 +49,7 @@ mybatis:
     # 搜索指定包别名
     typeAliasesPackage: com.health
     # 配置mapper的扫描，找到所有的mapper.xml映射文件
-    mapperLocations: classpath*:mapper/xml/
+    mapperLocations: com/health/system/mapper/xml/*.xml
 
 mapper:
   not-empty: true

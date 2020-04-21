@@ -23,17 +23,15 @@ import java.util.List;
 @Component
 @Primary
 @AllArgsConstructor
-public class SwaggerProvider implements SwaggerResourcesProvider
-{
-    public static final String      API_URI = "/v2/api-docs";
+public class SwaggerProvider implements SwaggerResourcesProvider {
+    public static final String API_URI = "/v2/api-docs";
 
     private final RouteLocator routeLocator;
 
     private final GatewayProperties gatewayProperties;
 
     @Override
-    public List<SwaggerResource> get()
-    {
+    public List<SwaggerResource> get() {
         List<SwaggerResource> resources = new ArrayList<>();
         List<String> routes = new ArrayList<>();
         // 取出gateway的route
@@ -51,8 +49,7 @@ public class SwaggerProvider implements SwaggerResourcesProvider
         return resources;
     }
 
-    private SwaggerResource swaggerResource(String name, String location)
-    {
+    private SwaggerResource swaggerResource(String name, String location) {
         SwaggerResource swaggerResource = new SwaggerResource();
         swaggerResource.setName(name);
         swaggerResource.setLocation(location);

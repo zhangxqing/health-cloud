@@ -32,15 +32,13 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
  */
 @Configuration
 @AllArgsConstructor
-public class RouterFunctionConfiguration
-{
+public class RouterFunctionConfiguration {
     private final HystrixFallbackHandler hystrixFallbackHandler;
 
     private final ImgCodeHandler imgCodeHandler;
 
     @Bean
-    public RouterFunction<?> routerFunction()
-    {
+    public RouterFunction<?> routerFunction() {
         return RouterFunctions
                 .route(RequestPredicates.path("/fallback").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
                         hystrixFallbackHandler)

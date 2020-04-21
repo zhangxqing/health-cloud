@@ -25,15 +25,13 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Component
 @AllArgsConstructor
-public class ImgCodeHandler implements HandlerFunction<ServerResponse>
-{
+public class ImgCodeHandler implements HandlerFunction<ServerResponse> {
     private final Producer producer;
 
     private final StringRedisTemplate redisTemplate;
 
     @Override
-    public Mono<ServerResponse> handle(ServerRequest serverRequest)
-    {
+    public Mono<ServerResponse> handle(ServerRequest serverRequest) {
         // 生成验证码
         String capText = producer.createText();
         String capStr = capText.substring(0, capText.lastIndexOf("@"));
@@ -44,12 +42,9 @@ public class ImgCodeHandler implements HandlerFunction<ServerResponse>
         redisTemplate.opsForValue().set(Constants.DEFAULT_CODE_KEY + randomStr, code, 60, TimeUnit.SECONDS);
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
-        try
-        {
+        try {
             ImageIO.write(image, "jpg", os);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             log.error("ImageIO write err", e);
             return Mono.error(e);
         }

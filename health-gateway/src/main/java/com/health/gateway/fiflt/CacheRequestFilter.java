@@ -19,40 +19,32 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class CacheRequestFilter extends AbstractGatewayFilterFactory<CacheRequestFilter.Config>
-{
-    public CacheRequestFilter()
-    {
+public class CacheRequestFilter extends AbstractGatewayFilterFactory<CacheRequestFilter.Config> {
+    public CacheRequestFilter() {
         super(Config.class);
     }
 
     @Override
-    public String name()
-    {
+    public String name() {
         return "CacheRequest";
     }
 
     @Override
-    public GatewayFilter apply(Config config)
-    {
+    public GatewayFilter apply(Config config) {
         CacheRequestGatewayFilter cacheRequestGatewayFilter = new CacheRequestGatewayFilter();
         Integer order = config.getOrder();
-        if (order == null)
-        {
+        if (order == null) {
             return cacheRequestGatewayFilter;
         }
         return new OrderedGatewayFilter(cacheRequestGatewayFilter, order);
     }
 
-    public static class CacheRequestGatewayFilter implements GatewayFilter
-    {
+    public static class CacheRequestGatewayFilter implements GatewayFilter {
         @Override
-        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain)
-        {
+        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
             // GET DELETE 不过滤
             HttpMethod method = exchange.getRequest().getMethod();
-            if (method == null || method.matches("GET") || method.matches("DELETE"))
-            {
+            if (method == null || method.matches("GET") || method.matches("DELETE")) {
                 return chain.filter(exchange);
             }
             return DataBufferUtils.join(exchange.getRequest().getBody()).map(dataBuffer -> {
@@ -62,13 +54,10 @@ public class CacheRequestFilter extends AbstractGatewayFilterFactory<CacheReques
                 return bytes;
             }).defaultIfEmpty(new byte[0]).flatMap(bytes -> {
                 DataBufferFactory dataBufferFactory = exchange.getResponse().bufferFactory();
-                ServerHttpRequestDecorator decorator = new ServerHttpRequestDecorator(exchange.getRequest())
-                {
+                ServerHttpRequestDecorator decorator = new ServerHttpRequestDecorator(exchange.getRequest()) {
                     @Override
-                    public Flux<DataBuffer> getBody()
-                    {
-                        if (bytes.length > 0)
-                        {
+                    public Flux<DataBuffer> getBody() {
+                        if (bytes.length > 0) {
                             return Flux.just(dataBufferFactory.wrap(bytes));
                         }
                         return Flux.empty();
@@ -80,14 +69,12 @@ public class CacheRequestFilter extends AbstractGatewayFilterFactory<CacheReques
     }
 
     @Override
-    public List<String> shortcutFieldOrder()
-    {
+    public List<String> shortcutFieldOrder() {
         return Collections.singletonList("order");
     }
 
     @Data
-    static class Config
-    {
+    static class Config {
         private Integer order;
     }
 }

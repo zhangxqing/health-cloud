@@ -16,6 +16,7 @@
 
     <modules>
         <module>health-system</module>
+        <module>health-auth</module>
     </modules>
 
 </project>

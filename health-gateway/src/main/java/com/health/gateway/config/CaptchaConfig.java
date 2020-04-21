@@ -13,11 +13,9 @@ import java.util.Properties;
  * @author ruoyi
  */
 @Configuration
-public class CaptchaConfig
-{
+public class CaptchaConfig {
     @Bean(name = "captchaProducerMath")
-    public DefaultKaptcha getKaptchaBeanMath()
-    {
+    public DefaultKaptcha getKaptchaBeanMath() {
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         Properties properties = new Properties();
         // 是否有边框 默认为true 我们可以自己设置yes，no
@@ -35,7 +33,7 @@ public class CaptchaConfig
         // KAPTCHA_SESSION_KEY
         properties.setProperty("kaptcha.session.key", "kaptchaCodeMath");
         // 验证码文本生成器
-        properties.setProperty("kaptcha.textproducer.impl", "com.ruoyi.gateway.config.KaptchaTextCreator");
+        properties.setProperty("kaptcha.textproducer.impl", "com.health.gateway.config.KaptchaTextCreator");
         // 验证码文本字符间距 默认为2
         properties.setProperty("kaptcha.textproducer.char.space", "3");
         // 验证码文本字符长度 默认为5
