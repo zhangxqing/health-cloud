@@ -37,3 +37,4 @@ health-cloud
 启动顺序：
 - eureka
 - gateway
+- system
