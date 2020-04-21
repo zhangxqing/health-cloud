@@ -3,7 +3,7 @@ package com.health.common.enums;
 /**
  * 用户状态
  *
- * @author ruoyi
+ * @author zq
  */
 public enum UserStatus
 {

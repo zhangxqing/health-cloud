@@ -8,5 +8,5 @@ public interface ServiceNameConstants
     /**
      * system模块
      */
-    String SYSTEM_SERVICE = "ruoyi-system";
+    String SYSTEM_SERVICE = "health-system";
 }

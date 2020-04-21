@@ -56,7 +56,7 @@ public class PreAuthorizeAspect
         if (Optional.ofNullable(tmpUserKey).isPresent())
         {
             Long userId = Long.valueOf(tmpUserKey);
-            log.debug("userid:{}", userId);
+            log.debug("userId:{}", userId);
             if (userId == 1L)
             {
                 return true;

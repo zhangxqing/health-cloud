@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import com.ruoyi.system.feign.RemoteLogService;
+import com.health.system.feign.RemoteLogService;
 
 import lombok.AllArgsConstructor;
 

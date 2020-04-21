@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * druid 配置多数据源
  *
- * @author ruoyi
+ * @author zq
  */
 @Configuration
 public class DruidConfig {
@@ -43,7 +43,7 @@ public class DruidConfig {
     @Bean(name = "dynamicDataSource")
     @Primary
     public DynamicDataSource dataSource() {
-        Map<Object, Object> targetDataSources = new HashMap<>();
+        Map<Object, Object> targetDataSources = new HashMap<>(10);
         targetDataSources.put(DataSourceType.MASTER.name(), masterDataSource());
         if (druidProperties.slaveEnable) {
             targetDataSources.put(DataSourceType.SLAVE.name(), slaveDataSource());

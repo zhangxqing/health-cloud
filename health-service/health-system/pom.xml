@@ -80,13 +80,13 @@
             <artifactId>health-common-log</artifactId>
             <version>${health.version}</version>
         </dependency>
-        <!-- 日志模块 -->
+        <!-- 核心模块 -->
         <dependency>
             <groupId>com.health.cloud</groupId>
             <artifactId>health-common-core</artifactId>
             <version>${health.version}</version>
         </dependency>
-        <!-- 日志模块 -->
+        <!-- api模块 -->
         <dependency>
             <groupId>com.health.cloud</groupId>
             <artifactId>health-common-swagger</artifactId>

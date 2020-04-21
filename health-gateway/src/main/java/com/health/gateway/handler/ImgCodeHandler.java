@@ -1,7 +1,7 @@
 package com.health.gateway.handler;
 
 import com.google.code.kaptcha.Producer;
-import com.ruoyi.common.constant.Constants;
+import com.health.common.constant.Constants;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ByteArrayResource;

@@ -2,8 +2,8 @@ package com.health.gateway.fiflt;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ruoyi.common.constant.Constants;
-import com.ruoyi.common.core.domain.R;
+import com.health.common.constant.Constants;
+import com.health.common.core.domain.R;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;

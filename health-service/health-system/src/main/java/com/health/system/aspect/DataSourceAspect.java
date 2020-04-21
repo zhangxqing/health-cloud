@@ -25,7 +25,7 @@ public class DataSourceAspect {
     @Autowired
     private DruidProperties druidProperties;
 
-    @Around("execution(* com.ruoyi..*ServiceImpl.*(..))")
+    @Around("execution(* com.health..*ServiceImpl.*(..))")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         if (!druidProperties.slaveEnable) {
             return point.proceed();

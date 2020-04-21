@@ -2,9 +2,9 @@ package com.health.gateway.fiflt;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.ruoyi.common.constant.Constants;
-import com.ruoyi.common.core.domain.R;
-import com.ruoyi.common.exception.ValidateCodeException;
+import com.health.common.constant.Constants;
+import com.health.common.core.domain.R;
+import com.health.common.exception.ValidateCodeException;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

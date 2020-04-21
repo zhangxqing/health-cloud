@@ -1,7 +1,7 @@
 package com.health.gateway.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.ruoyi.common.core.domain.R;
+import com.health.common.core.domain.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +16,9 @@ import java.util.Optional;
 
 import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR;
 
+/**
+ * @author zq
+ */
 @Slf4j
 @Component
 public class HystrixFallbackHandler implements HandlerFunction<ServerResponse>
