@@ -35,8 +35,7 @@
 		from sys_menu
 	</sql>
 
-    <select id="selectMenusByUserId" parameterType="Long"
-            resultMap="SysMenuResult">
+    <select id="selectMenusByUserId" parameterType="Long" resultMap="SysMenuResult">
 		select distinct m.menu_id, m.parent_id, m.menu_name,
 		m.perms, m.menu_type,m.menu_key,m.component,m.target, m.icon, m.path, m.redirect, m.hidden_children, m.hidden_header, m.order_num,m.visible,
 		m.create_time

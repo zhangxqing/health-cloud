@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <!-- 将添加liquibase更改日志在这里 -->
+    <include file="liquibase/changelog/20200422165128_init_table_info.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422175128_add_table_districts.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422225128_add_table_sys_user.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422225228_add_table_sys_conf.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422225328_add_table_sys_dept.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422230428_add_table_sys_dict_data.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422230528_add_table_sys_dict_type.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422230628_add_table_sys_menu.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422230828_add_table_sys_notice.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422230928_add_table_sys_oss.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200422231028_add_table_sys_post.xml" relativeToChangelogFile="false"/>
+</databaseChangeLog>

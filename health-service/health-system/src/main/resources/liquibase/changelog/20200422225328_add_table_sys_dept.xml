@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="zq (generated)" id="1548134441468-1">
+        <sql>
+            DROP TABLE IF EXISTS `sys_dept`;
+            CREATE TABLE `sys_dept`  (
+            `dept_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '部门id',
+            `parent_id` int(11) NULL DEFAULT 0 COMMENT '父部门id',
+            `ancestors` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '祖级列表',
+            `dept_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '部门名称',
+            `order_num` int(4) NULL DEFAULT 0 COMMENT '显示顺序',
+            `leader` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '负责人',
+            `leader_id` int(11) NULL DEFAULT NULL COMMENT '负责人编号',
+            `phone` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系电话',
+            `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
+            `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '部门状态（0正常 1停用）',
+            `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+            `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+            `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+            `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+            `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+            PRIMARY KEY (`dept_id`) USING BTREE
+            ) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '部门表' ROW_FORMAT = Dynamic;
+
+            INSERT INTO `sys_dept` VALUES (100, 0, '0', '若依科技', 0, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2019-09-10 21:48:36');
+            INSERT INTO `sys_dept` VALUES (101, 100, '0,100', '深圳总公司', 1, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2019-09-10 21:48:36');
+            INSERT INTO `sys_dept` VALUES (102, 100, '0,100', '长沙分公司', 2, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2019-05-30 17:45:19');
+            INSERT INTO `sys_dept` VALUES (103, 101, '0,100,101', '研发部门', 1, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00');
+            INSERT INTO `sys_dept` VALUES (104, 101, '0,100,101', '市场部门', 2, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00');
+            INSERT INTO `sys_dept` VALUES (105, 101, '0,100,101', '测试部门', 3, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00');
+            INSERT INTO `sys_dept` VALUES (106, 101, '0,100,101', '财务部门', 4, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00');
+            INSERT INTO `sys_dept` VALUES (107, 101, '0,100,101', '运维部门', 5, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00');
+            INSERT INTO `sys_dept` VALUES (108, 102, '0,100,102', '市场部门', 1, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00');
+            INSERT INTO `sys_dept` VALUES (109, 102, '0,100,102', '财务部门', 2, '若依', 1, '15888888888', 'ry@qq.com', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2019-05-30 17:45:19');
+            INSERT INTO `sys_dept` VALUES (112, 108, '0,100,102,108', '1241', 124, '1124', 1, '1241', '142', '0', '2', '', '2019-05-30 17:14:39', '', NULL);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

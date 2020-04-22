@@ -1,0 +1,274 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="zq (generated)" id="1548134441468-1">
+        <sql>
+            DROP TABLE IF EXISTS `sys_role`;
+            CREATE TABLE `sys_role`  (
+            `role_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '角色ID',
+            `role_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名称',
+            `role_key` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色权限字符串',
+            `role_sort` int(4) NOT NULL COMMENT '显示顺序',
+            `data_scope` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '数据范围（1：全部数据权限 2：自定数据权限）',
+            `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色状态（0正常 1停用）',
+            `del_flag` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '删除标志（0代表存在 2代表删除）',
+            `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '创建者',
+            `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+            `update_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '更新者',
+            `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+            `remark` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+            PRIMARY KEY (`role_id`) USING BTREE
+            ) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色信息表' ROW_FORMAT = Dynamic;
+
+            -- ----------------------------
+            -- Records of sys_role
+            -- ----------------------------
+            INSERT INTO `sys_role` VALUES (1, '管理员', 'admin', 1, '1', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2019-05-30 15:42:31', '管理员');
+            INSERT INTO `sys_role` VALUES (2, '普通角色', 'common', 2, '2', '0', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2019-05-30 15:42:33', '普通角色');
+            INSERT INTO `sys_role` VALUES (3, '12', '1', 12, '1', '0', '2', '', '2019-05-30 13:11:44', '', NULL, NULL);
+            INSERT INTO `sys_role` VALUES (4, '124111', '12412', 214, '1', '0', '0', '', '2019-05-30 13:11:58', '', '2019-05-30 16:51:01', NULL);
+            INSERT INTO `sys_role` VALUES (5, '1', '111', 111, '1', '0', '2', '', '2019-05-30 13:15:17', '', '2019-05-30 13:26:31', NULL);
+            INSERT INTO `sys_role` VALUES (6, '12', '1', 12, '1', '0', '2', '', '2019-05-30 13:11:44', '', NULL, NULL);
+            INSERT INTO `sys_role` VALUES (7, '1241', '1241', 214, '1', '0', '2', '', '2019-05-30 13:11:58', '', '2019-05-30 13:13:42', NULL);
+            INSERT INTO `sys_role` VALUES (8, '1', '111', 111, '1', '0', '2', '', '2019-05-30 13:15:17', '', '2019-05-30 13:26:31', NULL);
+            INSERT INTO `sys_role` VALUES (9, '12', '1', 12, '1', '0', '2', '', '2019-05-30 13:11:44', '', NULL, NULL);
+            INSERT INTO `sys_role` VALUES (10, '1241', '1241', 214, '1', '0', '2', '', '2019-05-30 13:11:58', '', '2019-05-30 13:13:42', NULL);
+            INSERT INTO `sys_role` VALUES (12, '1', '111', 111, '1', '0', '2', '', '2019-05-30 13:15:17', '', '2019-05-30 13:26:31', NULL);
+
+            -- ----------------------------
+            -- Table structure for sys_role_dept
+            -- ----------------------------
+            DROP TABLE IF EXISTS `sys_role_dept`;
+            CREATE TABLE `sys_role_dept`  (
+            `role_id` int(11) NOT NULL COMMENT '角色ID',
+            `dept_id` int(11) NOT NULL COMMENT '部门ID',
+            PRIMARY KEY (`role_id`, `dept_id`) USING BTREE
+            ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色和部门关联表' ROW_FORMAT = Dynamic;
+
+            -- ----------------------------
+            -- Records of sys_role_dept
+            -- ----------------------------
+            INSERT INTO `sys_role_dept` VALUES (2, 100);
+            INSERT INTO `sys_role_dept` VALUES (2, 101);
+            INSERT INTO `sys_role_dept` VALUES (2, 105);
+
+            -- ----------------------------
+            -- Table structure for sys_role_menu
+            -- ----------------------------
+            DROP TABLE IF EXISTS `sys_role_menu`;
+            CREATE TABLE `sys_role_menu`  (
+            `role_id` int(11) NOT NULL COMMENT '角色ID',
+            `menu_id` int(11) NOT NULL COMMENT '菜单ID',
+            PRIMARY KEY (`role_id`, `menu_id`) USING BTREE
+            ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色和菜单关联表' ROW_FORMAT = Dynamic;
+
+            -- ----------------------------
+            -- Records of sys_role_menu
+            -- ----------------------------
+            INSERT INTO `sys_role_menu` VALUES (2, 1);
+            INSERT INTO `sys_role_menu` VALUES (2, 2);
+            INSERT INTO `sys_role_menu` VALUES (2, 3);
+            INSERT INTO `sys_role_menu` VALUES (2, 100);
+            INSERT INTO `sys_role_menu` VALUES (2, 101);
+            INSERT INTO `sys_role_menu` VALUES (2, 102);
+            INSERT INTO `sys_role_menu` VALUES (2, 103);
+            INSERT INTO `sys_role_menu` VALUES (2, 104);
+            INSERT INTO `sys_role_menu` VALUES (2, 105);
+            INSERT INTO `sys_role_menu` VALUES (2, 106);
+            INSERT INTO `sys_role_menu` VALUES (2, 107);
+            INSERT INTO `sys_role_menu` VALUES (2, 108);
+            INSERT INTO `sys_role_menu` VALUES (2, 109);
+            INSERT INTO `sys_role_menu` VALUES (2, 110);
+            INSERT INTO `sys_role_menu` VALUES (2, 111);
+            INSERT INTO `sys_role_menu` VALUES (2, 112);
+            INSERT INTO `sys_role_menu` VALUES (2, 113);
+            INSERT INTO `sys_role_menu` VALUES (2, 114);
+            INSERT INTO `sys_role_menu` VALUES (2, 115);
+            INSERT INTO `sys_role_menu` VALUES (2, 500);
+            INSERT INTO `sys_role_menu` VALUES (2, 501);
+            INSERT INTO `sys_role_menu` VALUES (2, 1000);
+            INSERT INTO `sys_role_menu` VALUES (2, 1001);
+            INSERT INTO `sys_role_menu` VALUES (2, 1002);
+            INSERT INTO `sys_role_menu` VALUES (2, 1003);
+            INSERT INTO `sys_role_menu` VALUES (2, 1004);
+            INSERT INTO `sys_role_menu` VALUES (2, 1005);
+            INSERT INTO `sys_role_menu` VALUES (2, 1006);
+            INSERT INTO `sys_role_menu` VALUES (2, 1007);
+            INSERT INTO `sys_role_menu` VALUES (2, 1008);
+            INSERT INTO `sys_role_menu` VALUES (2, 1009);
+            INSERT INTO `sys_role_menu` VALUES (2, 1010);
+            INSERT INTO `sys_role_menu` VALUES (2, 1011);
+            INSERT INTO `sys_role_menu` VALUES (2, 1012);
+            INSERT INTO `sys_role_menu` VALUES (2, 1013);
+            INSERT INTO `sys_role_menu` VALUES (2, 1014);
+            INSERT INTO `sys_role_menu` VALUES (2, 1015);
+            INSERT INTO `sys_role_menu` VALUES (2, 1016);
+            INSERT INTO `sys_role_menu` VALUES (2, 1017);
+            INSERT INTO `sys_role_menu` VALUES (2, 1018);
+            INSERT INTO `sys_role_menu` VALUES (2, 1019);
+            INSERT INTO `sys_role_menu` VALUES (2, 1020);
+            INSERT INTO `sys_role_menu` VALUES (2, 1021);
+            INSERT INTO `sys_role_menu` VALUES (2, 1022);
+            INSERT INTO `sys_role_menu` VALUES (2, 1023);
+            INSERT INTO `sys_role_menu` VALUES (2, 1024);
+            INSERT INTO `sys_role_menu` VALUES (2, 1025);
+            INSERT INTO `sys_role_menu` VALUES (2, 1026);
+            INSERT INTO `sys_role_menu` VALUES (2, 1027);
+            INSERT INTO `sys_role_menu` VALUES (2, 1028);
+            INSERT INTO `sys_role_menu` VALUES (2, 1029);
+            INSERT INTO `sys_role_menu` VALUES (2, 1030);
+            INSERT INTO `sys_role_menu` VALUES (2, 1031);
+            INSERT INTO `sys_role_menu` VALUES (2, 1032);
+            INSERT INTO `sys_role_menu` VALUES (2, 1033);
+            INSERT INTO `sys_role_menu` VALUES (2, 1034);
+            INSERT INTO `sys_role_menu` VALUES (2, 1035);
+            INSERT INTO `sys_role_menu` VALUES (2, 1036);
+            INSERT INTO `sys_role_menu` VALUES (2, 1037);
+            INSERT INTO `sys_role_menu` VALUES (2, 1038);
+            INSERT INTO `sys_role_menu` VALUES (2, 1039);
+            INSERT INTO `sys_role_menu` VALUES (2, 1040);
+            INSERT INTO `sys_role_menu` VALUES (2, 1041);
+            INSERT INTO `sys_role_menu` VALUES (2, 1042);
+            INSERT INTO `sys_role_menu` VALUES (2, 1043);
+            INSERT INTO `sys_role_menu` VALUES (2, 1044);
+            INSERT INTO `sys_role_menu` VALUES (2, 1045);
+            INSERT INTO `sys_role_menu` VALUES (2, 1046);
+            INSERT INTO `sys_role_menu` VALUES (2, 1047);
+            INSERT INTO `sys_role_menu` VALUES (2, 1048);
+            INSERT INTO `sys_role_menu` VALUES (2, 1049);
+            INSERT INTO `sys_role_menu` VALUES (2, 1050);
+            INSERT INTO `sys_role_menu` VALUES (2, 1051);
+            INSERT INTO `sys_role_menu` VALUES (2, 1052);
+            INSERT INTO `sys_role_menu` VALUES (2, 1053);
+            INSERT INTO `sys_role_menu` VALUES (2, 1054);
+            INSERT INTO `sys_role_menu` VALUES (2, 1055);
+            INSERT INTO `sys_role_menu` VALUES (2, 1056);
+            INSERT INTO `sys_role_menu` VALUES (2, 1057);
+            INSERT INTO `sys_role_menu` VALUES (2, 2000);
+            INSERT INTO `sys_role_menu` VALUES (2, 2001);
+            INSERT INTO `sys_role_menu` VALUES (2, 2002);
+            INSERT INTO `sys_role_menu` VALUES (2, 2003);
+            INSERT INTO `sys_role_menu` VALUES (2, 2004);
+            INSERT INTO `sys_role_menu` VALUES (2, 2005);
+            INSERT INTO `sys_role_menu` VALUES (2, 2006);
+            INSERT INTO `sys_role_menu` VALUES (2, 2007);
+            INSERT INTO `sys_role_menu` VALUES (2, 2008);
+            INSERT INTO `sys_role_menu` VALUES (2, 2009);
+            INSERT INTO `sys_role_menu` VALUES (3, 3);
+            INSERT INTO `sys_role_menu` VALUES (3, 113);
+            INSERT INTO `sys_role_menu` VALUES (3, 114);
+            INSERT INTO `sys_role_menu` VALUES (3, 115);
+            INSERT INTO `sys_role_menu` VALUES (3, 1056);
+            INSERT INTO `sys_role_menu` VALUES (3, 1057);
+            INSERT INTO `sys_role_menu` VALUES (3, 2006);
+            INSERT INTO `sys_role_menu` VALUES (3, 2007);
+            INSERT INTO `sys_role_menu` VALUES (3, 2008);
+            INSERT INTO `sys_role_menu` VALUES (3, 2009);
+            INSERT INTO `sys_role_menu` VALUES (4, 113);
+            INSERT INTO `sys_role_menu` VALUES (5, 3);
+            INSERT INTO `sys_role_menu` VALUES (5, 113);
+            INSERT INTO `sys_role_menu` VALUES (5, 114);
+            INSERT INTO `sys_role_menu` VALUES (5, 115);
+            INSERT INTO `sys_role_menu` VALUES (5, 1056);
+            INSERT INTO `sys_role_menu` VALUES (5, 1057);
+            INSERT INTO `sys_role_menu` VALUES (5, 2006);
+            INSERT INTO `sys_role_menu` VALUES (5, 2007);
+            INSERT INTO `sys_role_menu` VALUES (5, 2008);
+            INSERT INTO `sys_role_menu` VALUES (5, 2009);
+
+            DROP TABLE IF EXISTS `sys_user_online`;
+            CREATE TABLE `sys_user_online`  (
+            `sessionId` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户会话id',
+            `login_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '登录账号',
+            `dept_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '部门名称',
+            `ipaddr` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '登录IP地址',
+            `login_location` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '登录地点',
+            `browser` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '浏览器类型',
+            `os` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '操作系统',
+            `status` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '在线状态on_line在线off_line离线',
+            `start_timestamp` datetime(0) NULL DEFAULT NULL COMMENT 'session创建时间',
+            `last_access_time` datetime(0) NULL DEFAULT NULL COMMENT 'session最后访问时间',
+            `expire_time` int(5) NULL DEFAULT 0 COMMENT '超时时间，单位为分钟',
+            PRIMARY KEY (`sessionId`) USING BTREE
+            ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '在线用户记录' ROW_FORMAT = Dynamic;
+
+            -- ----------------------------
+            -- Records of sys_user_online
+            -- ----------------------------
+            INSERT INTO `sys_user_online` VALUES ('83ed289b-c6dc-412d-837b-6ede3ba428df', 'admin', '研发部门', '127.0.0.1', '内网IP', 'Chrome', 'Windows 10', 'on_line', '2019-06-03 09:51:03', '2019-06-03 09:51:07', 1800000);
+
+            -- ----------------------------
+            -- Table structure for sys_user_post
+            -- ----------------------------
+            DROP TABLE IF EXISTS `sys_user_post`;
+            CREATE TABLE `sys_user_post`  (
+            `user_id` int(11) NOT NULL COMMENT '用户ID',
+            `post_id` int(11) NOT NULL COMMENT '岗位ID',
+            PRIMARY KEY (`user_id`, `post_id`) USING BTREE
+            ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户与岗位关联表' ROW_FORMAT = Dynamic;
+
+            -- ----------------------------
+            -- Records of sys_user_post
+            -- ----------------------------
+            INSERT INTO `sys_user_post` VALUES (2, 2);
+
+            -- ----------------------------
+            -- Table structure for sys_user_role
+            -- ----------------------------
+            DROP TABLE IF EXISTS `sys_user_role`;
+            CREATE TABLE `sys_user_role`  (
+            `user_id` int(11) NOT NULL COMMENT '用户ID',
+            `role_id` int(11) NOT NULL COMMENT '角色ID',
+            PRIMARY KEY (`user_id`, `role_id`) USING BTREE
+            ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户和角色关联表' ROW_FORMAT = Dynamic;
+
+            -- ----------------------------
+            -- Records of sys_user_role
+            -- ----------------------------
+            INSERT INTO `sys_user_role` VALUES (1, 1);
+            INSERT INTO `sys_user_role` VALUES (1, 2);
+            INSERT INTO `sys_user_role` VALUES (2, 2);
+            INSERT INTO `sys_user_role` VALUES (3, 2);
+            INSERT INTO `sys_user_role` VALUES (4, 2);
+
+            -- ----------------------------
+            -- Table structure for sys_logininfor
+            -- ----------------------------
+            DROP TABLE IF EXISTS `sys_logininfor`;
+            CREATE TABLE `sys_logininfor`  (
+            `info_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '访问ID',
+            `login_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '登录账号',
+            `ipaddr` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '登录IP地址',
+            `login_location` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '登录地点',
+            `browser` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '浏览器类型',
+            `os` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '操作系统',
+            `status` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
+            `msg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '提示消息',
+            `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
+            PRIMARY KEY (`info_id`) USING BTREE
+            ) ENGINE = InnoDB AUTO_INCREMENT = 10817 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
+
+            -- ----------------------------
+            -- Table structure for sys_oper_log
+            -- ----------------------------
+            DROP TABLE IF EXISTS `sys_oper_log`;
+            CREATE TABLE `sys_oper_log`  (
+            `oper_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '日志主键',
+            `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '模块标题',
+            `business_type` int(2) NULL DEFAULT 0 COMMENT '业务类型（0其它 1新增 2修改 3删除）',
+            `method` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '方法名称',
+            `request_method` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+            `operator_type` int(1) NULL DEFAULT 0 COMMENT '操作类别（0其它 1后台用户 2手机端用户）',
+            `oper_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '操作人员',
+            `dept_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '部门名称',
+            `oper_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '请求URL',
+            `oper_ip` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '主机地址',
+            `oper_location` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '操作地点',
+            `oper_param` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '请求参数',
+            `status` int(1) NULL DEFAULT 0 COMMENT '操作状态（0正常 1异常）',
+            `error_msg` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '错误消息',
+            `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
+            PRIMARY KEY (`oper_id`) USING BTREE
+            ) ENGINE = InnoDB AUTO_INCREMENT = 6262 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

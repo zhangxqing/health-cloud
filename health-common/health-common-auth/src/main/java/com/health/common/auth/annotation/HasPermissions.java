@@ -6,14 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <p>File：HasPermissions.java</p>
- * <p>Title: 权限注解</p>
- * <p>Description:</p>
- * <p>Copyright: Copyright (c) 2019 2019年6月4日 上午10:43:54</p>
- * <p>Company: </p>
- *
- * @author zmr
- * @version 1.0
+ * 自定义权限注解
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

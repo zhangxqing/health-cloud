@@ -3,7 +3,7 @@ server:
 # 日志配置
 logging:
   level:
-    com.ruoyi: debug
+    com.health: debug
     org.springframework: warn
 spring:
   application:
@@ -22,6 +22,10 @@ spring:
     multipart:
       maxFileSize: 5MB  #单位必须大写MB或不写(即为B)
       maxRequestSize: 10MB
+  # 数据库版本管理工具
+  liquibase:
+    change-log: classpath:liquibase/master.xml
+    enabled: true
 
 
 feign:

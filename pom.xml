@@ -40,12 +40,18 @@
         <swagger.version>2.9.2</swagger.version>
         <swagger-ui.version>1.9.5</swagger-ui.version>
         <guava.version>26.0-jre</guava.version>
+        <liquibase.version>3.8.5</liquibase.version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
-
+            <!--liquibase数据库版本管理工具-->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
             <!--cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

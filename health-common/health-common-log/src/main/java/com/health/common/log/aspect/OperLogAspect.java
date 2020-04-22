@@ -39,7 +39,11 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @Component
 public class OperLogAspect {
-    // 配置织入点
+
+
+    /**
+     * 配置织入点为OperLog注解
+     */
     @Pointcut("@annotation(com.health.common.log.annotation.OperLog)")
     public void logPointCut() {
     }
@@ -65,7 +69,7 @@ public class OperLogAspect {
         handleLog(joinPoint, e);
     }
 
-    protected void handleLog(final JoinPoint joinPoint, final Exception e) {
+    private void handleLog(final JoinPoint joinPoint, final Exception e) {
         try {
             // 获得注解
             OperLog controllerLog = getAnnotationLog(joinPoint);
@@ -113,7 +117,7 @@ public class OperLogAspect {
      * @param operLog 操作日志
      * @throws Exception
      */
-    public void getControllerMethodDescription(OperLog log, SysOperLog operLog, Object[] args) throws Exception {
+    private void getControllerMethodDescription(OperLog log, SysOperLog operLog, Object[] args) throws Exception {
         // 设置action动作
         operLog.setBusinessType(log.businessType().ordinal());
         // 设置标题

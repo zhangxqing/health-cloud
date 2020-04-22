@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
 import java.util.Optional;
 
 /**
+ * 权限验证核心类
  * @author zq
  */
 @Aspect
