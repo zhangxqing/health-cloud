@@ -10,7 +10,6 @@
     <artifactId>health-system-api</artifactId>
 
     <dependencies>
-
         <!-- 通用工具 -->
         <dependency>
             <groupId>com.health.cloud</groupId>
