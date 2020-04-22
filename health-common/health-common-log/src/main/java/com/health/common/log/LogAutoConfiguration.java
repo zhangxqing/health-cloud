@@ -15,19 +15,16 @@ import lombok.AllArgsConstructor;
 @Configuration
 @AllArgsConstructor
 @ConditionalOnWebApplication
-public class LogAutoConfiguration
-{
+public class LogAutoConfiguration {
     private final RemoteLogService logService;
 
     @Bean
-    public LogListener sysOperLogListener()
-    {
+    public LogListener sysOperLogListener() {
         return new LogListener(logService);
     }
 
     @Bean
-    public OperLogAspect operLogAspect()
-    {
+    public OperLogAspect operLogAspect() {
         return new OperLogAspect();
     }
 }

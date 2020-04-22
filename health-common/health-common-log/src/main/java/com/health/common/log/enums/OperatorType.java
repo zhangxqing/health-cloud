@@ -5,8 +5,7 @@ package com.health.common.log.enums;
  *
  * @author ruoyi
  */
-public enum OperatorType
-{
+public enum OperatorType {
     /**
      * 其它
      */

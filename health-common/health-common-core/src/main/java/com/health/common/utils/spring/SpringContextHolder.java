@@ -12,15 +12,13 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @Lazy(false)
-public class SpringContextHolder implements ApplicationContextAware, DisposableBean
-{
+public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
     private static ApplicationContext applicationContext = null;
 
     /**
      * 取得存储在静态变量中的ApplicationContext.
      */
-    public static ApplicationContext getApplicationContext()
-    {
+    public static ApplicationContext getApplicationContext() {
         return applicationContext;
     }
 
@@ -28,18 +26,15 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      * 实现ApplicationContextAware接口, 注入Context到静态变量中.
      */
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext)
-    {
+    public void setApplicationContext(ApplicationContext applicationContext) {
         SpringContextHolder.applicationContext = applicationContext;
     }
 
     /**
      * 清除SpringContextHolder中的ApplicationContext为Null.
      */
-    public static void clearHolder()
-    {
-        if (log.isDebugEnabled())
-        {
+    public static void clearHolder() {
+        if (log.isDebugEnabled()) {
             log.debug("清除SpringContextHolder中的ApplicationContext:" + applicationContext);
         }
         applicationContext = null;
@@ -50,10 +45,8 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      *
      * @param event
      */
-    public static void publishEvent(ApplicationEvent event)
-    {
-        if (applicationContext == null)
-        {
+    public static void publishEvent(ApplicationEvent event) {
+        if (applicationContext == null) {
             return;
         }
         applicationContext.publishEvent(event);
@@ -64,8 +57,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      */
     @Override
     @SneakyThrows
-    public void destroy()
-    {
+    public void destroy() {
         SpringContextHolder.clearHolder();
     }
 }

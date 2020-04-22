@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * 角色 Feign服务层
+ *
  * @author zq
  */
 @FeignClient(name = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteRoleFallbackFactory.class)

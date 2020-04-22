@@ -5,20 +5,19 @@ package com.health.common.enums;
  *
  * @author zq
  */
-public enum OnlineStatus
-{
-    /** 用户状态 */
+public enum OnlineStatus {
+    /**
+     * 用户状态
+     */
     on_line("在线"), off_line("离线");
 
     private final String info;
 
-    private OnlineStatus(String info)
-    {
+    private OnlineStatus(String info) {
         this.info = info;
     }
 
-    public String getInfo()
-    {
+    public String getInfo() {
         return info;
     }
 }

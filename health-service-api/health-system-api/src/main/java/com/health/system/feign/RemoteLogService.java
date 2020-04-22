@@ -11,6 +11,7 @@ import com.health.system.domain.SysOperLog;
 
 /**
  * 日志Feign服务层
+ *
  * @author zq
  */
 @FeignClient(name = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteLogFallbackFactory.class)

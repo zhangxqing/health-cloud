@@ -5,8 +5,7 @@ package com.health.common.constant;
  *
  * @author ruoyi
  */
-public interface ShiroConstants
-{
+public interface ShiroConstants {
     /**
      * 当前登录的用户
      */

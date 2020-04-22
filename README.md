@@ -2,7 +2,8 @@
 
 ### 源码
 - [Github](https://github.com/zhangxqing/health-cloud)
-- 本项目蓝本自[ruoyi-cloud](https://gitee.com/y_project/RuoYi)
+- 后端蓝本自[ruoyi](https://gitee.com/y_project/RuoYi)
+- 前端蓝本自[ruoyi-ant](https://gitee.com/zhangmrit/ruoyi-ant)
 
 ```
 health-cloud

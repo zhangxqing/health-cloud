@@ -5,12 +5,10 @@ package com.health.common.exception.user;
  *
  * @author ruoyi
  */
-public class RoleBlockedException extends UserException
-{
+public class RoleBlockedException extends UserException {
     private static final long serialVersionUID = 1L;
 
-    public RoleBlockedException()
-    {
+    public RoleBlockedException() {
         super("role.blocked", null);
     }
 }

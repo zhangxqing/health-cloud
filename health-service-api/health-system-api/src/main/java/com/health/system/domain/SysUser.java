@@ -16,299 +16,290 @@ import java.util.Set;
  *
  * @author ruoyi
  */
-public class SysUser extends BaseEntity
-{
+public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
-    /** 用户ID */
+    /**
+     * 用户ID
+     */
     @Excel(name = "用户序号", prompt = "用户编号")
-    private Long              userId;
+    private Long userId;
 
-    /** 部门ID */
+    /**
+     * 部门ID
+     */
     @Excel(name = "部门编号", type = Type.IMPORT)
-    private Long              deptId;
+    private Long deptId;
 
-    /** 部门父ID */
-    private Long              parentId;
+    /**
+     * 部门父ID
+     */
+    private Long parentId;
 
-    /** 登录名称 */
+    /**
+     * 登录名称
+     */
     @Excel(name = "登录名称")
-    private String            loginName;
+    private String loginName;
 
-    /** 用户名称 */
+    /**
+     * 用户名称
+     */
     @Excel(name = "用户名称")
-    private String            userName;
+    private String userName;
 
-    /** 用户邮箱 */
+    /**
+     * 用户邮箱
+     */
     @Excel(name = "用户邮箱")
-    private String            email;
+    private String email;
 
-    /** 手机号码 */
+    /**
+     * 手机号码
+     */
     @Excel(name = "手机号码")
-    private String            phonenumber;
+    private String phonenumber;
 
-    /** 用户性别 */
+    /**
+     * 用户性别
+     */
     @Excel(name = "用户性别", readConverterExp = "0=男,1=女,2=未知")
-    private String            sex;
+    private String sex;
 
-    /** 用户头像 */
-    private String            avatar;
+    /**
+     * 用户头像
+     */
+    private String avatar;
 
-    /** 密码 */
-    private String            password;
+    /**
+     * 密码
+     */
+    private String password;
 
-    /** 盐加密 */
-    private String            salt;
+    /**
+     * 盐加密
+     */
+    private String salt;
 
-    /** 帐号状态（0正常 1停用） */
+    /**
+     * 帐号状态（0正常 1停用）
+     */
     @Excel(name = "帐号状态", readConverterExp = "0=正常,1=停用")
-    private String            status;
+    private String status;
 
-    /** 删除标志（0代表存在 2代表删除） */
-    private String            delFlag;
+    /**
+     * 删除标志（0代表存在 2代表删除）
+     */
+    private String delFlag;
 
-    /** 最后登陆IP */
+    /**
+     * 最后登陆IP
+     */
     @Excel(name = "最后登陆IP", type = Type.EXPORT)
-    private String            loginIp;
+    private String loginIp;
 
-    /** 最后登陆时间 */
+    /**
+     * 最后登陆时间
+     */
     @Excel(name = "最后登陆时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Type.EXPORT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date              loginDate;
+    private Date loginDate;
 
-    /** 部门对象 */
+    /**
+     * 部门对象
+     */
     @Excel(name = "部门名称", targetAttr = "deptName", type = Type.EXPORT)
-    private SysDept           dept;
+    private SysDept dept;
 
-    private List<SysRole>     roles;
+    private List<SysRole> roles;
 
-    /** 角色组 */
-    private List<Long>            roleIds;
+    /**
+     * 角色组
+     */
+    private List<Long> roleIds;
 
-    /** 岗位组 */
-    private Long[]            postIds;
+    /**
+     * 岗位组
+     */
+    private Long[] postIds;
 
-    private Set<String>       buttons;
+    private Set<String> buttons;
 
-    public Long getUserId()
-    {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId)
-    {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public boolean isAdmin()
-    {
+    public boolean isAdmin() {
         return isAdmin(this.userId);
     }
 
-    public static boolean isAdmin(Long userId)
-    {
+    public static boolean isAdmin(Long userId) {
         return userId != null && 1L == userId;
     }
 
-    public Long getDeptId()
-    {
+    public Long getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(Long deptId)
-    {
+    public void setDeptId(Long deptId) {
         this.deptId = deptId;
     }
 
-    public Long getParentId()
-    {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId)
-    {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
-    public String getLoginName()
-    {
+    public String getLoginName() {
         return loginName;
     }
 
-    public void setLoginName(String loginName)
-    {
+    public void setLoginName(String loginName) {
         this.loginName = loginName;
     }
 
-    public String getUserName()
-    {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName)
-    {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPhonenumber()
-    {
+    public String getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhonenumber(String phonenumber)
-    {
+    public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
 
-    public String getSex()
-    {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(String sex)
-    {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
-    public String getAvatar()
-    {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar)
-    {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 
-    public String getPassword()
-    {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getSalt()
-    {
+    public String getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt)
-    {
+    public void setSalt(String salt) {
         this.salt = salt;
     }
 
-    public String getStatus()
-    {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status)
-    {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getDelFlag()
-    {
+    public String getDelFlag() {
         return delFlag;
     }
 
-    public void setDelFlag(String delFlag)
-    {
+    public void setDelFlag(String delFlag) {
         this.delFlag = delFlag;
     }
 
-    public String getLoginIp()
-    {
+    public String getLoginIp() {
         return loginIp;
     }
 
-    public void setLoginIp(String loginIp)
-    {
+    public void setLoginIp(String loginIp) {
         this.loginIp = loginIp;
     }
 
-    public Date getLoginDate()
-    {
+    public Date getLoginDate() {
         return loginDate;
     }
 
-    public void setLoginDate(Date loginDate)
-    {
+    public void setLoginDate(Date loginDate) {
         this.loginDate = loginDate;
     }
 
-    public SysDept getDept()
-    {
-        if (dept == null)
-        {
+    public SysDept getDept() {
+        if (dept == null) {
             dept = new SysDept();
         }
         return dept;
     }
 
-    public void setDept(SysDept dept)
-    {
+    public void setDept(SysDept dept) {
         this.dept = dept;
     }
 
 
-    public List<SysRole> getRoles()
-    {
+    public List<SysRole> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<SysRole> roles)
-    {
+    public void setRoles(List<SysRole> roles) {
         this.roles = roles;
     }
 
 
-    public List<Long> getRoleIds()
-    {
+    public List<Long> getRoleIds() {
         return roleIds;
     }
 
-    public void setRoleIds(List<Long> roleIds)
-    {
+    public void setRoleIds(List<Long> roleIds) {
         this.roleIds = roleIds;
     }
 
-    public Long[] getPostIds()
-    {
+    public Long[] getPostIds() {
         return postIds;
     }
 
-    public void setPostIds(Long[] postIds)
-    {
+    public void setPostIds(Long[] postIds) {
         this.postIds = postIds;
     }
 
-    public Set<String> getButtons()
-    {
+    public Set<String> getButtons() {
         return buttons;
     }
 
-    public void setButtons(Set<String> buttons)
-    {
+    public void setButtons(Set<String> buttons) {
         this.buttons = buttons;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("userId", getUserId())
                 .append("deptId", getDeptId()).append("loginName", getLoginName()).append("userName", getUserName())
                 .append("email", getEmail()).append("phonenumber", getPhonenumber()).append("sex", getSex())

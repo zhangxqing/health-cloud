@@ -15,8 +15,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import com.alibaba.fastjson.parser.ParserConfig;
 
 @Configuration
-public class RedisConfig
-{
+public class RedisConfig {
     /**
      * 注入 RedisConnectionFactory
      */
@@ -29,8 +28,7 @@ public class RedisConfig
      * @return
      */
     @Bean
-    public RedisTemplate<String, Object> redisTemplate()
-    {
+    public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
@@ -50,8 +48,7 @@ public class RedisConfig
      * @return
      */
     @Bean
-    public HashOperations<String, String, Object> hashOperations(RedisTemplate<String, Object> redisTemplate)
-    {
+    public HashOperations<String, String, Object> hashOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForHash();
     }
 
@@ -62,8 +59,7 @@ public class RedisConfig
      * @return
      */
     @Bean
-    public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate)
-    {
+    public ValueOperations<String, Object> valueOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForValue();
     }
 
@@ -74,8 +70,7 @@ public class RedisConfig
      * @return
      */
     @Bean
-    public ListOperations<String, Object> listOperations(RedisTemplate<String, Object> redisTemplate)
-    {
+    public ListOperations<String, Object> listOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForList();
     }
 
@@ -86,8 +81,7 @@ public class RedisConfig
      * @return
      */
     @Bean
-    public SetOperations<String, Object> setOperations(RedisTemplate<String, Object> redisTemplate)
-    {
+    public SetOperations<String, Object> setOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForSet();
     }
 
@@ -98,8 +92,7 @@ public class RedisConfig
      * @return
      */
     @Bean
-    public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate)
-    {
+    public ZSetOperations<String, Object> zSetOperations(RedisTemplate<String, Object> redisTemplate) {
         return redisTemplate.opsForZSet();
     }
 }

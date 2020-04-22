@@ -5,12 +5,10 @@ package com.health.common.exception.user;
  *
  * @author ruoyi
  */
-public class CaptchaException extends UserException
-{
+public class CaptchaException extends UserException {
     private static final long serialVersionUID = 1L;
 
-    public CaptchaException()
-    {
+    public CaptchaException() {
         super("user.jcaptcha.error", null);
     }
 }

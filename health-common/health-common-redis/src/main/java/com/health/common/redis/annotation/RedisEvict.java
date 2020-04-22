@@ -12,14 +12,14 @@ import java.lang.annotation.Target;
  * <p>Description:</p>
  * <p>Copyright: Copyright (c) 2018 2018年12月6日 下午4:33:31</p>
  * <p>Company:  </p>
+ *
  * @author zmr
  * @version 1.0
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface RedisEvict
-{
+public @interface RedisEvict {
     String key();
 
     String fieldKey();

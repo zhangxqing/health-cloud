@@ -11,8 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @EnableFeignClients
-public @interface EnableHyFeignClients
-{
+public @interface EnableHyFeignClients {
     String[] value() default {};
 
     String[] basePackages() default {"com.health"};

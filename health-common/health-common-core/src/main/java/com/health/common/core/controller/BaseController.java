@@ -30,22 +30,18 @@ import java.util.Map;
  *
  * @author ruoyi
  */
-public class BaseController
-{
+public class BaseController {
     protected final Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型
      */
     @InitBinder
-    public void initBinder(WebDataBinder binder)
-    {
+    public void initBinder(WebDataBinder binder) {
         // Date 类型转换
-        binder.registerCustomEditor(Date.class, new PropertyEditorSupport()
-        {
+        binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             @Override
-            public void setAsText(String text)
-            {
+            public void setAsText(String text) {
                 setValue(DateUtils.parseDate(text));
             }
         });
@@ -54,13 +50,11 @@ public class BaseController
     /**
      * 设置请求分页数据
      */
-    protected void startPage()
-    {
+    protected void startPage() {
         PageDomain pageDomain = TableSupport.buildPageRequest();
         Integer pageNum = pageDomain.getPageNum();
         Integer pageSize = pageDomain.getPageSize();
-        if (null != pageNum && null != pageSize)
-        {
+        if (null != pageNum && null != pageSize) {
             String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
             PageHelper.startPage(pageNum, pageSize, orderBy);
         }
@@ -69,39 +63,33 @@ public class BaseController
     /**
      * 获取request
      */
-    public HttpServletRequest getRequest()
-    {
+    public HttpServletRequest getRequest() {
         return ServletUtils.getRequest();
     }
 
     /**
      * 获取response
      */
-    public HttpServletResponse getResponse()
-    {
+    public HttpServletResponse getResponse() {
         return ServletUtils.getResponse();
     }
 
     /**
      * 获取session
      */
-    public HttpSession getSession()
-    {
+    public HttpSession getSession() {
         return getRequest().getSession();
     }
 
-    public long getCurrentUserId()
-    {
+    public long getCurrentUserId() {
         String currentId = getRequest().getHeader(Constants.CURRENT_ID);
-        if (StringUtils.isNotBlank(currentId))
-        {
+        if (StringUtils.isNotBlank(currentId)) {
             return Long.valueOf(currentId);
         }
         return 0l;
     }
 
-    public String getLoginName()
-    {
+    public String getLoginName() {
         return getRequest().getHeader(Constants.CURRENT_USERNAME);
     }
 
@@ -109,8 +97,7 @@ public class BaseController
      * 响应请求分页数据
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
-    protected TableDataInfo getDataTable(List<?> list)
-    {
+    protected TableDataInfo getDataTable(List<?> list) {
         TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(0);
         rspData.setRows(list);
@@ -119,8 +106,7 @@ public class BaseController
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    protected R result(List<?> list)
-    {
+    protected R result(List<?> list) {
         PageInfo<?> pageInfo = new PageInfo(list);
         Map<String, Object> m = new HashMap<String, Object>();
         m.put("rows", list);
@@ -135,8 +121,7 @@ public class BaseController
      * @param rows 影响行数
      * @return 操作结果
      */
-    protected R toAjax(int rows)
-    {
+    protected R toAjax(int rows) {
         return rows > 0 ? R.ok() : R.error();
     }
 
@@ -146,8 +131,7 @@ public class BaseController
      * @param result 结果
      * @return 操作结果
      */
-    protected R toAjax(boolean result)
-    {
+    protected R toAjax(boolean result) {
         return result ? R.ok() : R.error();
     }
 }

@@ -24,29 +24,25 @@ import com.health.common.redis.util.RedisUtils;
 
 @Component
 @Aspect
-public class RedisAspect
-{
+public class RedisAspect {
     private final static Logger logger = LoggerFactory.getLogger(RedisAspect.class);
 
     @Autowired
-    private RedisUtils          redis;
+    private RedisUtils redis;
 
     /**
      * 定义切入点，使用了 @RedisCache 的方法
      */
     @Pointcut("@annotation(com.health.common.redis.annotation.RedisCache)")
-    public void redisCachePoint()
-    {
+    public void redisCachePoint() {
     }
 
     @Pointcut("@annotation(com.health.common.redis.annotation.RedisEvict)")
-    public void redisEvictPoint()
-    {
+    public void redisEvictPoint() {
     }
 
     @After("redisEvictPoint()")
-    public void evict(JoinPoint point)
-    {
+    public void evict(JoinPoint point) {
         Method method = ((MethodSignature) point.getSignature()).getMethod();
         RedisEvict redisEvict = method.getAnnotation(RedisEvict.class);
         // 获取RedisCache注解
@@ -60,43 +56,33 @@ public class RedisAspect
      * 环绕通知，方法拦截器
      */
     @Around("redisCachePoint()")
-    public Object WriteReadFromRedis(ProceedingJoinPoint point)
-    {
-        try
-        {
+    public Object WriteReadFromRedis(ProceedingJoinPoint point) {
+        try {
             Method method = ((MethodSignature) point.getSignature()).getMethod();
             // 获取RedisCache注解
             RedisCache redisCache = method.getAnnotation(RedisCache.class);
             Class<?> returnType = ((MethodSignature) point.getSignature()).getReturnType();
-            if (redisCache != null && redisCache.read())
-            {
+            if (redisCache != null && redisCache.read()) {
                 // 查询操作
                 logger.debug("<======method:{} 进入 redisCache 切面 ======>", method.getName());
                 String fieldKey = parseKey(redisCache.fieldKey(), method, point.getArgs());
                 String rk = redisCache.key() + ":" + fieldKey;
                 Object obj = redis.get(rk, returnType);
-                if (obj == null)
-                {
+                if (obj == null) {
                     // Redis 中不存在，则从数据库中查找，并保存到 Redis
                     logger.debug("<====== Redis 中不存在该记录，从数据库查找 ======>");
                     obj = point.proceed();
-                    if (obj != null)
-                    {
-                        if (redisCache.expired() > 0)
-                        {
+                    if (obj != null) {
+                        if (redisCache.expired() > 0) {
                             redis.set(rk, obj, redisCache.expired());
-                        }
-                        else
-                        {
+                        } else {
                             redis.set(rk, obj);
                         }
                     }
                 }
                 return obj;
             }
-        }
-        catch (Throwable ex)
-        {
+        } catch (Throwable ex) {
             logger.error("<====== RedisCache 执行异常: {} ======>", ex);
         }
         return null;
@@ -105,11 +91,11 @@ public class RedisAspect
     /**
      * 获取缓存的key
      * key 定义在注解上，支持SPEL表达式
+     *
      * @param pjp
      * @return
      */
-    private String parseKey(String key, Method method, Object[] args)
-    {
+    private String parseKey(String key, Method method, Object[] args) {
         // 获取被拦截方法参数名列表(使用Spring支持类库)
         LocalVariableTableParameterNameDiscoverer u = new LocalVariableTableParameterNameDiscoverer();
         String[] paraNameArr = u.getParameterNames(method);
@@ -118,8 +104,7 @@ public class RedisAspect
         // SPEL上下文
         StandardEvaluationContext context = new StandardEvaluationContext();
         // 把方法参数放入SPEL上下文中
-        for (int i = 0; i < paraNameArr.length; i++)
-        {
+        for (int i = 0; i < paraNameArr.length; i++) {
             context.setVariable(paraNameArr[i], args[i]);
         }
         return parser.parseExpression(key).getValue(context, String.class);

@@ -5,8 +5,7 @@ package com.health.common.enums;
  *
  * @author zq
  */
-public enum DataSourceType
-{
+public enum DataSourceType {
     /**
      * 主库
      */

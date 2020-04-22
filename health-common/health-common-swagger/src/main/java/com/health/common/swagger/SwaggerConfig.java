@@ -31,36 +31,30 @@ import java.util.List;
 @EnableSwagger2
 @EnableSwaggerBootstrapUI
 @Import(BeanValidatorPluginsConfiguration.class)
-public class SwaggerConfig
-{
+public class SwaggerConfig {
     @Bean(value = "userApi")
     @Order(value = 1)
-    public Docket groupRestApi()
-    {
+    public Docket groupRestApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).paths(PathSelectors.any())
                 .build().securityContexts(Lists.newArrayList(securityContext()))
-                .securitySchemes(Lists.<SecurityScheme> newArrayList(apiKey()));
+                .securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey()));
     }
 
-    private ApiInfo apiInfo()
-    {
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("RuoYi Cloud 接口文档").description("springcloud版本的若依")
                 .contact(new Contact("wind", "", "")).version("1.0.1").build();
     }
 
-    private ApiKey apiKey()
-    {
+    private ApiKey apiKey() {
         return new ApiKey("TOKEN", "token", "header");
     }
 
-    private SecurityContext securityContext()
-    {
+    private SecurityContext securityContext() {
         return SecurityContext.builder().securityReferences(defaultAuth()).forPaths(PathSelectors.regex("/.*")).build();
     }
 
-    List<SecurityReference> defaultAuth()
-    {
+    List<SecurityReference> defaultAuth() {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
         authorizationScopes[0] = authorizationScope;

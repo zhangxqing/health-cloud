@@ -11,12 +11,12 @@ import java.lang.annotation.Target;
  * <p>Description:</p>
  * <p>Copyright: Copyright (c) 2019 2019年6月4日 上午10:43:54</p>
  * <p>Company: </p>
+ *
  * @author zmr
  * @version 1.0
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface HasPermissions
-{
+public @interface HasPermissions {
     String value();
 }

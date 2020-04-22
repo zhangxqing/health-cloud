@@ -18,15 +18,13 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @AllArgsConstructor
-public class LogListener
-{
+public class LogListener {
     private final RemoteLogService remoteLogService;
 
     @Async
     @Order
     @EventListener(SysOperLogEvent.class)
-    public void listenOperLog(SysOperLogEvent event)
-    {
+    public void listenOperLog(SysOperLogEvent event) {
         SysOperLog sysOperLog = (SysOperLog) event.getSource();
         remoteLogService.insertOperlog(sysOperLog);
         log.info("远程操作日志记录成功：{}", sysOperLog);
@@ -35,8 +33,7 @@ public class LogListener
     @Async
     @Order
     @EventListener(SysLogininforEvent.class)
-    public void listenLoginifor(SysLogininforEvent event)
-    {
+    public void listenLoginifor(SysLogininforEvent event) {
         SysLogininfor sysLogininfor = (SysLogininfor) event.getSource();
         remoteLogService.insertLoginlog(sysLogininfor);
         log.info("远程访问日志记录成功：{}", sysLogininfor);

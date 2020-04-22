@@ -9,24 +9,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * <p>Description:</p>
  * <p>Copyright: Copyright (c) 2019 2019年8月8日 下午5:38:33</p>
  * <p>Company:  </p>
+ *
  * @author zmr
  * @version 1.0
  */
-@ResponseStatus(code = HttpStatus.FORBIDDEN,reason="forbidden")
-public class ForbiddenException extends RuntimeException
-{
+@ResponseStatus(code = HttpStatus.FORBIDDEN, reason = "forbidden")
+public class ForbiddenException extends RuntimeException {
     //
-    private static final long   serialVersionUID = -4552488542483342775L;
+    private static final long serialVersionUID = -4552488542483342775L;
 
-    private static final String DEFAULT_MSG      = "forbidden";
+    private static final String DEFAULT_MSG = "forbidden";
 
-    public ForbiddenException(String msg)
-    {
+    public ForbiddenException(String msg) {
         super(msg);
     }
 
-    public ForbiddenException()
-    {
+    public ForbiddenException() {
         super(DEFAULT_MSG);
     }
 }

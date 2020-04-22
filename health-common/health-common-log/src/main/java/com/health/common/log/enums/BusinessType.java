@@ -5,8 +5,7 @@ package com.health.common.log.enums;
  *
  * @author ruoyi
  */
-public enum BusinessType
-{
+public enum BusinessType {
     /**
      * 其它
      */

@@ -5,12 +5,10 @@ package com.health.common.exception.user;
  *
  * @author ruoyi
  */
-public class UserPasswordNotMatchException extends UserException
-{
+public class UserPasswordNotMatchException extends UserException {
     private static final long serialVersionUID = 1L;
 
-    public UserPasswordNotMatchException()
-    {
+    public UserPasswordNotMatchException() {
         super("user.password.not.match", null);
     }
 }

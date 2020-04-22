@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
+/**
+ * @author zq
+ */
 @Aspect
 @Component
 @Slf4j
@@ -34,7 +37,7 @@ public class PreAuthorizeAspect {
         if (annotation == null) {
             return point.proceed();
         }
-        String authority = new StringBuilder(annotation.value()).toString();
+        String authority = annotation.value();
         if (has(authority)) {
             return point.proceed();
         } else {

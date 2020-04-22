@@ -3,8 +3,7 @@ package com.health.common.constant;
 /**
  * 服务名称
  */
-public interface ServiceNameConstants
-{
+public interface ServiceNameConstants {
     /**
      * system模块
      */

@@ -11,6 +11,7 @@ import java.util.Set;
 
 /**
  * 菜单 Feign服务层
+ *
  * @author zq
  */
 @FeignClient(name = ServiceNameConstants.SYSTEM_SERVICE, fallbackFactory = RemoteMenuFallbackFactory.class)
