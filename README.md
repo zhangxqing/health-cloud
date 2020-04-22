@@ -35,6 +35,8 @@ health-cloud
 
 
 启动顺序：
+注意事项: 启动本服务先要将本机redis起来,否则登陆界面图片验证码无法刷新,然后依次启用以下服务
 - eureka
 - gateway
 - system
+- auth
