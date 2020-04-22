@@ -2,7 +2,7 @@ package com.health.system.controller;
 
 import com.health.common.auth.annotation.HasPermissions;
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.common.utils.poi.ExcelUtil;
@@ -38,7 +38,7 @@ public class SysOperLogController extends BaseController {
      */
     @HasPermissions("monitor:operlog:list")
     @RequestMapping("list")
-    public R list(SysOperLog sysOperLog) {
+    public JsonResult list(SysOperLog sysOperLog) {
         startPage();
         return result(sysOperLogService.selectOperLogList(sysOperLog));
     }
@@ -46,7 +46,7 @@ public class SysOperLogController extends BaseController {
     @OperLog(title = "操作日志", businessType = BusinessType.EXPORT)
     @HasPermissions("monitor:operlog:export")
     @PostMapping("/export")
-    public R export(SysOperLog operLog) {
+    public JsonResult export(SysOperLog operLog) {
         List<SysOperLog> list = sysOperLogService.selectOperLogList(operLog);
         ExcelUtil<SysOperLog> util = new ExcelUtil<SysOperLog>(SysOperLog.class);
         return util.exportExcel(list, "操作日志");
@@ -65,15 +65,15 @@ public class SysOperLogController extends BaseController {
      */
     @HasPermissions("monitor:operlog:remove")
     @PostMapping("remove")
-    public R remove(String ids) {
+    public JsonResult remove(String ids) {
         return toAjax(sysOperLogService.deleteOperLogByIds(ids));
     }
 
     @OperLog(title = "操作日志", businessType = BusinessType.CLEAN)
     @HasPermissions("monitor:operlog:remove")
     @PostMapping("/clean")
-    public R clean() {
+    public JsonResult clean() {
         sysOperLogService.cleanOperLog();
-        return R.ok();
+        return JsonResult.ok();
     }
 }

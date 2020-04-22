@@ -2,7 +2,7 @@ package com.health.system.controller;
 
 import com.health.common.auth.annotation.HasPermissions;
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysDictData;
@@ -39,7 +39,7 @@ public class SysDictDataController extends BaseController {
      */
     @GetMapping("list")
     @HasPermissions("system:dict:list")
-    public R list(SysDictData sysDictData) {
+    public JsonResult list(SysDictData sysDictData) {
         startPage();
         return result(sysDictDataService.selectDictDataList(sysDictData));
     }
@@ -74,7 +74,7 @@ public class SysDictDataController extends BaseController {
     @OperLog(title = "字典数据", businessType = BusinessType.INSERT)
     @HasPermissions("system:dict:add")
     @PostMapping("save")
-    public R addSave(@RequestBody SysDictData sysDictData) {
+    public JsonResult addSave(@RequestBody SysDictData sysDictData) {
         return toAjax(sysDictDataService.insertDictData(sysDictData));
     }
 
@@ -84,7 +84,7 @@ public class SysDictDataController extends BaseController {
     @OperLog(title = "字典数据", businessType = BusinessType.UPDATE)
     @HasPermissions("system:dict:edit")
     @PostMapping("update")
-    public R editSave(@RequestBody SysDictData sysDictData) {
+    public JsonResult editSave(@RequestBody SysDictData sysDictData) {
         return toAjax(sysDictDataService.updateDictData(sysDictData));
     }
 
@@ -94,7 +94,7 @@ public class SysDictDataController extends BaseController {
     @OperLog(title = "字典数据", businessType = BusinessType.DELETE)
     @HasPermissions("system:dict:remove")
     @PostMapping("remove")
-    public R remove(String ids) {
+    public JsonResult remove(String ids) {
         return toAjax(sysDictDataService.deleteDictDataByIds(ids));
     }
 

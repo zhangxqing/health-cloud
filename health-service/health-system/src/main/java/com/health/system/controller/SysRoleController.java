@@ -2,7 +2,7 @@ package com.health.system.controller;
 
 import com.health.common.auth.annotation.HasPermissions;
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysRole;
@@ -34,14 +34,14 @@ public class SysRoleController extends BaseController {
      * 查询角色列表
      */
     @GetMapping("list")
-    public R list(SysRole sysRole) {
+    public JsonResult list(SysRole sysRole) {
         startPage();
         return result(sysRoleService.selectRoleList(sysRole));
     }
 
     @GetMapping("all")
-    public R all() {
-        return R.ok().put("rows", sysRoleService.selectRoleAll());
+    public JsonResult all() {
+        return JsonResult.ok().put("rows", sysRoleService.selectRoleAll());
     }
 
     /**
@@ -49,7 +49,7 @@ public class SysRoleController extends BaseController {
      */
     @PostMapping("save")
     @OperLog(title = "角色管理", businessType = BusinessType.INSERT)
-    public R addSave(@RequestBody SysRole sysRole) {
+    public JsonResult addSave(@RequestBody SysRole sysRole) {
         return toAjax(sysRoleService.insertRole(sysRole));
     }
 
@@ -58,7 +58,7 @@ public class SysRoleController extends BaseController {
      */
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
-    public R editSave(@RequestBody SysRole sysRole) {
+    public JsonResult editSave(@RequestBody SysRole sysRole) {
         return toAjax(sysRoleService.updateRole(sysRole));
     }
 
@@ -67,7 +67,7 @@ public class SysRoleController extends BaseController {
      */
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("status")
-    public R status(@RequestBody SysRole sysRole) {
+    public JsonResult status(@RequestBody SysRole sysRole) {
         return toAjax(sysRoleService.changeStatus(sysRole));
     }
 
@@ -77,12 +77,12 @@ public class SysRoleController extends BaseController {
     @HasPermissions("system:role:edit")
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("/authDataScope")
-    public R authDataScopeSave(@RequestBody SysRole role) {
+    public JsonResult authDataScopeSave(@RequestBody SysRole role) {
         role.setUpdateBy(getLoginName());
         if (sysRoleService.authDataScope(role) > 0) {
-            return R.ok();
+            return JsonResult.ok();
         }
-        return R.error();
+        return JsonResult.error();
     }
 
     /**
@@ -92,7 +92,7 @@ public class SysRoleController extends BaseController {
      */
     @OperLog(title = "角色管理", businessType = BusinessType.DELETE)
     @PostMapping("remove")
-    public R remove(String ids) throws Exception {
+    public JsonResult remove(String ids) throws Exception {
         return toAjax(sysRoleService.deleteRoleByIds(ids));
     }
 }

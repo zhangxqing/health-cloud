@@ -1,7 +1,7 @@
 package com.health.system.controller;
 
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysDept;
 import com.health.system.service.ISysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class SysDeptController extends BaseController {
      * 查询部门列表
      */
     @GetMapping("list")
-    public R list(SysDept sysDept) {
+    public JsonResult list(SysDept sysDept) {
         startPage();
         return result(sysDeptService.selectDeptList(sysDept));
     }
@@ -42,7 +42,7 @@ public class SysDeptController extends BaseController {
      * 查询所有可用部门
      */
     @GetMapping("list/enable")
-    public R listEnable(SysDept sysDept) {
+    public JsonResult listEnable(SysDept sysDept) {
         sysDept.setStatus("0");
         return result(sysDeptService.selectDeptList(sysDept));
     }
@@ -51,7 +51,7 @@ public class SysDeptController extends BaseController {
      * 新增保存部门
      */
     @PostMapping("save")
-    public R addSave(@RequestBody SysDept sysDept) {
+    public JsonResult addSave(@RequestBody SysDept sysDept) {
         return toAjax(sysDeptService.insertDept(sysDept));
     }
 
@@ -59,7 +59,7 @@ public class SysDeptController extends BaseController {
      * 修改保存部门
      */
     @PostMapping("update")
-    public R editSave(@RequestBody SysDept sysDept) {
+    public JsonResult editSave(@RequestBody SysDept sysDept) {
         return toAjax(sysDeptService.updateDept(sysDept));
     }
 
@@ -67,7 +67,7 @@ public class SysDeptController extends BaseController {
      * 删除部门
      */
     @PostMapping("remove/{deptId}")
-    public R remove(@PathVariable("deptId") Long deptId) {
+    public JsonResult remove(@PathVariable("deptId") Long deptId) {
         return toAjax(sysDeptService.deleteDeptById(deptId));
     }
 

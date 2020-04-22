@@ -3,7 +3,7 @@ package com.health.common.core.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.health.common.constant.Constants;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.core.page.PageDomain;
 import com.health.common.core.page.TableDataInfo;
 import com.health.common.core.page.TableSupport;
@@ -106,13 +106,13 @@ public class BaseController {
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    protected R result(List<?> list) {
+    protected JsonResult result(List<?> list) {
         PageInfo<?> pageInfo = new PageInfo(list);
         Map<String, Object> m = new HashMap<String, Object>();
         m.put("rows", list);
         m.put("pageNum", pageInfo.getPageNum());
         m.put("total", pageInfo.getTotal());
-        return R.ok(m);
+        return JsonResult.ok(m);
     }
 
     /**
@@ -121,8 +121,8 @@ public class BaseController {
      * @param rows 影响行数
      * @return 操作结果
      */
-    protected R toAjax(int rows) {
-        return rows > 0 ? R.ok() : R.error();
+    protected JsonResult toAjax(int rows) {
+        return rows > 0 ? JsonResult.ok() : JsonResult.error();
     }
 
     /**
@@ -131,7 +131,7 @@ public class BaseController {
      * @param result 结果
      * @return 操作结果
      */
-    protected R toAjax(boolean result) {
-        return result ? R.ok() : R.error();
+    protected JsonResult toAjax(boolean result) {
+        return result ? JsonResult.ok() : JsonResult.error();
     }
 }

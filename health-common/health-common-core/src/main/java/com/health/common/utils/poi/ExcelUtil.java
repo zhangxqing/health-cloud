@@ -1,7 +1,7 @@
 package com.health.common.utils.poi;
 
 import com.health.common.annotation.Excel;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.core.text.Convert;
 import com.health.common.exception.BusinessException;
 import com.health.common.utils.DateUtils;
@@ -199,7 +199,7 @@ public class ExcelUtil<T> {
      * @param sheetName 工作表的名称
      * @return 结果
      */
-    public R exportExcel(List<T> list, String sheetName) {
+    public JsonResult exportExcel(List<T> list, String sheetName) {
         this.init(list, sheetName, Type.EXPORT);
         return exportExcel();
     }
@@ -210,7 +210,7 @@ public class ExcelUtil<T> {
      * @param sheetName 工作表的名称
      * @return 结果
      */
-    public R importTemplateExcel(String sheetName) {
+    public JsonResult importTemplateExcel(String sheetName) {
         this.init(null, sheetName, Type.IMPORT);
         return exportExcel();
     }
@@ -220,7 +220,7 @@ public class ExcelUtil<T> {
      *
      * @return 结果
      */
-    public R exportExcel() {
+    public JsonResult exportExcel() {
         OutputStream out = null;
         try {
             // 取出一共有多少个sheet.
@@ -281,7 +281,7 @@ public class ExcelUtil<T> {
             String filename = encodingFilename(sheetName);
             out = new FileOutputStream(getAbsoluteFile(filename));
             wb.write(out);
-            return R.ok(filename);
+            return JsonResult.ok(filename);
         } catch (Exception e) {
             log.error("导出Excel异常{}", e.getMessage());
             throw new BusinessException("导出Excel失败，请联系网站管理员！");

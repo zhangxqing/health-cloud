@@ -3,7 +3,7 @@ package com.health.gateway.fiflt;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.health.common.constant.Constants;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
@@ -74,7 +74,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
         originalResponse.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
         byte[] response = null;
         try {
-            response = JSON.toJSONString(R.error(401, msg)).getBytes(Constants.UTF8);
+            response = JSON.toJSONString(JsonResult.error(401, msg)).getBytes(Constants.UTF8);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

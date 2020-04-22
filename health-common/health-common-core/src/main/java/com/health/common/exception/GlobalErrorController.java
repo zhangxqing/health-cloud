@@ -1,6 +1,6 @@
 package com.health.common.exception;
 
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import org.springframework.boot.autoconfigure.web.servlet.error.AbstractErrorController;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpStatus;
@@ -22,9 +22,9 @@ public class GlobalErrorController extends AbstractErrorController {
     }
 
     @RequestMapping(value = ERROR_PATH)
-    public R error(HttpServletRequest request) {
+    public JsonResult error(HttpServletRequest request) {
         HttpStatus status = getStatus(request);
-        return R.error(status.value(), status.getReasonPhrase());
+        return JsonResult.error(status.value(), status.getReasonPhrase());
     }
 
     @Override

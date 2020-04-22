@@ -3,7 +3,7 @@ package com.health.gateway.fiflt;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.health.common.constant.Constants;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.exception.ValidateCodeException;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
@@ -59,7 +59,7 @@ public class ImgCodeFilter extends AbstractGatewayFilterFactory<ImgCodeFilter.Co
                 ServerHttpResponse response = exchange.getResponse();
                 response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
                 response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
-                String msg = JSON.toJSONString(R.error(e.getMessage()));
+                String msg = JSON.toJSONString(JsonResult.error(e.getMessage()));
                 DataBuffer bodyDataBuffer = response.bufferFactory().wrap(msg.getBytes());
                 return response.writeWith(Mono.just(bodyDataBuffer));
             }

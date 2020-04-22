@@ -1,6 +1,6 @@
 package com.health.system.feign.factory;
 
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysUser;
 import com.health.system.feign.RemoteUserService;
 import feign.hystrix.FallbackFactory;
@@ -25,8 +25,8 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
             }
 
             @Override
-            public R updateUserLoginRecord(SysUser user) {
-                return R.error();
+            public JsonResult updateUserLoginRecord(SysUser user) {
+                return JsonResult.error();
             }
 
             @Override

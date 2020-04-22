@@ -1,7 +1,7 @@
 package com.health.system.feign;
 
 import com.health.common.constant.ServiceNameConstants;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysUser;
 import com.health.system.feign.factory.RemoteUserFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -24,7 +24,7 @@ public interface RemoteUserService {
     SysUser selectSysUserByUsername(@PathVariable("username") String username);
 
     @PostMapping("user/update/login")
-    R updateUserLoginRecord(@RequestBody SysUser user);
+    JsonResult updateUserLoginRecord(@RequestBody SysUser user);
 
     /**
      * 查询拥有当前角色的所有用户

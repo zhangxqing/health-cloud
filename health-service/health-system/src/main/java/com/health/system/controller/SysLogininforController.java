@@ -3,7 +3,7 @@ package com.health.system.controller;
 
 import com.health.common.auth.annotation.HasPermissions;
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysLogininfor;
@@ -27,7 +27,7 @@ public class SysLogininforController extends BaseController {
      * 查询系统访问记录列表
      */
     @GetMapping("list")
-    public R list(SysLogininfor sysLogininfor) {
+    public JsonResult list(SysLogininfor sysLogininfor) {
         startPage();
         return result(sysLogininforService.selectLogininforList(sysLogininfor));
     }
@@ -47,16 +47,16 @@ public class SysLogininforController extends BaseController {
     @OperLog(title = "访问日志", businessType = BusinessType.DELETE)
     @HasPermissions("monitor:loginlog:remove")
     @PostMapping("remove")
-    public R remove(String ids) {
+    public JsonResult remove(String ids) {
         return toAjax(sysLogininforService.deleteLogininforByIds(ids));
     }
 
     @OperLog(title = "访问日志", businessType = BusinessType.CLEAN)
     @HasPermissions("monitor:loginlog:remove")
     @PostMapping("/clean")
-    public R clean() {
+    public JsonResult clean() {
         sysLogininforService.cleanLogininfor();
-        return R.ok();
+        return JsonResult.ok();
     }
 
 }

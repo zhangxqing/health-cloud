@@ -6,7 +6,7 @@
 package com.health.system.controller;
 
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.Donate;
 import com.health.system.service.IDonateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class DonateController extends BaseController {
     private IDonateService donateService;
 
     @GetMapping("list")
-    public R list(Donate donate) {
+    public JsonResult list(Donate donate) {
         startPage();
         List<Donate> list = donateService.selectDistrictsList(donate);
         return result(list);

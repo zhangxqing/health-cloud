@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.health.common.auth.annotation.HasPermissions;
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.exception.file.OssException;
 import com.health.common.utils.ValidatorUtils;
 import com.health.system.domain.SysOss;
@@ -58,7 +58,7 @@ public class SysOssController extends BaseController {
      */
     @RequestMapping("saveConfig")
     @HasPermissions("sys:oss:config")
-    public R saveConfig(CloudStorageConfig config) {
+    public JsonResult saveConfig(CloudStorageConfig config) {
         // 校验类型
         ValidatorUtils.validateEntity(config);
         if (config.getType() == CloudConstant.CloudService.QINIU.getValue()) {
@@ -86,7 +86,7 @@ public class SysOssController extends BaseController {
      * 查询文件上传列表
      */
     @GetMapping("list")
-    public R list(SysOss sysOss) {
+    public JsonResult list(SysOss sysOss) {
         startPage();
         return result(sysOssService.selectSysOssList(sysOss));
     }
@@ -96,7 +96,7 @@ public class SysOssController extends BaseController {
      */
     @PostMapping("update")
     @HasPermissions("sys:oss:edit")
-    public R editSave(@RequestBody SysOss sysOss) {
+    public JsonResult editSave(@RequestBody SysOss sysOss) {
         return toAjax(sysOssService.updateSysOss(sysOss));
     }
 
@@ -107,7 +107,7 @@ public class SysOssController extends BaseController {
      */
     @PostMapping("upload")
     @HasPermissions("sys:oss:add")
-    public R editSave(@RequestParam("file") MultipartFile file) throws IOException {
+    public JsonResult editSave(@RequestParam("file") MultipartFile file) throws IOException {
         if (file.isEmpty()) {
             throw new OssException("上传文件不能为空");
         }
@@ -132,7 +132,7 @@ public class SysOssController extends BaseController {
      */
     @PostMapping("remove")
     @HasPermissions("sys:oss:remove")
-    public R remove(String ids) {
+    public JsonResult remove(String ids) {
         return toAjax(sysOssService.deleteSysOssByIds(ids));
     }
 }

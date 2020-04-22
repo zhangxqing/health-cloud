@@ -3,7 +3,7 @@ package com.health.system.controller;
 import com.health.common.annotation.LoginUser;
 import com.health.common.auth.annotation.HasPermissions;
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysMenu;
@@ -66,7 +66,7 @@ public class SysMenuController extends BaseController {
      */
     @HasPermissions("system:menu:view")
     @GetMapping("list")
-    public R list(SysMenu sysMenu) {
+    public JsonResult list(SysMenu sysMenu) {
         return result(sysMenuService.selectMenuList(sysMenu));
     }
 
@@ -75,7 +75,7 @@ public class SysMenuController extends BaseController {
      */
     @PostMapping("save")
     @OperLog(title = "菜单管理", businessType = BusinessType.INSERT)
-    public R addSave(@RequestBody SysMenu sysMenu) {
+    public JsonResult addSave(@RequestBody SysMenu sysMenu) {
         return toAjax(sysMenuService.insertMenu(sysMenu));
     }
 
@@ -84,7 +84,7 @@ public class SysMenuController extends BaseController {
      */
     @OperLog(title = "菜单管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
-    public R editSave(@RequestBody SysMenu sysMenu) {
+    public JsonResult editSave(@RequestBody SysMenu sysMenu) {
         return toAjax(sysMenuService.updateMenu(sysMenu));
     }
 
@@ -93,7 +93,7 @@ public class SysMenuController extends BaseController {
      */
     @OperLog(title = "菜单管理", businessType = BusinessType.DELETE)
     @PostMapping("remove/{menuId}")
-    public R remove(@PathVariable("menuId") Long menuId) {
+    public JsonResult remove(@PathVariable("menuId") Long menuId) {
         return toAjax(sysMenuService.deleteMenuById(menuId));
     }
 }

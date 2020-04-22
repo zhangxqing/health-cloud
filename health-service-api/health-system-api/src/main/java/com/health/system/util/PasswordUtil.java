@@ -14,7 +14,7 @@ public class PasswordUtil {
 
 
     public static void main(String[] args) {
-        String hash = Md5Utils.hash("zhangqing" + "zhangqing0718" + "0718");
+        String hash = Md5Utils.hash("zhangqing2" + null + "YzYC2p");
         System.out.println(hash);
         System.out.println(Md5Utils.hash("zhangqing" + "zhangqing0718" + "0718"));
     }

@@ -5,7 +5,7 @@ import com.health.common.annotation.LoginUser;
 import com.health.common.auth.annotation.HasPermissions;
 import com.health.common.constant.UserConstants;
 import com.health.common.core.controller.BaseController;
-import com.health.common.core.domain.R;
+import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.common.utils.RandomUtil;
@@ -77,7 +77,7 @@ public class SysUserController extends BaseController {
      * 查询用户列表
      */
     @GetMapping("list")
-    public R list(SysUser sysUser) {
+    public JsonResult list(SysUser sysUser) {
         startPage();
         return result(sysUserService.selectUserList(sysUser));
     }
@@ -88,13 +88,13 @@ public class SysUserController extends BaseController {
     @HasPermissions("system:user:add")
     @PostMapping("save")
     @OperLog(title = "用户管理", businessType = BusinessType.INSERT)
-    public R addSave(@RequestBody SysUser sysUser) {
+    public JsonResult addSave(@RequestBody SysUser sysUser) {
         if (UserConstants.USER_NAME_NOT_UNIQUE.equals(sysUserService.checkLoginNameUnique(sysUser.getLoginName()))) {
-            return R.error("新增用户'" + sysUser.getLoginName() + "'失败，登录账号已存在");
+            return JsonResult.error("新增用户'" + sysUser.getLoginName() + "'失败，登录账号已存在");
         } else if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(sysUser))) {
-            return R.error("新增用户'" + sysUser.getLoginName() + "'失败，手机号码已存在");
+            return JsonResult.error("新增用户'" + sysUser.getLoginName() + "'失败，手机号码已存在");
         } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(sysUser))) {
-            return R.error("新增用户'" + sysUser.getLoginName() + "'失败，邮箱账号已存在");
+            return JsonResult.error("新增用户'" + sysUser.getLoginName() + "'失败，邮箱账号已存在");
         }
         sysUser.setSalt(RandomUtil.randomStr(6));
         sysUser.setPassword(
@@ -109,13 +109,13 @@ public class SysUserController extends BaseController {
     @HasPermissions("system:user:edit")
     @OperLog(title = "用户管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
-    public R editSave(@RequestBody SysUser sysUser) {
+    public JsonResult editSave(@RequestBody SysUser sysUser) {
         if (null != sysUser.getUserId() && SysUser.isAdmin(sysUser.getUserId())) {
-            return R.error("不允许修改超级管理员用户");
+            return JsonResult.error("不允许修改超级管理员用户");
         } else if (UserConstants.USER_PHONE_NOT_UNIQUE.equals(sysUserService.checkPhoneUnique(sysUser))) {
-            return R.error("修改用户'" + sysUser.getLoginName() + "'失败，手机号码已存在");
+            return JsonResult.error("修改用户'" + sysUser.getLoginName() + "'失败，手机号码已存在");
         } else if (UserConstants.USER_EMAIL_NOT_UNIQUE.equals(sysUserService.checkEmailUnique(sysUser))) {
-            return R.error("修改用户'" + sysUser.getLoginName() + "'失败，邮箱账号已存在");
+            return JsonResult.error("修改用户'" + sysUser.getLoginName() + "'失败，邮箱账号已存在");
         }
         return toAjax(sysUserService.updateUser(sysUser));
     }
@@ -130,7 +130,7 @@ public class SysUserController extends BaseController {
     @HasPermissions("system:user:edit")
     @PostMapping("update/info")
     @OperLog(title = "用户管理", businessType = BusinessType.UPDATE)
-    public R updateInfo(@RequestBody SysUser sysUser) {
+    public JsonResult updateInfo(@RequestBody SysUser sysUser) {
         return toAjax(sysUserService.updateUserInfo(sysUser));
     }
 
@@ -142,14 +142,14 @@ public class SysUserController extends BaseController {
      * @author zmr
      */
     @PostMapping("update/login")
-    public R updateLoginRecord(@RequestBody SysUser sysUser) {
+    public JsonResult updateLoginRecord(@RequestBody SysUser sysUser) {
         return toAjax(sysUserService.updateUser(sysUser));
     }
 
     @HasPermissions("system:user:resetPwd")
     @OperLog(title = "重置密码", businessType = BusinessType.UPDATE)
     @PostMapping("/resetPwd")
-    public R resetPwdSave(@RequestBody SysUser user) {
+    public JsonResult resetPwdSave(@RequestBody SysUser user) {
         user.setSalt(RandomUtil.randomStr(6));
         user.setPassword(PasswordUtil.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
         return toAjax(sysUserService.resetUserPwd(user));
@@ -165,7 +165,7 @@ public class SysUserController extends BaseController {
     @HasPermissions("system:user:edit")
     @PostMapping("status")
     @OperLog(title = "用户管理", businessType = BusinessType.UPDATE)
-    public R status(@RequestBody SysUser sysUser) {
+    public JsonResult status(@RequestBody SysUser sysUser) {
         return toAjax(sysUserService.changeStatus(sysUser));
     }
 
@@ -177,7 +177,7 @@ public class SysUserController extends BaseController {
     @HasPermissions("system:user:remove")
     @OperLog(title = "用户管理", businessType = BusinessType.DELETE)
     @PostMapping("remove")
-    public R remove(String ids) throws Exception {
+    public JsonResult remove(String ids) throws Exception {
         return toAjax(sysUserService.deleteUserByIds(ids));
     }
 }
