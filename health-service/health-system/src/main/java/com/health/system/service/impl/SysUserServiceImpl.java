@@ -1,6 +1,5 @@
 package com.health.system.service.impl;
 
-import cn.hutool.core.util.ArrayUtil;
 import com.health.common.annotation.DataScope;
 import com.health.common.constant.UserConstants;
 import com.health.common.core.text.Convert;
@@ -66,6 +65,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @param user 用户信息
      * @return 用户信息集合信息
      */
+    @Override
     @DataScope(deptAlias = "d", userAlias = "u")
     public List<SysUser> selectAllocatedList(SysUser user) {
         return userMapper.selectAllocatedList(user);
@@ -77,6 +77,7 @@ public class SysUserServiceImpl implements ISysUserService {
      * @param user 用户信息
      * @return 用户信息集合信息
      */
+    @Override
     @DataScope(deptAlias = "d", userAlias = "u")
     public List<SysUser> selectUnallocatedList(SysUser user) {
         return userMapper.selectUnallocatedList(user);
@@ -418,11 +419,11 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Override
     public Set<Long> selectUserIdsHasRoles(Long[] roleIds) {
-        return ArrayUtil.isNotEmpty(roleIds) ? userMapper.selectUserIdsHasRoles(roleIds) : null;
+        return null;
     }
 
     @Override
     public Set<Long> selectUserIdsInDepts(Long[] deptIds) {
-        return ArrayUtil.isNotEmpty(deptIds) ? userMapper.selectUserIdsInDepts(deptIds) : null;
+        return null;
     }
 }

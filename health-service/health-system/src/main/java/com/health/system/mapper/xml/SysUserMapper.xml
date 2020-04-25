@@ -29,7 +29,7 @@
         <collection property="roleIds" javaType="java.util.List" resultMap="RoleIdsResult"/>
     </resultMap>
 
-    <resultMap id="deptResult" type="SysDept">
+    <resultMap id="deptResult" type="com.health.system.domain.SysDept">
         <id property="deptId" column="dept_id"/>
         <result property="parentId" column="parent_id"/>
         <result property="deptName" column="dept_name"/>
@@ -38,10 +38,10 @@
     </resultMap>
 
     <resultMap id="RoleIdsResult" type="Long">
-        <id property="roleId" column="role_id"/>
+        <id column="role_id"/>
     </resultMap>
 
-    <resultMap id="RoleResult" type="SysRole">
+    <resultMap id="RoleResult" type="com.health.system.domain.SysRole">
         <id property="roleId" column="role_id"/>
         <result property="roleName" column="role_name"/>
         <result property="roleKey" column="role_key"/>
