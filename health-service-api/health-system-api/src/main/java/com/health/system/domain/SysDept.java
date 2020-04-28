@@ -9,7 +9,7 @@ import javax.persistence.*;
 /**
  * 部门表 sys_dept
  *
- * @author ruoyi
+ * @author zq
  */
 @Entity
 @Table(name = "sys_dept")

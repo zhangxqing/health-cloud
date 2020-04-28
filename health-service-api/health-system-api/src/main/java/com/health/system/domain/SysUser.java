@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 用户对象 sys_user
  *
- * @author ruoyi
+ * @author zq
  */
 @Entity
 @Table(name = "sys_user")

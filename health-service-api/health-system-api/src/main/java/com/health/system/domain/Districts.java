@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * 地区表 districts
  *
- * @author ruoyi
+ * @author zq
  * @date 2018-12-19
  */
 public class Districts extends BaseEntity {

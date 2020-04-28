@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * 当前在线会话 sys_user_online
  *
- * @author ruoyi
+ * @author zq
  */
 public class SysUserOnline extends BaseEntity {
     private static final long serialVersionUID = 1L;

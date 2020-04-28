@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * 用户和角色关联 sys_user_role
  *
- * @author ruoyi
+ * @author zq
  */
 @Entity
 @Table(name = "sys_user_role")

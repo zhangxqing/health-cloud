@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * 岗位表 sys_post
  *
- * @author ruoyi
+ * @author zq
  */
 public class SysPost extends BaseEntity {
     private static final long serialVersionUID = 1L;

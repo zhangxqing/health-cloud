@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * 角色表 sys_role
  *
- * @author ruoyi
+ * @author zq
  */
 @Entity
 @Table(name = "sys_role")
