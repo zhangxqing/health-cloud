@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 有@LoginUser注解的方法参数，注入当前登录用户
+ * @author zq
  */
 @Configuration
 public class LoginUserHandlerResolver implements HandlerMethodArgumentResolver {
@@ -30,7 +31,7 @@ public class LoginUserHandlerResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,
-                                  NativeWebRequest nativeWebRequest, WebDataBinderFactory factory) throws Exception {
+                                  NativeWebRequest nativeWebRequest, WebDataBinderFactory factory) {
         HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
         // 获取用户ID
         Long userid = Long.valueOf(request.getHeader(Constants.CURRENT_ID));
