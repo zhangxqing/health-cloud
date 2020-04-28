@@ -3,7 +3,7 @@ package com.health.common.log.enums;
 /**
  * 操作人类别
  *
- * @author ruoyi
+ * @author zq
  */
 public enum OperatorType {
     /**

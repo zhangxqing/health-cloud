@@ -3,7 +3,7 @@ package com.health.common.log.enums;
 /**
  * 业务操作类型
  *
- * @author ruoyi
+ * @author zq
  */
 public enum BusinessType {
     /**
