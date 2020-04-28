@@ -2,7 +2,7 @@ package com.health.system.resolver;
 
 import com.health.common.annotation.LoginUser;
 import com.health.common.constant.Constants;
-import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import com.health.system.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ public class LoginUserHandlerResolver implements HandlerMethodArgumentResolver {
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().isAssignableFrom(SysUser.class)
+        return parameter.getParameterType().isAssignableFrom(SysUserDto.class)
                 && parameter.hasParameterAnnotation(LoginUser.class);
     }
 

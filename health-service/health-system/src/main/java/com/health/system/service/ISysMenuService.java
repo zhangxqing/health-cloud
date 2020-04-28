@@ -3,7 +3,7 @@ package com.health.system.service;
 import com.health.common.core.domain.Ztree;
 import com.health.system.domain.SysMenu;
 import com.health.system.domain.SysRole;
-import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 
 import java.util.List;
 import java.util.Map;
@@ -18,10 +18,10 @@ public interface ISysMenuService {
     /**
      * 根据用户ID查询菜单
      *
-     * @param user 用户信息
+     * @param userDto 用户信息
      * @return 菜单列表
      */
-    public List<SysMenu> selectMenusByUser(SysUser user);
+    public List<SysMenu> selectMenusByUser(SysUserDto userDto);
 
     /**
      * 查询系统菜单列表

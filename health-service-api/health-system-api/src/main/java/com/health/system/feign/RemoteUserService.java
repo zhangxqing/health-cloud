@@ -3,6 +3,7 @@ package com.health.system.feign;
 import com.health.common.constant.ServiceNameConstants;
 import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import com.health.system.feign.factory.RemoteUserFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +22,10 @@ public interface RemoteUserService {
     SysUser selectSysUserByUserId(@PathVariable("userId") long userId);
 
     @GetMapping("user/find/{username}")
-    SysUser selectSysUserByUsername(@PathVariable("username") String username);
+    SysUserDto selectSysUserByUsername(@PathVariable("username") String username);
 
     @PostMapping("user/update/login")
-    JsonResult updateUserLoginRecord(@RequestBody SysUser user);
+    JsonResult updateUserLoginRecord(@RequestBody SysUserDto userDto);
 
     /**
      * 查询拥有当前角色的所有用户

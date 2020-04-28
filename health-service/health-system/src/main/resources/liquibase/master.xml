@@ -16,4 +16,5 @@
     <include file="liquibase/changelog/20200422230828_add_table_sys_notice.xml" relativeToChangelogFile="false"/>
     <include file="liquibase/changelog/20200422230928_add_table_sys_oss.xml" relativeToChangelogFile="false"/>
     <include file="liquibase/changelog/20200422231028_add_table_sys_post.xml" relativeToChangelogFile="false"/>
+    <include file="liquibase/changelog/20200428221928_alter_table_sys_dept_add_remark.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

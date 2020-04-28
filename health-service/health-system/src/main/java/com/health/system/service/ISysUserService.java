@@ -1,6 +1,7 @@
 package com.health.system.service;
 
 import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 
 import java.util.List;
 import java.util.Set;
@@ -41,7 +42,7 @@ public interface ISysUserService {
      * @param userName 用户名
      * @return 用户对象信息
      */
-    public SysUser selectUserByLoginName(String userName);
+    SysUserDto selectUserByLoginName(String userName);
 
     /**
      * 通过手机号码查询用户
@@ -49,7 +50,7 @@ public interface ISysUserService {
      * @param phoneNumber 手机号码
      * @return 用户对象信息
      */
-    public SysUser selectUserByPhoneNumber(String phoneNumber);
+    SysUser selectUserByPhoneNumber(String phoneNumber);
 
     /**
      * 通过邮箱查询用户
@@ -65,7 +66,7 @@ public interface ISysUserService {
      * @param userId 用户ID
      * @return 用户对象信息
      */
-    public SysUser selectUserById(Long userId);
+    public SysUserDto selectUserById(Long userId);
 
     /**
      * 通过用户ID删除用户
@@ -87,18 +88,18 @@ public interface ISysUserService {
     /**
      * 保存用户信息
      *
-     * @param user 用户信息
+     * @param userDto 用户信息
      * @return 结果
      */
-    public int insertUser(SysUser user);
+    public int insertUser(SysUserDto userDto);
 
     /**
      * 保存用户信息
      *
-     * @param user 用户信息
+     * @param userDto 用户信息
      * @return 结果
      */
-    public int updateUser(SysUser user);
+    public int updateUser(SysUserDto userDto);
 
     /**
      * 修改用户详细信息
@@ -106,7 +107,7 @@ public interface ISysUserService {
      * @param user 用户信息
      * @return 结果
      */
-    public int updateUserInfo(SysUser user);
+    public int updateUserInfo(SysUserDto user);
 
     /**
      * 修改用户密码信息
@@ -114,7 +115,7 @@ public interface ISysUserService {
      * @param user 用户信息
      * @return 结果
      */
-    public int resetUserPwd(SysUser user);
+    public int resetUserPwd(SysUserDto user);
 
     /**
      * 校验用户名称是否唯一
@@ -130,7 +131,7 @@ public interface ISysUserService {
      * @param user 用户信息
      * @return 结果
      */
-    public String checkPhoneUnique(SysUser user);
+    public String checkPhoneUnique(SysUserDto user);
 
     /**
      * 校验email是否唯一
@@ -138,7 +139,7 @@ public interface ISysUserService {
      * @param user 用户信息
      * @return 结果
      */
-    public String checkEmailUnique(SysUser user);
+    public String checkEmailUnique(SysUserDto user);
 
     /**
      * 根据用户ID查询用户所属角色组
@@ -164,7 +165,7 @@ public interface ISysUserService {
      * @param operName        操作用户
      * @return 结果
      */
-    public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName);
+    public String importUser(List<SysUserDto> userList, Boolean isUpdateSupport, String operName);
 
     /**
      * 用户状态修改
@@ -172,12 +173,12 @@ public interface ISysUserService {
      * @param user 用户信息
      * @return 结果
      */
-    public int changeStatus(SysUser user);
+    public int changeStatus(SysUserDto user);
 
     /**
      * 查询拥有当前角色的所有用户
      *
-     * @param roleId
+     * @param roleIds
      * @return
      * @author zmr
      */
@@ -186,7 +187,7 @@ public interface ISysUserService {
     /**
      * 查询所有当前部门中的用户
      *
-     * @param deptId
+     * @param deptIds
      * @return
      * @author zmr
      */

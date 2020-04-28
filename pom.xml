@@ -41,11 +41,23 @@
         <swagger-ui.version>1.9.5</swagger-ui.version>
         <guava.version>26.0-jre</guava.version>
         <liquibase.version>3.8.5</liquibase.version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+            <!--对象转换依赖-->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
             <!--liquibase数据库版本管理工具-->
             <dependency>
                 <groupId>org.liquibase</groupId>

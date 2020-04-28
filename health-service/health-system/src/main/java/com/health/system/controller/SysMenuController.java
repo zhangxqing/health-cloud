@@ -7,7 +7,7 @@ import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysMenu;
-import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import com.health.system.service.ISysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,8 +44,8 @@ public class SysMenuController extends BaseController {
      * 查询菜单权限
      */
     @GetMapping("user")
-    public List<SysMenu> user(@LoginUser SysUser sysUser) {
-        return sysMenuService.selectMenusByUser(sysUser);
+    public List<SysMenu> user(@LoginUser SysUserDto sysUserDto) {
+        return sysMenuService.selectMenusByUser(sysUserDto);
     }
 
     /**

@@ -1,11 +1,11 @@
 package com.health.system.util;
 
 import com.health.common.utils.security.Md5Utils;
-import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 
 public class PasswordUtil {
-    public static boolean matches(SysUser user, String newPassword) {
-        return user.getPassword().equals(encryptPassword(user.getLoginName(), newPassword, user.getSalt()));
+    public static boolean matches(SysUserDto userDto, String newPassword) {
+        return userDto.getPassword().equals(encryptPassword(userDto.getLoginName(), newPassword, userDto.getSalt()));
     }
 
     public static String encryptPassword(String username, String password, String salt) {

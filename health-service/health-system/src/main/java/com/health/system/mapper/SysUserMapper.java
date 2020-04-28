@@ -1,6 +1,7 @@
 package com.health.system.mapper;
 
 import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 
 import java.util.List;
 import java.util.Set;
@@ -89,7 +90,7 @@ public interface SysUserMapper {
      * @param user 用户信息
      * @return 结果
      */
-    public int updateUser(SysUser user);
+    public int updateUser(SysUserDto user);
 
     /**
      * 新增用户信息
@@ -97,7 +98,7 @@ public interface SysUserMapper {
      * @param user 用户信息
      * @return 结果
      */
-    public int insertUser(SysUser user);
+    public int insertUser(SysUserDto user);
 
     /**
      * 校验用户名称是否唯一

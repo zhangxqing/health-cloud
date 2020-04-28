@@ -7,15 +7,17 @@ import com.health.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 用户对象 sys_user
  *
  * @author ruoyi
  */
+@Entity
+@Table(name = "sys_user")
 public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -23,84 +25,94 @@ public class SysUser extends BaseEntity {
      * 用户ID
      */
     @Excel(name = "用户序号", prompt = "用户编号")
+    @Id
+    @Column(name = "user_id")
     private Long userId;
 
     /**
      * 部门ID
      */
     @Excel(name = "部门编号", type = Type.IMPORT)
+    @Column(name = "dept_id",insertable=false,updatable=false)
     private Long deptId;
-
-    /**
-     * 部门父ID
-     */
-    private Long parentId;
 
     /**
      * 登录名称
      */
     @Excel(name = "登录名称")
+    @Column(name = "login_name")
     private String loginName;
 
     /**
      * 用户名称
      */
+    @Column(name = "user_name")
     @Excel(name = "用户名称")
     private String userName;
 
     /**
      * 用户邮箱
      */
+    @Column(name = "email")
     @Excel(name = "用户邮箱")
     private String email;
 
     /**
      * 手机号码
      */
+    @Column(name = "phonenumber")
     @Excel(name = "手机号码")
     private String phonenumber;
 
     /**
      * 用户性别
      */
+    @Column(name = "sex")
     @Excel(name = "用户性别", readConverterExp = "0=男,1=女,2=未知")
     private String sex;
 
     /**
      * 用户头像
      */
+    @Column(name = "avatar")
     private String avatar;
 
     /**
      * 密码
      */
+    @Column(name = "password")
     private String password;
 
     /**
      * 盐加密
      */
+    @Column(name = "salt")
     private String salt;
 
     /**
      * 帐号状态（0正常 1停用）
      */
+    @Column(name = "status")
     @Excel(name = "帐号状态", readConverterExp = "0=正常,1=停用")
     private String status;
 
     /**
      * 删除标志（0代表存在 2代表删除）
      */
+    @Column(name = "del_flag")
     private String delFlag;
 
     /**
      * 最后登陆IP
      */
+    @Column(name = "login_ip")
     @Excel(name = "最后登陆IP", type = Type.EXPORT)
     private String loginIp;
 
     /**
      * 最后登陆时间
      */
+    @Column(name = "login_date")
     @Excel(name = "最后登陆时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Type.EXPORT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date loginDate;
@@ -108,22 +120,16 @@ public class SysUser extends BaseEntity {
     /**
      * 部门对象
      */
+    @OneToOne
     @Excel(name = "部门名称", targetAttr = "deptName", type = Type.EXPORT)
+    @JoinColumn(name = "dept_id", referencedColumnName = "dept_id")
     private SysDept dept;
 
+    @ManyToMany
+    @JoinTable(name = "sys_user_role",
+            joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")})
     private List<SysRole> roles;
-
-    /**
-     * 角色组
-     */
-    private List<Long> roleIds;
-
-    /**
-     * 岗位组
-     */
-    private Long[] postIds;
-
-    private Set<String> buttons;
 
     public Long getUserId() {
         return userId;
@@ -147,14 +153,6 @@ public class SysUser extends BaseEntity {
 
     public void setDeptId(Long deptId) {
         this.deptId = deptId;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
     }
 
     public String getLoginName() {
@@ -271,31 +269,6 @@ public class SysUser extends BaseEntity {
 
     public void setRoles(List<SysRole> roles) {
         this.roles = roles;
-    }
-
-
-    public List<Long> getRoleIds() {
-        return roleIds;
-    }
-
-    public void setRoleIds(List<Long> roleIds) {
-        this.roleIds = roleIds;
-    }
-
-    public Long[] getPostIds() {
-        return postIds;
-    }
-
-    public void setPostIds(Long[] postIds) {
-        this.postIds = postIds;
-    }
-
-    public Set<String> getButtons() {
-        return buttons;
-    }
-
-    public void setButtons(Set<String> buttons) {
-        this.buttons = buttons;
     }
 
     @Override

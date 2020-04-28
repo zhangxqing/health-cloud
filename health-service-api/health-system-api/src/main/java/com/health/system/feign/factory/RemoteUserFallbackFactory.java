@@ -2,6 +2,7 @@ package com.health.system.feign.factory;
 
 import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import com.health.system.feign.RemoteUserService;
 import feign.hystrix.FallbackFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +20,9 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
     public RemoteUserService create(Throwable throwable) {
         log.error(throwable.getMessage());
         return new RemoteUserService() {
-            @Override
-            public SysUser selectSysUserByUsername(String username) {
-                return null;
-            }
 
             @Override
-            public JsonResult updateUserLoginRecord(SysUser user) {
+            public JsonResult updateUserLoginRecord(SysUserDto userDto) {
                 return JsonResult.error();
             }
 
@@ -35,6 +32,11 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
                 user.setUserId(0L);
                 user.setLoginName("no user");
                 return user;
+            }
+
+            @Override
+            public SysUserDto selectSysUserByUsername(String username) {
+                return null;
             }
 
             @Override

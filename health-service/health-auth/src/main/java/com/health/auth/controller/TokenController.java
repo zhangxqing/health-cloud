@@ -5,6 +5,7 @@ import com.health.auth.service.AccessTokenService;
 import com.health.auth.service.SysLoginService;
 import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +27,9 @@ public class TokenController {
     @PostMapping("login")
     public JsonResult login(@RequestBody LoginForm form) {
         // 用户登录
-        SysUser user = sysLoginService.login(form.getUsername(), form.getPassword());
+        SysUserDto userDto = sysLoginService.login(form.getUsername(), form.getPassword());
         // 获取登录token
-        return JsonResult.ok(tokenService.createToken(user));
+        return JsonResult.ok(tokenService.createToken(userDto));
     }
 
     @PostMapping("logout")

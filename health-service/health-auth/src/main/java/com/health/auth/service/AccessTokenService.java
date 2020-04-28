@@ -5,6 +5,7 @@ import com.health.common.constant.Constants;
 import com.health.common.redis.annotation.RedisEvict;
 import com.health.common.redis.util.RedisUtils;
 import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,18 +31,18 @@ public class AccessTokenService {
         return redis.get(ACCESS_TOKEN + token, SysUser.class);
     }
 
-    @RedisEvict(key = "user_perms", fieldKey = "#sysUser.userId")
-    public Map<String, Object> createToken(SysUser sysUser) {
+    @RedisEvict(key = "user_perms", fieldKey = "#sysUserDto.userId")
+    public Map<String, Object> createToken(SysUserDto sysUserDto) {
         // 生成token
         String token = IdUtil.fastSimpleUUID();
         // 保存或更新用户token
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("userId", sysUser.getUserId());
+        map.put("userId", sysUserDto.getUserId());
         map.put("token", token);
         map.put("expire", EXPIRE);
         // expireToken(userId);
-        redis.set(ACCESS_TOKEN + token, sysUser, EXPIRE);
-        redis.set(ACCESS_USERID + sysUser.getUserId(), token, EXPIRE);
+        redis.set(ACCESS_TOKEN + token, sysUserDto, EXPIRE);
+        redis.set(ACCESS_USERID + sysUserDto.getUserId(), token, EXPIRE);
         return map;
     }
 

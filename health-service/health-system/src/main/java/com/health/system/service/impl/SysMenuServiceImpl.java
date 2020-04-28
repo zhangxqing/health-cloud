@@ -6,7 +6,7 @@ import com.health.common.redis.annotation.RedisCache;
 import com.health.common.utils.StringUtils;
 import com.health.system.domain.SysMenu;
 import com.health.system.domain.SysRole;
-import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import com.health.system.mapper.SysMenuMapper;
 import com.health.system.mapper.SysRoleMenuMapper;
 import com.health.system.service.ISysMenuService;
@@ -34,17 +34,17 @@ public class SysMenuServiceImpl implements ISysMenuService {
     /**
      * 根据用户查询菜单
      *
-     * @param user 用户信息
+     * @param userDto 用户信息
      * @return 菜单列表
      */
     @Override
-    public List<SysMenu> selectMenusByUser(SysUser user) {
-        List<SysMenu> menus = new LinkedList<>();
+    public List<SysMenu> selectMenusByUser(SysUserDto userDto) {
+        List<SysMenu> menus;
         // 管理员显示所有菜单信息
-        if (user.isAdmin()) {
+        if (userDto.isAdmin()) {
             menus = menuMapper.selectMenuNormalAll();
         } else {
-            menus = menuMapper.selectMenusByUserId(user.getUserId());
+            menus = menuMapper.selectMenusByUserId(userDto.getUserId());
         }
         return menus;
         // 前端自行构造菜单树

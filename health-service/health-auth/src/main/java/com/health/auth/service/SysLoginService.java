@@ -12,7 +12,7 @@ import com.health.common.utils.DateUtils;
 import com.health.common.utils.IpUtils;
 import com.health.common.utils.MessageUtils;
 import com.health.common.utils.ServletUtils;
-import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import com.health.system.feign.RemoteUserService;
 import com.health.system.util.PasswordUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +33,7 @@ public class SysLoginService {
     /**
      * 登录
      */
-    public SysUser login(String username, String password) {
+    public SysUserDto login(String username, String password) {
         // 验证码校验
         // if
         // (!StringUtils.isEmpty(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA)))
@@ -63,7 +63,7 @@ public class SysLoginService {
             throw new UserPasswordNotMatchException();
         }
         // 查询用户信息
-        SysUser user = userService.selectSysUserByUsername(username);
+        SysUserDto userDto = userService.selectSysUserByUsername(username);
         // if (user == null && maybeMobilePhoneNumber(username))
         // {
         // user = userService.selectUserByPhoneNumber(username);
@@ -72,26 +72,26 @@ public class SysLoginService {
         // {
         // user = userService.selectUserByEmail(username);
         // }
-        if (user == null) {
+        if (userDto == null) {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.not.exists"));
             throw new UserNotExistsException();
         }
-        if (UserStatus.DELETED.getCode().equals(user.getDelFlag())) {
+        if (UserStatus.DELETED.getCode().equals(userDto.getDelFlag())) {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
                     MessageUtils.message("user.password.delete"));
             throw new UserDeleteException();
         }
-        if (UserStatus.DISABLE.getCode().equals(user.getStatus())) {
+        if (UserStatus.DISABLE.getCode().equals(userDto.getStatus())) {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
-                    MessageUtils.message("user.blocked", user.getRemark()));
+                    MessageUtils.message("user.blocked", userDto.getRemark()));
             throw new UserBlockedException();
         }
-        if (!PasswordUtil.matches(user, password)) {
+        if (!PasswordUtil.matches(userDto, password)) {
             throw new UserPasswordNotMatchException();
         }
         PublishFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success"));
-        recordLoginInfo(user);
-        return user;
+        recordLoginInfo(userDto);
+        return userDto;
     }
 
     // private boolean maybeEmail(String username)
@@ -115,10 +115,10 @@ public class SysLoginService {
     /**
      * 记录登录信息
      */
-    public void recordLoginInfo(SysUser user) {
-        user.setLoginIp(IpUtils.getIpAddr(ServletUtils.getRequest()));
-        user.setLoginDate(DateUtils.getNowDate());
-        userService.updateUserLoginRecord(user);
+    public void recordLoginInfo(SysUserDto userDto) {
+        userDto.setLoginIp(IpUtils.getIpAddr(ServletUtils.getRequest()));
+        userDto.setLoginDate(DateUtils.getNowDate());
+        userService.updateUserLoginRecord(userDto);
     }
 
     public void logout(String loginName) {
