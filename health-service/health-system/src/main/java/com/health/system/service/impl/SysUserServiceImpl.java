@@ -20,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * 用户 业务层处理
@@ -50,10 +48,6 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Autowired
     private ISysConfigService configService;
-    @Autowired
-    private SysUserRepository sysUserRepository;
-    @Autowired
-    private SysUserMapStruct sysUserMapStruct;
 
     /**
      * 根据条件分页查询用户列表
@@ -99,12 +93,7 @@ public class SysUserServiceImpl implements ISysUserService {
      */
     @Override
     public SysUserDto selectUserByLoginName(String userName) {
-        Optional<SysUserDto> sysUserOptional = sysUserRepository.findByLoginName(userName).map(sysUser -> {
-            SysUserDto sysUserDto = sysUserMapStruct.toDto(sysUser);
-            sysUserDto.setRoleIds(sysUser.getRoles().stream().map(SysRole::getRoleId).collect(Collectors.toList()));
-            return sysUserDto;
-        });
-        return sysUserOptional.get();
+        return userMapper.selectUserByLoginName(userName);
     }
 
     /**
@@ -137,12 +126,7 @@ public class SysUserServiceImpl implements ISysUserService {
      */
     @Override
     public SysUserDto selectUserById(Long userId) {
-        Optional<SysUserDto> sysUserOptional = sysUserRepository.findById(userId).map(sysUser -> {
-            SysUserDto sysUserDto = sysUserMapStruct.toDto(sysUser);
-            sysUserDto.setRoleIds(sysUser.getRoles().stream().map(SysRole::getRoleId).collect(Collectors.toList()));
-            return sysUserDto;
-        });
-        return sysUserOptional.get();
+        return userMapper.selectUserById(userId);
     }
 
     /**
@@ -388,7 +372,7 @@ public class SysUserServiceImpl implements ISysUserService {
         for (SysUserDto user : userList) {
             try {
                 // 验证是否存在这个用户
-                SysUser u = userMapper.selectUserByLoginName(user.getLoginName());
+                SysUserDto u = userMapper.selectUserByLoginName(user.getLoginName());
                 if (StringUtils.isNull(u)) {
                     user.setPassword(Md5Utils.hash(user.getLoginName() + password));
                     user.setCreateBy(operName);

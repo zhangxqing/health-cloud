@@ -42,7 +42,7 @@ public interface SysUserMapper {
      * @param userName 用户名
      * @return 用户对象信息
      */
-    public SysUser selectUserByLoginName(String userName);
+    public SysUserDto selectUserByLoginName(String userName);
 
     /**
      * 通过手机号码查询用户
@@ -66,7 +66,7 @@ public interface SysUserMapper {
      * @param userId 用户ID
      * @return 用户对象信息
      */
-    public SysUser selectUserById(Long userId);
+    public SysUserDto selectUserById(Long userId);
 
     /**
      * 通过用户ID删除用户
