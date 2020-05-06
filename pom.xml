@@ -42,11 +42,23 @@
         <guava.version>26.0-jre</guava.version>
         <liquibase.version>3.8.5</liquibase.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
+        <mybatis-plus.version>3.1.2</mybatis-plus.version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+            <!--mybatis-plus依赖-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
             <!--对象转换依赖-->
             <dependency>
                 <groupId>org.mapstruct</groupId>
@@ -163,11 +175,11 @@
                 <version>${velocity.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>tk.mybatis</groupId>
-                <artifactId>mapper-spring-boot-starter</artifactId>
-                <version>${mapper.starter.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>tk.mybatis</groupId>-->
+                <!--<artifactId>mapper-spring-boot-starter</artifactId>-->
+                <!--<version>${mapper.starter.version}</version>-->
+            <!--</dependency>-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>

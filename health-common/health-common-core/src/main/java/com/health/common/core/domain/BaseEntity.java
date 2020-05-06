@@ -2,10 +2,6 @@ package com.health.common.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,63 +12,48 @@ import java.util.Map;
  *
  * @author zq
  */
-@MappedSuperclass
 public class BaseEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
      * 搜索值
      */
-    @Transient
     private String searchValue;
 
     /**
      * 创建者
      */
-    @Basic
-    @Column(name = "create_by")
     private String createBy;
 
     /**
      * 创建时间
      */
-    @Basic
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @Column(name = "create_time")
     private Date createTime;
 
     /**
      * 更新者
      */
-    @Basic
-    @Column(name = "update_by")
     private String updateBy;
 
     /**
      * 更新时间
      */
-    @Basic
-    @Column(name = "update_time")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
     /**
      * 备注
      */
-    @Basic
-    @Column(name = "remark")
     private String remark;
 
-    @Transient
     private String beginTime;
 
-    @Transient
     private String endTime;
 
     /**
      * 请求参数
      */
-    @Transient
     private Map<String, Object> params;
 
     public String getSearchValue() {

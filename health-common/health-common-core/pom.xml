@@ -83,11 +83,6 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper-spring-boot-starter</artifactId>
-        </dependency>
-
         <!-- feign需要的核心包-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

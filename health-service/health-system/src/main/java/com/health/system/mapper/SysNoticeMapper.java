@@ -1,5 +1,7 @@
 package com.health.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.health.system.domain.Districts;
 import com.health.system.domain.SysNotice;
 
 import java.util.List;
@@ -9,14 +11,14 @@ import java.util.List;
  *
  * @author ruoyi
  */
-public interface SysNoticeMapper {
+public interface SysNoticeMapper extends BaseMapper<SysNotice> {
     /**
      * 查询公告信息
      *
      * @param noticeId 公告ID
      * @return 公告信息
      */
-    public SysNotice selectNoticeById(Long noticeId);
+    SysNotice selectNoticeById(Long noticeId);
 
     /**
      * 查询公告列表
@@ -24,7 +26,7 @@ public interface SysNoticeMapper {
      * @param notice 公告信息
      * @return 公告集合
      */
-    public List<SysNotice> selectNoticeList(SysNotice notice);
+    List<SysNotice> selectNoticeList(SysNotice notice);
 
     /**
      * 新增公告
@@ -32,7 +34,7 @@ public interface SysNoticeMapper {
      * @param notice 公告信息
      * @return 结果
      */
-    public int insertNotice(SysNotice notice);
+    int insertNotice(SysNotice notice);
 
     /**
      * 修改公告
@@ -40,7 +42,7 @@ public interface SysNoticeMapper {
      * @param notice 公告信息
      * @return 结果
      */
-    public int updateNotice(SysNotice notice);
+    int updateNotice(SysNotice notice);
 
     /**
      * 批量删除公告
@@ -48,5 +50,5 @@ public interface SysNoticeMapper {
      * @param noticeIds 需要删除的数据ID
      * @return 结果
      */
-    public int deleteNoticeByIds(String[] noticeIds);
+    int deleteNoticeByIds(String[] noticeIds);
 }

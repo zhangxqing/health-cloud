@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.health.common.constant.Constants;
 import com.health.common.core.domain.JsonResult;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -31,8 +31,10 @@ import java.util.Arrays;
 @Slf4j
 @Component
 public class AuthFilter implements GlobalFilter, Ordered {
-    // 排除过滤的 uri 地址
-    // swagger排除自行添加
+    /**
+     * 排除过滤的 uri 地址
+     * swagger排除自行添加
+     */
     private static final String[] whiteList = {"/auth/login", "/user/register", "/system/v2/api-docs"};
 
     @Resource(name = "stringRedisTemplate")

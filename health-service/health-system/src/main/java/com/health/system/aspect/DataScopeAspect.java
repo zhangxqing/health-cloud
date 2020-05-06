@@ -7,7 +7,7 @@ import com.health.common.redis.util.RedisUtils;
 import com.health.common.utils.ServletUtils;
 import com.health.common.utils.StringUtils;
 import com.health.system.domain.SysRole;
-import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -82,7 +82,7 @@ public class DataScopeAspect {
         // 获取当前的用户
         HttpServletRequest request = ServletUtils.getRequest();
         String token = request.getHeader("token");
-        SysUser currentUser = redis.get(Constants.ACCESS_TOKEN + token, SysUser.class);
+        SysUserDto currentUser = redis.get(Constants.ACCESS_TOKEN + token, SysUserDto.class);
         if (currentUser != null) {
             // 如果是超级管理员，则不过滤数据
             if (!currentUser.isAdmin()) {
@@ -99,9 +99,8 @@ public class DataScopeAspect {
      *
      * @param joinPoint 切点
      * @param user      用户
-     * @param alias     别名
      */
-    public static void dataScopeFilter(JoinPoint joinPoint, SysUser user, String deptAlias, String userAlias) {
+    public static void dataScopeFilter(JoinPoint joinPoint, SysUserDto user, String deptAlias, String userAlias) {
         StringBuilder sqlString = new StringBuilder();
         for (SysRole role : user.getRoles()) {
             String dataScope = role.getDataScope();

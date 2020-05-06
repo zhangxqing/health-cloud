@@ -1,5 +1,7 @@
 package com.health.system.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.health.system.domain.Districts;
 import com.health.system.domain.SysUserOnline;
 
 import java.util.List;
@@ -9,14 +11,14 @@ import java.util.List;
  *
  * @author ruoyi
  */
-public interface SysUserOnlineMapper {
+public interface SysUserOnlineMapper extends BaseMapper<SysUserOnline> {
     /**
      * 通过会话序号查询信息
      *
      * @param sessionId 会话ID
      * @return 在线用户信息
      */
-    public SysUserOnline selectOnlineById(String sessionId);
+    SysUserOnline selectOnlineById(String sessionId);
 
     /**
      * 通过会话序号删除信息
@@ -24,7 +26,7 @@ public interface SysUserOnlineMapper {
      * @param sessionId 会话ID
      * @return 在线用户信息
      */
-    public int deleteOnlineById(String sessionId);
+    int deleteOnlineById(String sessionId);
 
     /**
      * 保存会话信息
@@ -32,7 +34,7 @@ public interface SysUserOnlineMapper {
      * @param online 会话信息
      * @return 结果
      */
-    public int saveOnline(SysUserOnline online);
+    int saveOnline(SysUserOnline online);
 
     /**
      * 查询会话集合
@@ -40,7 +42,7 @@ public interface SysUserOnlineMapper {
      * @param userOnline 会话参数
      * @return 会话集合
      */
-    public List<SysUserOnline> selectUserOnlineList(SysUserOnline userOnline);
+    List<SysUserOnline> selectUserOnlineList(SysUserOnline userOnline);
 
     /**
      * 查询过期会话集合
@@ -48,5 +50,5 @@ public interface SysUserOnlineMapper {
      * @param lastAccessTime 过期时间
      * @return 会话集合
      */
-    public List<SysUserOnline> selectOnlineByExpired(String lastAccessTime);
+    List<SysUserOnline> selectOnlineByExpired(String lastAccessTime);
 }

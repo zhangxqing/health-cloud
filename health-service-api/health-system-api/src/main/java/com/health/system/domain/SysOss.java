@@ -3,9 +3,6 @@ package com.health.system.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,12 +10,10 @@ import java.util.Date;
  * 文件上传
  */
 @Data
-@Table(name = "sys_oss")
 public class SysOss implements Serializable {
     //
     private static final long serialVersionUID = 1356257283938225230L;
 
-    @Id
     private Long id;
 
     /**
@@ -55,7 +50,6 @@ public class SysOss implements Serializable {
     /**
      * 用于表格行内编辑
      */
-    @Transient
     private Boolean editable;
 
 

@@ -49,15 +49,11 @@ management:
 
 
 # MyBatis
-mybatis:
+mybatis-plus:
   # 搜索指定包别名
-  typeAliasesPackage: com.health
+  typeAliasesPackage: com.health.system.domain,com.health.system.domain.dto
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
   mapperLocations: com/health/system/mapper/xml/*.xml
-
-mapper:
-  not-empty: true
-  identity: MYSQL
 
 # PageHelper分页插件
 pagehelper:
