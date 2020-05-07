@@ -21,17 +21,6 @@ public class DistrictsServiceImpl implements IDistrictsService {
     private DistrictsMapper districtsMapper;
 
     /**
-     * 查询地区信息
-     *
-     * @param id 地区ID
-     * @return 地区信息
-     */
-    @Override
-    public Districts selectDistrictsById(Integer id) {
-        return districtsMapper.selectDistrictsById(id);
-    }
-
-    /**
      * 查询地区列表
      *
      * @param districts 地区信息

@@ -5,13 +5,13 @@ import com.health.common.constant.UserConstants;
 import com.health.common.core.text.Convert;
 import com.health.common.exception.BusinessException;
 import com.health.common.utils.StringUtils;
-import com.health.common.utils.security.Md5Utils;
-import com.health.system.domain.*;
+import com.health.system.domain.SysUser;
+import com.health.system.domain.SysUserPost;
+import com.health.system.domain.SysUserRole;
 import com.health.system.domain.dto.SysUserDto;
 import com.health.system.mapper.*;
 import com.health.system.service.ISysConfigService;
 import com.health.system.service.ISysUserService;
-import com.health.system.service.mapper.SysUserMapStruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,19 +35,10 @@ public class SysUserServiceImpl implements ISysUserService {
     private SysUserMapper userMapper;
 
     @Autowired
-    private SysRoleMapper roleMapper;
-
-    @Autowired
-    private SysPostMapper postMapper;
-
-    @Autowired
     private SysUserPostMapper userPostMapper;
 
     @Autowired
     private SysUserRoleMapper userRoleMapper;
-
-    @Autowired
-    private ISysConfigService configService;
 
     /**
      * 根据条件分页查询用户列表
@@ -62,30 +53,6 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     /**
-     * 根据条件分页查询已分配用户角色列表
-     *
-     * @param user 用户信息
-     * @return 用户信息集合信息
-     */
-    @Override
-    @DataScope(deptAlias = "d", userAlias = "u")
-    public List<SysUser> selectAllocatedList(SysUser user) {
-        return userMapper.selectAllocatedList(user);
-    }
-
-    /**
-     * 根据条件分页查询未分配用户角色列表
-     *
-     * @param user 用户信息
-     * @return 用户信息集合信息
-     */
-    @Override
-    @DataScope(deptAlias = "d", userAlias = "u")
-    public List<SysUser> selectUnallocatedList(SysUser user) {
-        return userMapper.selectUnallocatedList(user);
-    }
-
-    /**
      * 通过用户名查询用户
      *
      * @param userName 用户名
@@ -97,28 +64,6 @@ public class SysUserServiceImpl implements ISysUserService {
     }
 
     /**
-     * 通过手机号码查询用户
-     *
-     * @param phoneNumber 手机号码
-     * @return 用户对象信息
-     */
-    @Override
-    public SysUser selectUserByPhoneNumber(String phoneNumber) {
-        return userMapper.selectUserByPhoneNumber(phoneNumber);
-    }
-
-    /**
-     * 通过邮箱查询用户
-     *
-     * @param email 邮箱
-     * @return 用户对象信息
-     */
-    @Override
-    public SysUser selectUserByEmail(String email) {
-        return userMapper.selectUserByEmail(email);
-    }
-
-    /**
      * 通过用户ID查询用户
      *
      * @param userId 用户ID
@@ -127,21 +72,6 @@ public class SysUserServiceImpl implements ISysUserService {
     @Override
     public SysUserDto selectUserById(Long userId) {
         return userMapper.selectUserById(userId);
-    }
-
-    /**
-     * 通过用户ID删除用户
-     *
-     * @param userId 用户ID
-     * @return 结果
-     */
-    @Override
-    public int deleteUserById(Long userId) {
-        // 删除用户与角色关联
-        userRoleMapper.deleteUserRoleByUserId(userId);
-        // 删除用户与岗位表
-        userPostMapper.deleteUserPostByUserId(userId);
-        return userMapper.deleteUserById(userId);
     }
 
     /**
@@ -311,97 +241,6 @@ public class SysUserServiceImpl implements ISysUserService {
             return UserConstants.USER_EMAIL_NOT_UNIQUE;
         }
         return UserConstants.USER_EMAIL_UNIQUE;
-    }
-
-    /**
-     * 查询用户所属角色组
-     *
-     * @param userId 用户ID
-     * @return 结果
-     */
-    @Override
-    public String selectUserRoleGroup(Long userId) {
-        List<SysRole> list = roleMapper.selectRolesByUserId(userId);
-        StringBuffer idsStr = new StringBuffer();
-        for (SysRole role : list) {
-            idsStr.append(role.getRoleName()).append(",");
-        }
-        if (StringUtils.isNotEmpty(idsStr.toString())) {
-            return idsStr.substring(0, idsStr.length() - 1);
-        }
-        return idsStr.toString();
-    }
-
-    /**
-     * 查询用户所属岗位组
-     *
-     * @param userId 用户ID
-     * @return 结果
-     */
-    @Override
-    public String selectUserPostGroup(Long userId) {
-        List<SysPost> list = postMapper.selectPostsByUserId(userId);
-        StringBuffer idsStr = new StringBuffer();
-        for (SysPost post : list) {
-            idsStr.append(post.getPostName()).append(",");
-        }
-        if (StringUtils.isNotEmpty(idsStr.toString())) {
-            return idsStr.substring(0, idsStr.length() - 1);
-        }
-        return idsStr.toString();
-    }
-
-    /**
-     * 导入用户数据
-     *
-     * @param userList        用户数据列表
-     * @param isUpdateSupport 是否更新支持，如果已存在，则进行更新数据
-     * @param operName        操作用户
-     * @return 结果
-     */
-    @Override
-    public String importUser(List<SysUserDto> userList, Boolean isUpdateSupport, String operName) {
-        if (StringUtils.isNull(userList) || userList.size() == 0) {
-            throw new BusinessException("导入用户数据不能为空！");
-        }
-        int successNum = 0;
-        int failureNum = 0;
-        StringBuilder successMsg = new StringBuilder();
-        StringBuilder failureMsg = new StringBuilder();
-        String password = configService.selectConfigByKey("sys.user.initPassword");
-        for (SysUserDto user : userList) {
-            try {
-                // 验证是否存在这个用户
-                SysUserDto u = userMapper.selectUserByLoginName(user.getLoginName());
-                if (StringUtils.isNull(u)) {
-                    user.setPassword(Md5Utils.hash(user.getLoginName() + password));
-                    user.setCreateBy(operName);
-                    this.insertUser(user);
-                    successNum++;
-                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 导入成功");
-                } else if (isUpdateSupport) {
-                    user.setUpdateBy(operName);
-                    this.updateUser(user);
-                    successNum++;
-                    successMsg.append("<br/>" + successNum + "、账号 " + user.getLoginName() + " 更新成功");
-                } else {
-                    failureNum++;
-                    failureMsg.append("<br/>" + failureNum + "、账号 " + user.getLoginName() + " 已存在");
-                }
-            } catch (Exception e) {
-                failureNum++;
-                String msg = "<br/>" + failureNum + "、账号 " + user.getLoginName() + " 导入失败：";
-                failureMsg.append(msg + e.getMessage());
-                log.error(msg, e);
-            }
-        }
-        if (failureNum > 0) {
-            failureMsg.insert(0, "很抱歉，导入失败！共 " + failureNum + " 条数据格式不正确，错误如下：");
-            throw new BusinessException(failureMsg.toString());
-        } else {
-            successMsg.insert(0, "恭喜您，数据已全部导入成功！共 " + successNum + " 条，数据如下：");
-        }
-        return successMsg.toString();
     }
 
     /**

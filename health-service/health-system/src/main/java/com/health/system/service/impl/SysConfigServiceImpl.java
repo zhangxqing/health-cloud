@@ -92,25 +92,6 @@ public class SysConfigServiceImpl implements ISysConfigService {
         return configMapper.deleteConfigByIds(Convert.toStrArray(ids));
     }
 
-    /**
-     * 校验参数键名是否唯一
-     *
-     * @param config 参数配置信息
-     * @return 结果
-     */
-    @Override
-    public String checkConfigKeyUnique(SysConfig config) {
-        Long configId = StringUtils.isNull(config.getConfigId()) ? -1L : config.getConfigId();
-        SysConfig info = configMapper.checkConfigKeyUnique(config.getConfigKey());
-        if (StringUtils.isNotNull(info) && info.getConfigId().longValue() != configId.longValue()) {
-            return UserConstants.CONFIG_KEY_NOT_UNIQUE;
-        }
-        return UserConstants.CONFIG_KEY_UNIQUE;
-    }
-
-    /* (non-Javadoc)
-     * @see com.ruoyi.system.service.ISysConfigService#updateValueByKey(java.lang.String, java.lang.String)
-     */
     @Override
     public int updateValueByKey(String key, String configValue) {
         SysConfig info = configMapper.checkConfigKeyUnique(key);

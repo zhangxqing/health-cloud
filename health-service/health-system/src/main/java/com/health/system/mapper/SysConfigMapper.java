@@ -1,7 +1,6 @@
 package com.health.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.health.system.domain.Districts;
 import com.health.system.domain.SysConfig;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 /**
  * 参数配置 数据层
  *
- * @author ruoyi
+ * @author zq
  */
 public interface SysConfigMapper extends BaseMapper<SysConfig> {
     /**

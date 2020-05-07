@@ -39,16 +39,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     }
 
     /**
-     * 根据所有字典类型
-     *
-     * @return 字典类型集合信息
-     */
-    @Override
-    public List<SysDictType> selectDictTypeAll() {
-        return dictTypeMapper.selectDictTypeAll();
-    }
-
-    /**
      * 根据字典类型ID查询信息
      *
      * @param dictId 字典类型ID
@@ -57,17 +47,6 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
     @Override
     public SysDictType selectDictTypeById(Long dictId) {
         return dictTypeMapper.selectDictTypeById(dictId);
-    }
-
-    /**
-     * 通过字典ID删除字典信息
-     *
-     * @param dictId 字典ID
-     * @return 结果
-     */
-    @Override
-    public int deleteDictTypeById(Long dictId) {
-        return dictTypeMapper.deleteDictTypeById(dictId);
     }
 
     /**
@@ -107,26 +86,10 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService {
      * @return 结果
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int updateDictType(SysDictType dictType) {
         SysDictType oldDict = dictTypeMapper.selectDictTypeById(dictType.getDictId());
         dictDataMapper.updateDictDataType(oldDict.getDictType(), dictType.getDictType());
         return dictTypeMapper.updateDictType(dictType);
-    }
-
-    /**
-     * 校验字典类型称是否唯一
-     *
-     * @param dict 字典类型
-     * @return 结果
-     */
-    @Override
-    public String checkDictTypeUnique(SysDictType dict) {
-        Long dictId = StringUtils.isNull(dict.getDictId()) ? -1L : dict.getDictId();
-        SysDictType dictType = dictTypeMapper.checkDictTypeUnique(dict.getDictType());
-        if (StringUtils.isNotNull(dictType) && dictType.getDictId().longValue() != dictId.longValue()) {
-            return UserConstants.DICT_TYPE_NOT_UNIQUE;
-        }
-        return UserConstants.DICT_TYPE_UNIQUE;
     }
 }

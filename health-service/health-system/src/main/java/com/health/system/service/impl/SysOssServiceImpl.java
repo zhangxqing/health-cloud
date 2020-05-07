@@ -20,41 +20,21 @@ public class SysOssServiceImpl implements ISysOssService {
     private SysOssMapper sysOssMapper;
 
     @Override
-    public SysOss selectSysOssById(Long id) {
-        return null;
-    }
-
-    @Override
     public List<SysOss> selectSysOssList(SysOss sysOss) {
         return null;
     }
 
+    /**
+     * 查询文件上传信息
+     *
+     * @param id 文件上传ID
+     * @return 文件上传信息
+     */
     @Override
-    public int insertSysOss(SysOss sysOss) {
-        return 0;
+    public SysOss selectSysOssById(Long id) {
+        return sysOssMapper.selectById(id);
     }
 
-    @Override
-    public int updateSysOss(SysOss sysOss) {
-        return 0;
-    }
-
-    @Override
-    public int deleteSysOssByIds(String ids) {
-        return 0;
-    }
-
-//    /**
-//     * 查询文件上传信息
-//     *
-//     * @param id 文件上传ID
-//     * @return 文件上传信息
-//     */
-//    @Override
-//    public SysOss selectSysOssById(Long id) {
-//        return sysOssMapper.selectByPrimaryKey(id);
-//    }
-//
 //    /**
 //     * 查询文件上传列表
 //     *
@@ -76,38 +56,38 @@ public class SysOssServiceImpl implements ISysOssService {
 //        }
 //        return sysOssMapper.selectByExample(example);
 //    }
-//
-//    /**
-//     * 新增文件上传
-//     *
-//     * @param sysOss 文件上传信息
-//     * @return 结果
-//     */
-//    @Override
-//    public int insertSysOss(SysOss sysOss) {
-//        return sysOssMapper.insertSelective(sysOss);
-//    }
-//
-//    /**
-//     * 修改文件上传
-//     *
-//     * @param sysOss 文件上传信息
-//     * @return 结果
-//     */
-//    @Override
-//    public int updateSysOss(SysOss sysOss) {
-//        return sysOssMapper.updateByPrimaryKeySelective(sysOss);
-//    }
-//
-//    /**
-//     * 删除文件上传对象
-//     *
-//     * @param ids 需要删除的数据ID
-//     * @return 结果
-//     */
-//    @Override
-//    public int deleteSysOssByIds(String ids) {
-//        return sysOssMapper.deleteByIds(ids);
-//    }
+
+    /**
+     * 新增文件上传
+     *
+     * @param sysOss 文件上传信息
+     * @return 结果
+     */
+    @Override
+    public int insertSysOss(SysOss sysOss) {
+        return sysOssMapper.insert(sysOss);
+    }
+
+    /**
+     * 修改文件上传
+     *
+     * @param sysOss 文件上传信息
+     * @return 结果
+     */
+    @Override
+    public int updateSysOss(SysOss sysOss) {
+        return sysOssMapper.updateById(sysOss);
+    }
+
+    /**
+     * 删除文件上传对象
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+    @Override
+    public int deleteSysOssByIds(String ids) {
+        return sysOssMapper.deleteById(ids);
+    }
 
 }

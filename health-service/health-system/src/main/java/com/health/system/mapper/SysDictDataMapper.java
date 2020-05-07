@@ -1,7 +1,6 @@
 package com.health.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.health.system.domain.Districts;
 import com.health.system.domain.SysDictData;
 import org.apache.ibatis.annotations.Param;
 

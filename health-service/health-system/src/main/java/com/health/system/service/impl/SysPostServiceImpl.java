@@ -129,36 +129,4 @@ public class SysPostServiceImpl implements ISysPostService {
     public int countUserPostById(Long postId) {
         return userPostMapper.countUserPostById(postId);
     }
-
-    /**
-     * 校验岗位名称是否唯一
-     *
-     * @param post 岗位信息
-     * @return 结果
-     */
-    @Override
-    public String checkPostNameUnique(SysPost post) {
-        Long postId = StringUtils.isNull(post.getPostId()) ? -1L : post.getPostId();
-        SysPost info = postMapper.checkPostNameUnique(post.getPostName());
-        if (StringUtils.isNotNull(info) && info.getPostId().longValue() != postId.longValue()) {
-            return UserConstants.POST_NAME_NOT_UNIQUE;
-        }
-        return UserConstants.POST_NAME_UNIQUE;
-    }
-
-    /**
-     * 校验岗位编码是否唯一
-     *
-     * @param post 岗位信息
-     * @return 结果
-     */
-    @Override
-    public String checkPostCodeUnique(SysPost post) {
-        Long postId = StringUtils.isNull(post.getPostId()) ? -1L : post.getPostId();
-        SysPost info = postMapper.checkPostCodeUnique(post.getPostCode());
-        if (StringUtils.isNotNull(info) && info.getPostId().longValue() != postId.longValue()) {
-            return UserConstants.POST_CODE_NOT_UNIQUE;
-        }
-        return UserConstants.POST_CODE_UNIQUE;
-    }
 }

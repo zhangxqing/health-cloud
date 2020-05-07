@@ -62,16 +62,6 @@ public class SysMenuServiceImpl implements ISysMenuService {
     }
 
     /**
-     * 查询菜单集合
-     *
-     * @return 所有菜单信息
-     */
-    @Override
-    public List<SysMenu> selectMenuAll() {
-        return menuMapper.selectMenuAll();
-    }
-
-    /**
      * 根据用户ID查询权限
      *
      * @param userId 用户ID
@@ -93,55 +83,6 @@ public class SysMenuServiceImpl implements ISysMenuService {
     @Override
     public List<SysMenu> selectMenuIdsByRoleId(Long roleId) {
         return menuMapper.selectMenuIdsByRoleId(roleId);
-    }
-
-    /**
-     * 根据角色ID查询菜单
-     *
-     * @param role 角色对象
-     * @return 菜单列表
-     */
-    @Override
-    public List<Ztree> roleMenuTreeData(SysRole role) {
-        Long roleId = role.getRoleId();
-        List<Ztree> ztrees = new ArrayList<Ztree>();
-        List<SysMenu> menuList = menuMapper.selectMenuAll();
-        if (StringUtils.isNotNull(roleId)) {
-            List<String> roleMenuList = menuMapper.selectMenuTree(roleId);
-            ztrees = initZtree(menuList, roleMenuList, true);
-        } else {
-            ztrees = initZtree(menuList, null, true);
-        }
-        return ztrees;
-    }
-
-    /**
-     * 查询所有菜单
-     *
-     * @return 菜单列表
-     */
-    @Override
-    public List<Ztree> menuTreeData() {
-        List<SysMenu> menuList = menuMapper.selectMenuAll();
-        List<Ztree> ztrees = initZtree(menuList);
-        return ztrees;
-    }
-
-    /**
-     * 查询系统所有权限
-     *
-     * @return 权限列表
-     */
-    @Override
-    public LinkedHashMap<String, String> selectPermsAll() {
-        LinkedHashMap<String, String> section = new LinkedHashMap<>();
-        List<SysMenu> permissions = menuMapper.selectMenuAll();
-        if (StringUtils.isNotEmpty(permissions)) {
-            for (SysMenu menu : permissions) {
-                section.put(menu.getMenuName(), MessageFormat.format(PREMISSION_STRING, menu.getPerms()));
-            }
-        }
-        return section;
     }
 
     /**
@@ -211,28 +152,6 @@ public class SysMenuServiceImpl implements ISysMenuService {
     }
 
     /**
-     * 查询子菜单数量
-     *
-     * @param parentId 父级菜单ID
-     * @return 结果
-     */
-    @Override
-    public int selectCountMenuByParentId(Long parentId) {
-        return menuMapper.selectCountMenuByParentId(parentId);
-    }
-
-    /**
-     * 查询菜单使用数量
-     *
-     * @param menuId 菜单ID
-     * @return 结果
-     */
-    @Override
-    public int selectCountRoleMenuByMenuId(Long menuId) {
-        return roleMenuMapper.selectCountRoleMenuByMenuId(menuId);
-    }
-
-    /**
      * 新增保存菜单信息
      *
      * @param menu 菜单信息
@@ -252,42 +171,6 @@ public class SysMenuServiceImpl implements ISysMenuService {
     @Override
     public int updateMenu(SysMenu menu) {
         return menuMapper.updateMenu(menu);
-    }
-
-    /**
-     * 校验菜单名称是否唯一
-     *
-     * @param menu 菜单信息
-     * @return 结果
-     */
-    @Override
-    public String checkMenuNameUnique(SysMenu menu) {
-        Long menuId = StringUtils.isNull(menu.getMenuId()) ? -1L : menu.getMenuId();
-        SysMenu info = menuMapper.checkMenuNameUnique(menu.getMenuName(), menu.getParentId());
-        if (StringUtils.isNotNull(info) && info.getMenuId().longValue() != menuId.longValue()) {
-            return UserConstants.MENU_NAME_NOT_UNIQUE;
-        }
-        return UserConstants.MENU_NAME_UNIQUE;
-    }
-
-    /**
-     * 根据父节点的ID获取所有子节点
-     *
-     * @param list     分类表
-     * @param parentId 传入的父节点ID
-     * @return String
-     */
-    public List<SysMenu> getChildPerms(List<SysMenu> list, int parentId) {
-        List<SysMenu> returnList = new ArrayList<SysMenu>();
-        for (Iterator<SysMenu> iterator = list.iterator(); iterator.hasNext(); ) {
-            SysMenu t = (SysMenu) iterator.next();
-            // 一、根据传入的某个父节点ID,遍历该父节点的所有子节点
-            if (t.getParentId() == parentId) {
-                recursionFn(list, t);
-                returnList.add(t);
-            }
-        }
-        return returnList;
     }
 
     /**
