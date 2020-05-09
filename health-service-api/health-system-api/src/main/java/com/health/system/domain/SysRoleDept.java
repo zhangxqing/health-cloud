@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -12,6 +13,7 @@ public class SysRoleDept {
     /**
      * 角色ID
      */
+    @TableId
     private Long roleId;
 
     /**

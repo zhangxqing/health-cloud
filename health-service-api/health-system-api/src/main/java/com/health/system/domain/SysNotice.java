@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.health.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -15,6 +16,7 @@ public class SysNotice extends BaseEntity {
     /**
      * 公告ID
      */
+    @TableId
     private Long noticeId;
 
     /**

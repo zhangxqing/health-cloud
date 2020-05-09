@@ -10,6 +10,15 @@
     <artifactId>health-system-api</artifactId>
 
     <dependencies>
+        <!--mybatis-plus依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+        </dependency>
         <!-- 通用工具 -->
         <dependency>
             <groupId>com.health.cloud</groupId>

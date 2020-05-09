@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ public class SysUserRole implements Serializable {
     /**
      * 用户ID
      */
+    @TableId
     private Long userId;
 
     /**

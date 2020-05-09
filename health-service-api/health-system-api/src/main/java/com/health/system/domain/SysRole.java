@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.health.common.annotation.Excel;
 import com.health.common.core.domain.BaseEntity;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class SysRole extends BaseEntity {
     /**
      * 角色ID
      */
+    @TableId
     @Excel(name = "角色序号")
     private Long roleId;
 

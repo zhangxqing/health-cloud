@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.health.common.annotation.Excel;
 import com.health.common.core.domain.BaseEntity;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class SysOperLog extends BaseEntity {
     /**
      * 日志主键
      */
+    @TableId
     @Excel(name = "操作序号")
     private Long operId;
 

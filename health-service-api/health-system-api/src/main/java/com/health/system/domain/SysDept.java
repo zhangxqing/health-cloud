@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.health.common.core.domain.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,6 +21,7 @@ public class SysDept extends BaseEntity {
     /**
      * 部门ID
      */
+    @TableId
     private Long deptId;
 
     /**

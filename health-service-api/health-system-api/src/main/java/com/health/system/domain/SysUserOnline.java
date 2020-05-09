@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.health.common.core.domain.BaseEntity;
 import com.health.common.enums.OnlineStatus;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -18,6 +19,7 @@ public class SysUserOnline extends BaseEntity {
     /**
      * 用户会话id
      */
+    @TableId
     private String sessionId;
 
     /**

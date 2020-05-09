@@ -108,7 +108,7 @@ public class BaseController {
     @SuppressWarnings({"rawtypes", "unchecked"})
     protected JsonResult result(List<?> list) {
         PageInfo<?> pageInfo = new PageInfo(list);
-        Map<String, Object> m = new HashMap<String, Object>();
+        Map<String, Object> m = new HashMap<>(10);
         m.put("rows", list);
         m.put("pageNum", pageInfo.getPageNum());
         m.put("total", pageInfo.getTotal());

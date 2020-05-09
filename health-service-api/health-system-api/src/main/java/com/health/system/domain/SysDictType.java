@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.health.common.annotation.Excel;
 import com.health.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -17,6 +18,7 @@ public class SysDictType extends BaseEntity {
      * 字典主键
      */
     @Excel(name = "字典主键")
+    @TableId
     private Long dictId;
 
     /**

@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.health.common.annotation.Excel;
 import com.health.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -16,6 +17,7 @@ public class SysPost extends BaseEntity {
     /**
      * 岗位序号
      */
+    @TableId
     @Excel(name = "岗位序号")
     private Long postId;
 

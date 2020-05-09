@@ -1,5 +1,6 @@
 package com.health.system.domain;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.health.common.annotation.Excel;
 import com.health.common.core.domain.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -19,6 +20,7 @@ public class SysLogininfor extends BaseEntity {
      * ID
      */
     @Excel(name = "序号")
+    @TableId
     private Long infoId;
 
     /**
