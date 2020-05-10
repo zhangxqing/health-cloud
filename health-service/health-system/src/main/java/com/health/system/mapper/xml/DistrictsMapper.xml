@@ -19,7 +19,7 @@
     </resultMap>
 
     <sql id="selectDistrictsVo">
-        select d.id, d.pid, d.deep, d.name, d.pinyin, d.pinyin_shor, d.ext_name, d.create_time, d.update_time, d.operator,p.name as pname
+        select d.id, d.pid, d.deep, d.name, d.pinyin, d.pinyin_shor, d.ext_name, d.create_time, d.update_time, d.operator,if(d.pid=0,'中国',p.name) as pname
         from districts d left join districts p on d.pid=p.id
     </sql>
 
