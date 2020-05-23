@@ -6,6 +6,7 @@ import com.health.common.exception.BusinessException;
 import com.health.system.domain.SysRole;
 import com.health.system.domain.SysRoleDept;
 import com.health.system.domain.SysRoleMenu;
+import com.health.system.domain.dto.SysRoleDto;
 import com.health.system.mapper.SysRoleDeptMapper;
 import com.health.system.mapper.SysRoleMapper;
 import com.health.system.mapper.SysRoleMenuMapper;
@@ -45,7 +46,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      */
     @Override
     @DataScope(deptAlias = "d")
-    public List<SysRole> selectRoleList(SysRole role) {
+    public List<SysRoleDto> selectRoleList(SysRoleDto role) {
         return roleMapper.selectRoleList(role);
     }
 
@@ -55,8 +56,8 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * @return 角色列表
      */
     @Override
-    public List<SysRole> selectRoleAll() {
-        return selectRoleList(new SysRole());
+    public List<SysRoleDto> selectRoleAll() {
+        return selectRoleList(new SysRoleDto());
     }
 
     /**
@@ -66,7 +67,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * @return 角色对象信息
      */
     @Override
-    public SysRole selectRoleById(Long roleId) {
+    public SysRoleDto selectRoleById(Long roleId) {
         return roleMapper.selectRoleById(roleId);
     }
 
@@ -80,9 +81,9 @@ public class SysRoleServiceImpl implements ISysRoleService {
     public int deleteRoleByIds(String ids) throws BusinessException {
         Long[] roleIds = Convert.toLongArray(ids);
         for (Long roleId : roleIds) {
-            SysRole role = selectRoleById(roleId);
+            SysRoleDto role = selectRoleById(roleId);
             if (countUserRoleByRoleId(roleId) > 0) {
-                throw new BusinessException(String.format("%1$s已分配,不能删除", role.getRoleName()));
+                throw new BusinessException(String.format("%1$s已分配用户,不能删除", role.getRoleName()));
             }
         }
         if (roleIds.length > 0) {
@@ -99,7 +100,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int insertRole(SysRole role) {
+    public int insertRole(SysRoleDto role) {
         // 新增角色信息
         roleMapper.insertRole(role);
         return insertRoleMenu(role);
@@ -113,7 +114,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateRole(SysRole role) {
+    public int updateRole(SysRoleDto role) {
         // 修改角色信息
         roleMapper.updateRole(role);
         // 删除角色与菜单关联
@@ -129,7 +130,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int authDataScope(SysRole role) {
+    public int authDataScope(SysRoleDto role) {
         // 修改角色信息
         roleMapper.updateRole(role);
         // 删除角色与部门关联
@@ -143,10 +144,10 @@ public class SysRoleServiceImpl implements ISysRoleService {
      *
      * @param role 角色对象
      */
-    public int insertRoleMenu(SysRole role) {
+    public int insertRoleMenu(SysRoleDto role) {
         int rows = 1;
         // 新增用户与角色管理
-        List<SysRoleMenu> list = new ArrayList<SysRoleMenu>();
+        List<SysRoleMenu> list = new ArrayList<>();
         for (Long menuId : role.getMenuIds()) {
             SysRoleMenu rm = new SysRoleMenu();
             rm.setRoleId(role.getRoleId());
@@ -164,7 +165,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      *
      * @param role 角色对象
      */
-    public int insertRoleDept(SysRole role) {
+    public int insertRoleDept(SysRoleDto role) {
         int rows = 1;
         // 新增角色与部门（数据权限）管理
         List<SysRoleDept> list = new ArrayList<SysRoleDept>();
@@ -198,7 +199,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
      * @return 结果
      */
     @Override
-    public int changeStatus(SysRole role) {
+    public int changeStatus(SysRoleDto role) {
         return roleMapper.updateRole(role);
     }
 }

@@ -42,8 +42,8 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("RuoYi Cloud 接口文档").description("springcloud版本的若依")
-                .contact(new Contact("wind", "", "")).version("1.0.1").build();
+        return new ApiInfoBuilder().title("Health Cloud 接口文档").description("健康后台系统")
+                .contact(new Contact("zq", "", "")).version("1.0.1").build();
     }
 
     private ApiKey apiKey() {

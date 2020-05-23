@@ -3,6 +3,7 @@ package com.health.system.controller;
 import com.health.common.core.controller.BaseController;
 import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysConfig;
+import com.health.system.domain.dto.SysConfigDto;
 import com.health.system.service.ISysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class SysConfigController extends BaseController {
      * 查询参数配置
      */
     @GetMapping("get/{configId}")
-    public SysConfig get(@PathVariable("configId") Long configId) {
+    public SysConfigDto get(@PathVariable("configId") Long configId) {
         return sysConfigService.selectConfigById(configId);
 
     }
@@ -33,7 +34,7 @@ public class SysConfigController extends BaseController {
      * 查询参数配置列表
      */
     @GetMapping("list")
-    public JsonResult list(SysConfig sysConfig) {
+    public JsonResult list(SysConfigDto sysConfig) {
         startPage();
         return result(sysConfigService.selectConfigList(sysConfig));
     }
@@ -43,7 +44,7 @@ public class SysConfigController extends BaseController {
      * 新增保存参数配置
      */
     @PostMapping("save")
-    public JsonResult addSave(@RequestBody SysConfig sysConfig) {
+    public JsonResult addSave(@RequestBody SysConfigDto sysConfig) {
         return toAjax(sysConfigService.insertConfig(sysConfig));
     }
 
@@ -51,7 +52,7 @@ public class SysConfigController extends BaseController {
      * 修改保存参数配置
      */
     @PostMapping("update")
-    public JsonResult editSave(@RequestBody SysConfig sysConfig) {
+    public JsonResult editSave(@RequestBody SysConfigDto sysConfig) {
         return toAjax(sysConfigService.updateConfig(sysConfig));
     }
 

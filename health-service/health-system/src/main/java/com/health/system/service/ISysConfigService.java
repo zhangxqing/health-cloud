@@ -1,6 +1,6 @@
 package com.health.system.service;
 
-import com.health.system.domain.SysConfig;
+import com.health.system.domain.dto.SysConfigDto;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface ISysConfigService {
      * @param configId 参数配置ID
      * @return 参数配置信息
      */
-    SysConfig selectConfigById(Long configId);
+    SysConfigDto selectConfigById(Long configId);
 
     /**
      * 根据键名查询参数配置信息
@@ -32,7 +32,7 @@ public interface ISysConfigService {
      * @param config 参数配置信息
      * @return 参数配置集合
      */
-    List<SysConfig> selectConfigList(SysConfig config);
+    List<SysConfigDto> selectConfigList(SysConfigDto config);
 
     /**
      * 新增参数配置
@@ -40,7 +40,7 @@ public interface ISysConfigService {
      * @param config 参数配置信息
      * @return 结果
      */
-    int insertConfig(SysConfig config);
+    int insertConfig(SysConfigDto config);
 
     /**
      * 修改参数配置
@@ -48,7 +48,7 @@ public interface ISysConfigService {
      * @param config 参数配置信息
      * @return 结果
      */
-    int updateConfig(SysConfig config);
+    int updateConfig(SysConfigDto config);
 
     /**
      * 批量删除参数配置信息

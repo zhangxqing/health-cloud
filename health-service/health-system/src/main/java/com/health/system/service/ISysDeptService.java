@@ -1,7 +1,7 @@
 package com.health.system.service;
 
 
-import com.health.system.domain.SysDept;
+import com.health.system.domain.dto.SysDeptDto;
 
 import java.util.List;
 import java.util.Set;
@@ -18,7 +18,7 @@ public interface ISysDeptService {
      * @param dept 部门信息
      * @return 部门信息集合
      */
-    List<SysDept> selectDeptList(SysDept dept);
+    List<SysDeptDto> selectDeptList(SysDeptDto dept);
 
     /**
      * 删除部门管理信息
@@ -34,7 +34,7 @@ public interface ISysDeptService {
      * @param dept 部门信息
      * @return 结果
      */
-    int insertDept(SysDept dept);
+    int insertDept(SysDeptDto dept);
 
     /**
      * 修改保存部门信息
@@ -42,7 +42,7 @@ public interface ISysDeptService {
      * @param dept 部门信息
      * @return 结果
      */
-    int updateDept(SysDept dept);
+    int updateDept(SysDeptDto dept);
 
     /**
      * 根据部门ID查询信息
@@ -50,7 +50,7 @@ public interface ISysDeptService {
      * @param deptId 部门ID
      * @return 部门信息
      */
-    SysDept selectDeptById(Long deptId);
+    SysDeptDto selectDeptById(Long deptId);
 
 
     /**

@@ -86,7 +86,7 @@ public class BaseController {
         if (StringUtils.isNotBlank(currentId)) {
             return Long.valueOf(currentId);
         }
-        return 0l;
+        return 0L;
     }
 
     public String getLoginName() {

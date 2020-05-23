@@ -7,6 +7,7 @@ import com.health.common.exception.BusinessException;
 import com.health.common.utils.StringUtils;
 import com.health.system.domain.SysDept;
 import com.health.system.domain.SysRole;
+import com.health.system.domain.dto.SysDeptDto;
 import com.health.system.mapper.SysDeptMapper;
 import com.health.system.service.ISysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
      */
     @Override
     @DataScope(deptAlias = "d")
-    public List<SysDept> selectDeptList(SysDept dept) {
+    public List<SysDeptDto> selectDeptList(SysDeptDto dept) {
         return deptMapper.selectDeptList(dept);
     }
 
@@ -84,10 +85,10 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * @return 结果
      */
     @Override
-    public int insertDept(SysDept dept) {
+    public int insertDept(SysDeptDto dept) {
         if (dept.getParentId() > 0) {
 
-            SysDept info = deptMapper.selectDeptById(dept.getParentId());
+            SysDeptDto info = deptMapper.selectDeptById(dept.getParentId());
             // 如果父节点不为"正常"状态,则不允许新增子节点
             if (!UserConstants.DEPT_NORMAL.equals(info.getStatus())) {
                 throw new BusinessException("部门停用，不允许新增");
@@ -105,9 +106,9 @@ public class SysDeptServiceImpl implements ISysDeptService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateDept(SysDept dept) {
-        SysDept newParentDept = deptMapper.selectDeptById(dept.getParentId());
-        SysDept oldDept = selectDeptById(dept.getDeptId());
+    public int updateDept(SysDeptDto dept) {
+        SysDeptDto newParentDept = deptMapper.selectDeptById(dept.getParentId());
+        SysDeptDto oldDept = selectDeptById(dept.getDeptId());
         if (StringUtils.isNotNull(newParentDept) && StringUtils.isNotNull(oldDept)) {
             String newAncestors = newParentDept.getAncestors() + "," + newParentDept.getDeptId();
             String oldAncestors = oldDept.getAncestors();
@@ -142,7 +143,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * @param oldAncestors 旧的父ID集合
      */
     public void updateDeptChildren(Long deptId, String newAncestors, String oldAncestors) {
-        List<SysDept> children = deptMapper.selectChildrenDeptById(deptId);
+        List<SysDeptDto> children = deptMapper.selectChildrenDeptById(deptId);
         for (SysDept child : children) {
             child.setAncestors(child.getAncestors().replace(oldAncestors, newAncestors));
         }
@@ -158,7 +159,7 @@ public class SysDeptServiceImpl implements ISysDeptService {
      * @return 部门信息
      */
     @Override
-    public SysDept selectDeptById(Long deptId) {
+    public SysDeptDto selectDeptById(Long deptId) {
         return deptMapper.selectDeptById(deptId);
     }
 

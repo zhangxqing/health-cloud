@@ -5,6 +5,7 @@ import com.health.common.core.text.Convert;
 import com.health.common.exception.BusinessException;
 import com.health.common.utils.StringUtils;
 import com.health.system.domain.SysPost;
+import com.health.system.domain.dto.SysPostDto;
 import com.health.system.mapper.SysPostMapper;
 import com.health.system.mapper.SysUserPostMapper;
 import com.health.system.service.ISysPostService;
@@ -33,7 +34,7 @@ public class SysPostServiceImpl implements ISysPostService {
      * @return 岗位信息集合
      */
     @Override
-    public List<SysPost> selectPostList(SysPost post) {
+    public List<SysPostDto> selectPostList(SysPostDto post) {
         return postMapper.selectPostList(post);
     }
 
@@ -43,7 +44,7 @@ public class SysPostServiceImpl implements ISysPostService {
      * @return 岗位列表
      */
     @Override
-    public List<SysPost> selectPostAll() {
+    public List<SysPostDto> selectPostAll() {
         return postMapper.selectPostAll();
     }
 
@@ -54,9 +55,9 @@ public class SysPostServiceImpl implements ISysPostService {
      * @return 岗位列表
      */
     @Override
-    public List<SysPost> selectPostsByUserId(Long userId) {
-        List<SysPost> userPosts = postMapper.selectPostsByUserId(userId);
-        List<SysPost> posts = postMapper.selectPostAll();
+    public List<SysPostDto> selectPostsByUserId(Long userId) {
+        List<SysPostDto> userPosts = postMapper.selectPostsByUserId(userId);
+        List<SysPostDto> posts = postMapper.selectPostAll();
         for (SysPost post : posts) {
             for (SysPost userRole : userPosts) {
                 if (post.getPostId().longValue() == userRole.getPostId().longValue()) {
@@ -75,7 +76,7 @@ public class SysPostServiceImpl implements ISysPostService {
      * @return 角色对象信息
      */
     @Override
-    public SysPost selectPostById(Long postId) {
+    public SysPostDto selectPostById(Long postId) {
         return postMapper.selectPostById(postId);
     }
 
@@ -104,7 +105,7 @@ public class SysPostServiceImpl implements ISysPostService {
      * @return 结果
      */
     @Override
-    public int insertPost(SysPost post) {
+    public int insertPost(SysPostDto post) {
         return postMapper.insertPost(post);
     }
 
@@ -115,7 +116,7 @@ public class SysPostServiceImpl implements ISysPostService {
      * @return 结果
      */
     @Override
-    public int updatePost(SysPost post) {
+    public int updatePost(SysPostDto post) {
         return postMapper.updatePost(post);
     }
 

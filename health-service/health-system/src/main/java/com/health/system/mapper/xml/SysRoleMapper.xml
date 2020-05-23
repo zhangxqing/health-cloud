@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.health.system.mapper.SysRoleMapper">
 
-    <resultMap type="com.health.system.domain.SysRole" id="SysRoleResult">
+    <resultMap type="com.health.system.domain.dto.SysRoleDto" id="SysRoleResult">
         <id property="roleId" column="role_id"/>
         <result property="roleName" column="role_name"/>
         <result property="roleKey" column="role_key"/>
@@ -33,7 +33,7 @@
         from sys_role r
 	</sql>
 
-    <select id="selectRoleList" parameterType="SysRole" resultMap="SysRoleResult">
+    <select id="selectRoleList" parameterType="SysRoleDto" resultMap="SysRoleResult">
         <include refid="selectRoleContactVo"/>
         where r.del_flag = '0'
         <if test="roleName != null and roleName != ''">

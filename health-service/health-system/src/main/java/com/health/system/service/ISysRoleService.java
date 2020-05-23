@@ -2,6 +2,7 @@ package com.health.system.service;
 
 import com.health.system.domain.SysRole;
 import com.health.system.domain.SysUserRole;
+import com.health.system.domain.dto.SysRoleDto;
 
 import java.util.List;
 import java.util.Set;
@@ -18,14 +19,14 @@ public interface ISysRoleService {
      * @param role 角色信息
      * @return 角色数据集合信息
      */
-    List<SysRole> selectRoleList(SysRole role);
+    List<SysRoleDto> selectRoleList(SysRoleDto role);
 
     /**
      * 查询所有角色
      *
      * @return 角色列表
      */
-    List<SysRole> selectRoleAll();
+    List<SysRoleDto> selectRoleAll();
 
     /**
      * 通过角色ID查询角色
@@ -33,7 +34,7 @@ public interface ISysRoleService {
      * @param roleId 角色ID
      * @return 角色对象信息
      */
-    SysRole selectRoleById(Long roleId);
+    SysRoleDto selectRoleById(Long roleId);
 
     /**
      * 批量删除角色用户信息
@@ -50,7 +51,7 @@ public interface ISysRoleService {
      * @param role 角色信息
      * @return 结果
      */
-    int insertRole(SysRole role);
+    int insertRole(SysRoleDto role);
 
     /**
      * 修改保存角色信息
@@ -58,7 +59,7 @@ public interface ISysRoleService {
      * @param role 角色信息
      * @return 结果
      */
-    int updateRole(SysRole role);
+    int updateRole(SysRoleDto role);
 
     /**
      * 修改数据权限信息
@@ -66,7 +67,7 @@ public interface ISysRoleService {
      * @param role 角色信息
      * @return 结果
      */
-    int authDataScope(SysRole role);
+    int authDataScope(SysRoleDto role);
 
     /**
      * 通过角色ID查询角色使用数量
@@ -82,5 +83,5 @@ public interface ISysRoleService {
      * @param role 角色信息
      * @return 结果
      */
-    int changeStatus(SysRole role);
+    int changeStatus(SysRoleDto role);
 }

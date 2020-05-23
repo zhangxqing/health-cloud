@@ -35,7 +35,7 @@ public class TokenController {
     @PostMapping("logout")
     public JsonResult logout(HttpServletRequest request) {
         String token = request.getHeader("token");
-        SysUser user = tokenService.queryByToken(token);
+        SysUserDto user = tokenService.queryByToken(token);
         if (null != user) {
             sysLoginService.logout(user.getLoginName());
             tokenService.expireToken(user.getUserId());

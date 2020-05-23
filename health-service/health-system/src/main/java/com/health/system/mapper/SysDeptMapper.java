@@ -2,6 +2,7 @@ package com.health.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.health.system.domain.SysDept;
+import com.health.system.domain.dto.SysDeptDto;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param dept 部门信息
      * @return 结果
      */
-    int selectDeptCount(SysDept dept);
+    int selectDeptCount(SysDeptDto dept);
 
     /**
      * 查询部门是否存在用户
@@ -35,7 +36,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param dept 部门信息
      * @return 部门信息集合
      */
-    List<SysDept> selectDeptList(SysDept dept);
+    List<SysDeptDto> selectDeptList(SysDeptDto dept);
 
     /**
      * 删除部门管理信息
@@ -51,7 +52,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param dept 部门信息
      * @return 结果
      */
-    int insertDept(SysDept dept);
+    int insertDept(SysDeptDto dept);
 
     /**
      * 修改部门信息
@@ -59,7 +60,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param dept 部门信息
      * @return 结果
      */
-    int updateDept(SysDept dept);
+    int updateDept(SysDeptDto dept);
 
     /**
      * 修改子元素关系
@@ -67,7 +68,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param depts 子元素
      * @return 结果
      */
-    int updateDeptChildren(@Param("depts") List<SysDept> depts);
+    int updateDeptChildren(@Param("depts") List<SysDeptDto> depts);
 
     /**
      * 根据部门ID查询信息
@@ -75,7 +76,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param deptId 部门ID
      * @return 部门信息
      */
-    SysDept selectDeptById(Long deptId);
+    SysDeptDto selectDeptById(Long deptId);
 
     /**
      * 校验部门名称是否唯一
@@ -84,7 +85,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param parentId 父部门ID
      * @return 结果
      */
-    SysDept checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId") Long parentId);
+    SysDeptDto checkDeptNameUnique(@Param("deptName") String deptName, @Param("parentId") Long parentId);
 
     /**
      * 根据角色ID查询部门
@@ -107,7 +108,7 @@ public interface SysDeptMapper extends BaseMapper<SysDept> {
      * @param id
      * @return
      */
-    List<SysDept> selectChildrenDeptById(Long id);
+    List<SysDeptDto> selectChildrenDeptById(Long id);
 
     /**
      * 根据角色编号查询所有部门ID

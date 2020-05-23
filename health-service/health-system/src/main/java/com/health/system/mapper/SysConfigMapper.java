@@ -2,6 +2,7 @@ package com.health.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.health.system.domain.SysConfig;
+import com.health.system.domain.dto.SysConfigDto;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface SysConfigMapper extends BaseMapper<SysConfig> {
      * @param config 参数配置信息
      * @return 参数配置信息
      */
-    SysConfig selectConfig(SysConfig config);
+    SysConfigDto selectConfig(SysConfig config);
 
     /**
      * 查询参数配置列表
@@ -25,7 +26,7 @@ public interface SysConfigMapper extends BaseMapper<SysConfig> {
      * @param config 参数配置信息
      * @return 参数配置集合
      */
-    List<SysConfig> selectConfigList(SysConfig config);
+    List<SysConfigDto> selectConfigList(SysConfigDto config);
 
     /**
      * 根据键名查询参数配置信息
@@ -33,7 +34,7 @@ public interface SysConfigMapper extends BaseMapper<SysConfig> {
      * @param configKey 参数键名
      * @return 参数配置信息
      */
-    SysConfig checkConfigKeyUnique(String configKey);
+    SysConfigDto checkConfigKeyUnique(String configKey);
 
     /**
      * 新增参数配置
@@ -41,7 +42,7 @@ public interface SysConfigMapper extends BaseMapper<SysConfig> {
      * @param config 参数配置信息
      * @return 结果
      */
-    int insertConfig(SysConfig config);
+    int insertConfig(SysConfigDto config);
 
     /**
      * 修改参数配置
@@ -49,7 +50,7 @@ public interface SysConfigMapper extends BaseMapper<SysConfig> {
      * @param config 参数配置信息
      * @return 结果
      */
-    int updateConfig(SysConfig config);
+    int updateConfig(SysConfigDto config);
 
     /**
      * 批量删除参数配置

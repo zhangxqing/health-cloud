@@ -27,8 +27,8 @@ public class AccessTokenService {
 
     private final static String ACCESS_USERID = Constants.ACCESS_USERID;
 
-    public SysUser queryByToken(String token) {
-        return redis.get(ACCESS_TOKEN + token, SysUser.class);
+    public SysUserDto queryByToken(String token) {
+        return redis.get(ACCESS_TOKEN + token, SysUserDto.class);
     }
 
     @RedisEvict(key = "user_perms", fieldKey = "#sysUserDto.userId")

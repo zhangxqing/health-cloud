@@ -1,9 +1,9 @@
 package com.health.system.service.impl;
 
-import com.health.common.constant.UserConstants;
 import com.health.common.core.text.Convert;
 import com.health.common.utils.StringUtils;
 import com.health.system.domain.SysConfig;
+import com.health.system.domain.dto.SysConfigDto;
 import com.health.system.mapper.SysConfigMapper;
 import com.health.system.service.ISysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * @return 参数配置信息
      */
     @Override
-    public SysConfig selectConfigById(Long configId) {
+    public SysConfigDto selectConfigById(Long configId) {
         SysConfig config = new SysConfig();
         config.setConfigId(configId);
         return configMapper.selectConfig(config);
@@ -55,7 +55,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * @return 参数配置集合
      */
     @Override
-    public List<SysConfig> selectConfigList(SysConfig config) {
+    public List<SysConfigDto> selectConfigList(SysConfigDto config) {
         return configMapper.selectConfigList(config);
     }
 
@@ -66,7 +66,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * @return 结果
      */
     @Override
-    public int insertConfig(SysConfig config) {
+    public int insertConfig(SysConfigDto config) {
         return configMapper.insertConfig(config);
     }
 
@@ -77,7 +77,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
      * @return 结果
      */
     @Override
-    public int updateConfig(SysConfig config) {
+    public int updateConfig(SysConfigDto config) {
         return configMapper.updateConfig(config);
     }
 
@@ -94,7 +94,7 @@ public class SysConfigServiceImpl implements ISysConfigService {
 
     @Override
     public int updateValueByKey(String key, String configValue) {
-        SysConfig info = configMapper.checkConfigKeyUnique(key);
+        SysConfigDto info = configMapper.checkConfigKeyUnique(key);
         if (StringUtils.isNotNull(info)) {
             info.setConfigValue(configValue);
             return updateConfig(info);

@@ -2,6 +2,7 @@ package com.health.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.health.system.domain.SysRole;
+import com.health.system.domain.dto.SysRoleDto;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param role 角色信息
      * @return 角色数据集合信息
      */
-    List<SysRole> selectRoleList(SysRole role);
+    List<SysRoleDto> selectRoleList(SysRoleDto role);
 
     /**
      * 根据用户ID查询角色
@@ -25,7 +26,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param userId 用户ID
      * @return 角色列表
      */
-    List<SysRole> selectRolesByUserId(Long userId);
+    List<SysRoleDto> selectRolesByUserId(Long userId);
 
     /**
      * 通过角色ID查询角色
@@ -33,7 +34,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param roleId 角色ID
      * @return 角色对象信息
      */
-    SysRole selectRoleById(Long roleId);
+    SysRoleDto selectRoleById(Long roleId);
 
     /**
      * 通过角色ID删除角色
@@ -57,7 +58,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param role 角色信息
      * @return 结果
      */
-    int updateRole(SysRole role);
+    int updateRole(SysRoleDto role);
 
     /**
      * 新增角色信息
@@ -65,7 +66,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param role 角色信息
      * @return 结果
      */
-    int insertRole(SysRole role);
+    int insertRole(SysRoleDto role);
 
     /**
      * 校验角色名称是否唯一
@@ -73,7 +74,7 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param roleName 角色名称
      * @return 角色信息
      */
-    SysRole checkRoleNameUnique(String roleName);
+    SysRoleDto checkRoleNameUnique(String roleName);
 
     /**
      * 校验角色权限是否唯一
@@ -81,5 +82,5 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
      * @param roleKey 角色权限
      * @return 角色信息
      */
-    SysRole checkRoleKeyUnique(String roleKey);
+    SysRoleDto checkRoleKeyUnique(String roleKey);
 }

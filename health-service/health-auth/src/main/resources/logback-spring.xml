@@ -3,7 +3,7 @@
     <!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
     <!-- 日志文件路径 -->
     <!--<property name="APP_NAME" value="base-general-web"/>-->
-    <property name="LOG_PATH" value="../logs/health-system"/>
+    <property name="LOG_PATH" value="../logs/health-auth"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

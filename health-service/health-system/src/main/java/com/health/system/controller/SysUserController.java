@@ -14,6 +14,9 @@ import com.health.system.service.ISysMenuService;
 import com.health.system.service.ISysUserService;
 import com.health.system.domain.dto.SysUserDto;
 import com.health.system.util.PasswordUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +28,7 @@ import java.util.Set;
  * @author zq
  * @date 2019-05-20
  */
+@Api(description = "用户操作接口")
 @RestController
 @RequestMapping("user")
 public class SysUserController extends BaseController {
@@ -36,6 +40,8 @@ public class SysUserController extends BaseController {
     /**
      * 查询用户
      */
+    @ApiOperation(value = "获取用户信息", notes="通过用户ID获取用户信息")
+    @ApiImplicitParam(name = "userId", value = "用户ID", paramType = "query", required = true, dataType = "String")
     @GetMapping("get/{userId}")
     public SysUserDto get(@PathVariable("userId") Long userId) {
         return sysUserService.selectUserById(userId);
@@ -77,7 +83,7 @@ public class SysUserController extends BaseController {
      * 查询用户列表
      */
     @GetMapping("list")
-    public JsonResult list(SysUser sysUser) {
+    public JsonResult list(SysUserDto sysUser) {
         startPage();
         return result(sysUserService.selectUserList(sysUser));
     }

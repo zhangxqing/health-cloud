@@ -6,6 +6,8 @@ import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysRole;
+import com.health.system.domain.SysRoleDept;
+import com.health.system.domain.dto.SysRoleDto;
 import com.health.system.service.ISysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,7 @@ public class SysRoleController extends BaseController {
      * 查询角色
      */
     @GetMapping("get/{roleId}")
-    public SysRole get(@PathVariable("roleId") Long roleId) {
+    public SysRoleDto get(@PathVariable("roleId") Long roleId) {
         return sysRoleService.selectRoleById(roleId);
     }
 
@@ -34,7 +36,7 @@ public class SysRoleController extends BaseController {
      * 查询角色列表
      */
     @GetMapping("list")
-    public JsonResult list(SysRole sysRole) {
+    public JsonResult list(SysRoleDto sysRole) {
         startPage();
         return result(sysRoleService.selectRoleList(sysRole));
     }
@@ -49,7 +51,7 @@ public class SysRoleController extends BaseController {
      */
     @PostMapping("save")
     @OperLog(title = "角色管理", businessType = BusinessType.INSERT)
-    public JsonResult addSave(@RequestBody SysRole sysRole) {
+    public JsonResult addSave(@RequestBody SysRoleDto sysRole) {
         return toAjax(sysRoleService.insertRole(sysRole));
     }
 
@@ -58,7 +60,7 @@ public class SysRoleController extends BaseController {
      */
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("update")
-    public JsonResult editSave(@RequestBody SysRole sysRole) {
+    public JsonResult editSave(@RequestBody SysRoleDto sysRole) {
         return toAjax(sysRoleService.updateRole(sysRole));
     }
 
@@ -67,7 +69,7 @@ public class SysRoleController extends BaseController {
      */
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("status")
-    public JsonResult status(@RequestBody SysRole sysRole) {
+    public JsonResult status(@RequestBody SysRoleDto sysRole) {
         return toAjax(sysRoleService.changeStatus(sysRole));
     }
 
@@ -77,7 +79,7 @@ public class SysRoleController extends BaseController {
     @HasPermissions("system:role:edit")
     @OperLog(title = "角色管理", businessType = BusinessType.UPDATE)
     @PostMapping("/authDataScope")
-    public JsonResult authDataScopeSave(@RequestBody SysRole role) {
+    public JsonResult authDataScopeSave(@RequestBody SysRoleDto role) {
         role.setUpdateBy(getLoginName());
         if (sysRoleService.authDataScope(role) > 0) {
             return JsonResult.ok();

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.health.system.mapper.SysDeptMapper">
 
-    <resultMap type="com.health.system.domain.SysDept" id="SysDeptResult">
+    <resultMap type="com.health.system.domain.dto.SysDeptDto" id="SysDeptResult">
         <id property="deptId" column="dept_id"/>
         <result property="parentId" column="parent_id"/>
         <result property="ancestors" column="ancestors"/>
@@ -36,7 +36,7 @@
 		order by d.parent_id, d.order_num
 	</select>
 
-    <select id="selectDeptList" parameterType="SysDept" resultMap="SysDeptResult">
+    <select id="selectDeptList" parameterType="com.health.system.domain.SysDept" resultMap="SysDeptResult">
         <include refid="selectDeptVo"/>
         where d.del_flag = '0'
         <if test="parentId != null and parentId != 0">
@@ -57,7 +57,7 @@
 		select count(1) from sys_user where dept_id = #{deptId} and del_flag = '0'
 	</select>
 
-    <select id="selectDeptCount" parameterType="SysDept" resultType="int">
+    <select id="selectDeptCount" parameterType="com.health.system.domain.SysDept" resultType="int">
         select count(1) from sys_dept
         where del_flag = '0'
         <if test="deptId != null and deptId != 0">and dept_id = #{deptId}</if>
@@ -83,7 +83,7 @@
         </where>
     </select>
 
-    <insert id="insertDept" parameterType="SysDept">
+    <insert id="insertDept" parameterType="com.health.system.domain.SysDept">
         insert into sys_dept(
         <if test="deptId != null and deptId != 0">dept_id,</if>
         <if test="parentId != null and parentId != 0">parent_id,</if>
@@ -113,7 +113,7 @@
         )
     </insert>
 
-    <update id="updateDept" parameterType="SysDept">
+    <update id="updateDept" parameterType="com.health.system.domain.SysDept">
         update sys_dept
         <set>
             <if test="parentId != null and parentId != 0">parent_id = #{parentId},</if>

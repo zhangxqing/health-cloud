@@ -60,7 +60,7 @@
 			 left join sys_role r on r.role_id = ur.role_id
     </sql>
 
-    <select id="selectUserList" parameterType="SysUser" resultMap="SysUserResult">
+    <select id="selectUserList" parameterType="SysUserDto" resultMap="SysUserResult">
         select u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.password, u.sex, u.avatar,
         u.salt, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark,
         d.dept_name,ur.role_id from sys_user u

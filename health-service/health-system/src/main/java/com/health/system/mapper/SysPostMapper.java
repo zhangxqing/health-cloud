@@ -2,6 +2,7 @@ package com.health.system.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.health.system.domain.SysPost;
+import com.health.system.domain.dto.SysPostDto;
 
 import java.util.List;
 
@@ -17,14 +18,14 @@ public interface SysPostMapper extends BaseMapper<SysPost> {
      * @param post 岗位信息
      * @return 岗位数据集合
      */
-    List<SysPost> selectPostList(SysPost post);
+    List<SysPostDto> selectPostList(SysPostDto post);
 
     /**
      * 查询所有岗位
      *
      * @return 岗位列表
      */
-    List<SysPost> selectPostAll();
+    List<SysPostDto> selectPostAll();
 
     /**
      * 根据用户ID查询岗位
@@ -32,7 +33,7 @@ public interface SysPostMapper extends BaseMapper<SysPost> {
      * @param userId 用户ID
      * @return 岗位列表
      */
-    List<SysPost> selectPostsByUserId(Long userId);
+    List<SysPostDto> selectPostsByUserId(Long userId);
 
     /**
      * 通过岗位ID查询岗位信息
@@ -40,7 +41,7 @@ public interface SysPostMapper extends BaseMapper<SysPost> {
      * @param postId 岗位ID
      * @return 角色对象信息
      */
-    SysPost selectPostById(Long postId);
+    SysPostDto selectPostById(Long postId);
 
     /**
      * 批量删除岗位信息
@@ -56,7 +57,7 @@ public interface SysPostMapper extends BaseMapper<SysPost> {
      * @param post 岗位信息
      * @return 结果
      */
-    int updatePost(SysPost post);
+    int updatePost(SysPostDto post);
 
     /**
      * 新增岗位信息
@@ -64,7 +65,7 @@ public interface SysPostMapper extends BaseMapper<SysPost> {
      * @param post 岗位信息
      * @return 结果
      */
-    int insertPost(SysPost post);
+    int insertPost(SysPostDto post);
 
     /**
      * 校验岗位名称

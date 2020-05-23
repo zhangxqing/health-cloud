@@ -1,6 +1,7 @@
 package com.health.system.service;
 
 import com.health.system.domain.SysPost;
+import com.health.system.domain.dto.SysPostDto;
 
 import java.util.List;
 
@@ -16,14 +17,14 @@ public interface ISysPostService {
      * @param post 岗位信息
      * @return 岗位信息集合
      */
-    List<SysPost> selectPostList(SysPost post);
+    List<SysPostDto> selectPostList(SysPostDto post);
 
     /**
      * 查询所有岗位
      *
      * @return 岗位列表
      */
-    List<SysPost> selectPostAll();
+    List<SysPostDto> selectPostAll();
 
     /**
      * 根据用户ID查询岗位
@@ -31,7 +32,7 @@ public interface ISysPostService {
      * @param userId 用户ID
      * @return 岗位列表
      */
-    List<SysPost> selectPostsByUserId(Long userId);
+    List<SysPostDto> selectPostsByUserId(Long userId);
 
     /**
      * 通过岗位ID查询岗位信息
@@ -39,7 +40,7 @@ public interface ISysPostService {
      * @param postId 岗位ID
      * @return 角色对象信息
      */
-    SysPost selectPostById(Long postId);
+    SysPostDto selectPostById(Long postId);
 
     /**
      * 批量删除岗位信息
@@ -56,7 +57,7 @@ public interface ISysPostService {
      * @param post 岗位信息
      * @return 结果
      */
-    int insertPost(SysPost post);
+    int insertPost(SysPostDto post);
 
     /**
      * 修改保存岗位信息
@@ -64,7 +65,7 @@ public interface ISysPostService {
      * @param post 岗位信息
      * @return 结果
      */
-    int updatePost(SysPost post);
+    int updatePost(SysPostDto post);
 
     /**
      * 通过岗位ID查询岗位使用数量

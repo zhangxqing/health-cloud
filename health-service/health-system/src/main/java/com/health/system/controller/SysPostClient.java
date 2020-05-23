@@ -2,6 +2,7 @@ package com.health.system.controller;
 
 import com.health.common.core.controller.BaseController;
 import com.health.system.domain.SysPost;
+import com.health.system.domain.dto.SysPostDto;
 import com.health.system.service.ISysPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class SysPostClient extends BaseController {
      * 查询岗位
      */
     @GetMapping("get/{postId}")
-    public SysPost get(@PathVariable("postId") Long postId) {
+    public SysPostDto get(@PathVariable("postId") Long postId) {
         return sysPostService.selectPostById(postId);
 
     }
@@ -34,7 +35,7 @@ public class SysPostClient extends BaseController {
      * 查询岗位列表
      */
     @PostMapping("list")
-    public List<SysPost> list(SysPost sysPost) {
+    public List<SysPostDto> list(SysPostDto sysPost) {
         startPage();
         return sysPostService.selectPostList(sysPost);
     }
@@ -44,7 +45,7 @@ public class SysPostClient extends BaseController {
      * 新增保存岗位
      */
     @PostMapping("save")
-    public int addSave(SysPost sysPost) {
+    public int addSave(SysPostDto sysPost) {
         return sysPostService.insertPost(sysPost);
     }
 
@@ -52,7 +53,7 @@ public class SysPostClient extends BaseController {
      * 修改保存岗位
      */
     @PostMapping("update")
-    public int editSave(SysPost sysPost) {
+    public int editSave(SysPostDto sysPost) {
         return sysPostService.updatePost(sysPost);
     }
 
