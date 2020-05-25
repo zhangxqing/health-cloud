@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: health-gateway
+  cloud:
+    nacos:
+      config: #远程配置中心
+        server-addr: localhost:8848 #远程配置中心服务地址
+        file-extension: yml #远程配置文件后缀
+        namespace: @pom.nacos.namespace@ #远程配置命名空间
+      discovery:
+        server-addr: localhost:8848 #远程注册服务地址
+        namespace: @pom.nacos.namespace@ #远程注册配置命名空间
+
+

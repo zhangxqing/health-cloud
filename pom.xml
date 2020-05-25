@@ -11,6 +11,7 @@
     <description>健康云管理系统</description>
 
     <properties>
+        <alibaba-cloud.version>2.2.0.RELEASE</alibaba-cloud.version>
         <health.version>1.1.0-SNAPSHOT</health.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -43,11 +44,28 @@
         <liquibase.version>3.8.5</liquibase.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
+        <org.yaml>1.23</org.yaml>
+        <pom.nacos.namespace>9230c309-7d55-4055-9610-290bd3583122</pom.nacos.namespace>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+            <!--cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!--mybatis-plus依赖-->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -173,6 +191,12 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity</artifactId>
                 <version>${velocity.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${org.yaml}</version>
             </dependency>
 
             <!--<dependency>-->
