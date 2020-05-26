@@ -16,6 +16,7 @@
     </parent>
 
     <dependencies>
+        <!--yml读取pom的配置-->
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
