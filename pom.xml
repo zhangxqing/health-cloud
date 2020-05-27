@@ -45,7 +45,7 @@
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
         <org.yaml>1.23</org.yaml>
-        <pom.nacos.namespace>9230c309-7d55-4055-9610-290bd3583122</pom.nacos.namespace>
+        <pom.nacos.namespace>8a4bda3d-f183-4afa-85f3-8db1d8e9c1c4</pom.nacos.namespace>
     </properties>
 
     <!-- 依赖声明 -->
