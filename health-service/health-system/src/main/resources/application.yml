@@ -36,7 +36,6 @@ management:
       exposure:
         include: '*'
 
-
 # MyBatis
 mybatis-plus:
   # 搜索指定包别名
