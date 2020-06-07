@@ -8,6 +8,7 @@ import com.health.common.log.enums.BusinessType;
 import com.health.common.utils.poi.ExcelUtil;
 import com.health.system.domain.Districts;
 import com.health.system.service.IDistrictsService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +23,10 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("districts")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysDistrictsController extends BaseController {
-    @Autowired
-    private IDistrictsService districtsService;
+
+    private final IDistrictsService districtsService;
 
     /**
      * 查询地区列表

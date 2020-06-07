@@ -5,6 +5,7 @@ import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysDept;
 import com.health.system.domain.dto.SysDeptDto;
 import com.health.system.service.ISysDeptService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,9 +19,10 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("dept")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysDeptController extends BaseController {
-    @Autowired
-    private ISysDeptService sysDeptService;
+
+    private final ISysDeptService sysDeptService;
 
     /**
      * 查询部门

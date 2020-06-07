@@ -4,6 +4,7 @@ import com.health.common.core.controller.BaseController;
 import com.health.system.domain.SysPost;
 import com.health.system.domain.dto.SysPostDto;
 import com.health.system.service.ISysPostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,10 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sys/sysPost")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysPostClient extends BaseController {
 
-    @Autowired
-    private ISysPostService sysPostService;
+    private final ISysPostService sysPostService;
 
     /**
      * 查询岗位

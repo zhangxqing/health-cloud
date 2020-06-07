@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.health.common.annotation.Excel;
 import com.health.common.annotation.Excel.Type;
 import com.health.common.core.domain.BaseEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -16,6 +18,7 @@ import java.util.Date;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@ApiModel
 public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -29,12 +32,14 @@ public class SysUser extends BaseEntity {
      * 部门ID
      */
     @Excel(name = "部门编号", type = Type.IMPORT)
+    @ApiModelProperty(value = "科室ID")
     private Long deptId;
 
     /**
      * 登录名称
      */
     @Excel(name = "登录名称")
+    @ApiModelProperty(value = "登录名称")
     private String loginName;
 
     /**
@@ -50,6 +55,7 @@ public class SysUser extends BaseEntity {
     /**
      * 手机号码
      */
+    @ApiModelProperty(value = "手机号码")
     private String phonenumber;
 
     /**
@@ -76,6 +82,7 @@ public class SysUser extends BaseEntity {
      * 帐号状态（0正常 1停用）
      */
     @Excel(name = "帐号状态", readConverterExp = "0=正常,1=停用")
+    @ApiModelProperty(value = "账号状态")
     private String status;
 
     /**

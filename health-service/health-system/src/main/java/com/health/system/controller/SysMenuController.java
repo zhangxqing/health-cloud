@@ -9,6 +9,7 @@ import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysMenu;
 import com.health.system.domain.dto.SysUserDto;
 import com.health.system.service.ISysMenuService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,10 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("menu")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysMenuController extends BaseController {
-    @Autowired
-    private ISysMenuService sysMenuService;
+
+    private final ISysMenuService sysMenuService;
 
     /**
      * 查询菜单权限

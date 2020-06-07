@@ -34,10 +34,8 @@ public class LoginUserHandlerResolver implements HandlerMethodArgumentResolver {
                                   NativeWebRequest nativeWebRequest, WebDataBinderFactory factory) {
         HttpServletRequest request = nativeWebRequest.getNativeRequest(HttpServletRequest.class);
         // 获取用户ID
+        assert request != null;
         Long userid = Long.valueOf(request.getHeader(Constants.CURRENT_ID));
-        if (userid == null) {
-            return null;
-        }
         return userService.selectUserById(userid);
     }
 }

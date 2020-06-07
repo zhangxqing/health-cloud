@@ -5,6 +5,7 @@ import com.health.common.core.domain.JsonResult;
 import com.health.system.domain.SysConfig;
 import com.health.system.domain.dto.SysConfigDto;
 import com.health.system.service.ISysConfigService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("config")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysConfigController extends BaseController {
 
-    @Autowired
-    private ISysConfigService sysConfigService;
+    private final ISysConfigService sysConfigService;
 
     /**
      * 查询参数配置

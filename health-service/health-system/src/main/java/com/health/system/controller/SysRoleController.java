@@ -9,6 +9,7 @@ import com.health.system.domain.SysRole;
 import com.health.system.domain.SysRoleDept;
 import com.health.system.domain.dto.SysRoleDto;
 import com.health.system.service.ISysRoleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +21,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("role")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysRoleController extends BaseController {
-    @Autowired
-    private ISysRoleService sysRoleService;
+
+    private final ISysRoleService sysRoleService;
 
     /**
      * 查询角色

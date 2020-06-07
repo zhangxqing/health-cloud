@@ -2,7 +2,6 @@ package com.health.common.core.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-
 public class JsonResult extends HashMap<String, Object> {
     /**
      *

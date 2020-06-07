@@ -8,6 +8,7 @@ import com.health.common.log.enums.BusinessType;
 import com.health.common.utils.poi.ExcelUtil;
 import com.health.system.domain.SysOperLog;
 import com.health.system.service.ISysOperLogService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +22,10 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("operLog")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysOperLogController extends BaseController {
-    @Autowired
-    private ISysOperLogService sysOperLogService;
+
+    private final ISysOperLogService sysOperLogService;
 
     /**
      * 查询操作日志记录

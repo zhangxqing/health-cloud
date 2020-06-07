@@ -4,6 +4,7 @@ import com.health.common.core.controller.BaseController;
 import com.health.common.core.page.PageDomain;
 import com.health.system.domain.SysNotice;
 import com.health.system.service.ISysNoticeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,10 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("notice")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysNoticeClient extends BaseController {
 
-    @Autowired
-    private ISysNoticeService sysNoticeService;
+    private final ISysNoticeService sysNoticeService;
 
     /**
      * 查询通知公告

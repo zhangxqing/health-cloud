@@ -22,6 +22,9 @@ import java.io.IOException;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author zq
+ */
 @Slf4j
 @Component
 @AllArgsConstructor
@@ -39,7 +42,7 @@ public class ImgCodeHandler implements HandlerFunction<ServerResponse> {
         BufferedImage image = producer.createImage(capStr);
         // 保存验证码信息
         String randomStr = UUID.randomUUID().toString().replaceAll("-", "");
-        redisTemplate.opsForValue().set(Constants.DEFAULT_CODE_KEY + randomStr, code, 60, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(Constants.DEFAULT_CODE_KEY + randomStr, code, 5, TimeUnit.MINUTES);
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
         try {

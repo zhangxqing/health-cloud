@@ -7,7 +7,6 @@ import com.health.common.core.domain.JsonResult;
 import com.health.common.exception.ValidateCodeException;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -32,11 +31,11 @@ import java.util.concurrent.atomic.AtomicReference;
 public class ImgCodeFilter extends AbstractGatewayFilterFactory<ImgCodeFilter.Config> {
     private final static String AUTH_URL = "/auth/login";
 
-    @Autowired
-    private StringRedisTemplate redisTemplate;
+    private final StringRedisTemplate redisTemplate;
 
-    public ImgCodeFilter() {
+    public ImgCodeFilter(StringRedisTemplate redisTemplate) {
         super(Config.class);
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
@@ -82,7 +81,8 @@ public class ImgCodeFilter extends AbstractGatewayFilterFactory<ImgCodeFilter.Co
     /**
      * 检查code
      *
-     * @param request
+     * @param code 运算结果
+     * @param randomStr 验证码的唯一号
      */
     @SneakyThrows
     private void checkCode(String code, String randomStr) {
@@ -95,8 +95,11 @@ public class ImgCodeFilter extends AbstractGatewayFilterFactory<ImgCodeFilter.Co
         String key = Constants.DEFAULT_CODE_KEY + randomStr;
         String saveCode = redisTemplate.opsForValue().get(key);
         redisTemplate.delete(key);
+        if(StringUtils.isEmpty(saveCode)){
+            throw new ValidateCodeException("验证码已失效");
+        }
         if (!code.equalsIgnoreCase(saveCode)) {
-            throw new ValidateCodeException("验证码不合法");
+            throw new ValidateCodeException("验证码不正确");
         }
     }
 

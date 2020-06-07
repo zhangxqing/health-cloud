@@ -1,16 +1,12 @@
 package com.health.system.domain.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.health.common.core.domain.BaseEntity;
 import com.health.system.domain.SysDept;
 import com.health.system.domain.SysRole;
 import com.health.system.domain.SysUser;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -21,6 +17,7 @@ import java.util.Set;
  * @company TODO广州易联众睿图信息技术有限公司
  * @date 27/4/2020 9:24 PM
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class SysUserDto extends SysUser {
 

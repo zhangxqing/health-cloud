@@ -8,6 +8,7 @@ import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysDictType;
 import com.health.system.service.ISysDictTypeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +20,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("dict/type")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysDictTypeController extends BaseController {
 
-    @Autowired
-    private ISysDictTypeService sysDictTypeService;
+    private final ISysDictTypeService sysDictTypeService;
 
     /**
      * 查询字典类型

@@ -41,3 +41,5 @@ health-cloud
 - gateway
 - system
 - auth
+
+Swagger文档地址：http://localhost:8081/doc.html

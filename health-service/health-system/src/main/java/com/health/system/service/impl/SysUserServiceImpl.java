@@ -1,5 +1,6 @@
 package com.health.system.service.impl;
 
+import cn.hutool.core.util.ArrayUtil;
 import com.health.common.annotation.DataScope;
 import com.health.common.constant.UserConstants;
 import com.health.common.core.text.Convert;
@@ -260,11 +261,11 @@ public class SysUserServiceImpl implements ISysUserService {
 
     @Override
     public Set<Long> selectUserIdsHasRoles(Long[] roleIds) {
-        return null;
+        return ArrayUtil.isNotEmpty(roleIds) ? userMapper.selectUserIdsHasRoles(roleIds) : null;
     }
 
     @Override
     public Set<Long> selectUserIdsInDepts(Long[] deptIds) {
-        return null;
+        return ArrayUtil.isNotEmpty(deptIds) ? userMapper.selectUserIdsInDepts(deptIds) : null;
     }
 }

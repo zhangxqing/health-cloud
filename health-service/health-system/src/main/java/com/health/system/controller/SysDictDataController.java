@@ -7,6 +7,7 @@ import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysDictData;
 import com.health.system.service.ISysDictDataService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +21,10 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("dict/data")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysDictDataController extends BaseController {
 
-    @Autowired
-    private ISysDictDataService sysDictDataService;
+    private final ISysDictDataService sysDictDataService;
 
     /**
      * 查询字典数据

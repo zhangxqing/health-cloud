@@ -8,6 +8,7 @@ import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.system.domain.SysLogininfor;
 import com.health.system.service.ISysLogininforService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("logininfor")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysLogininforController extends BaseController {
-    @Autowired
-    private ISysLogininforService sysLogininforService;
+
+    private final ISysLogininforService sysLogininforService;
 
     /**
      * 查询系统访问记录列表

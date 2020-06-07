@@ -3,7 +3,7 @@ package com.health.common.exception.user;
 /**
  * 用户不存在异常类
  *
- * @author ruoyi
+ * @author zq
  */
 public class UserNotExistsException extends UserException {
     private static final long serialVersionUID = 1L;

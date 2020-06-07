@@ -17,6 +17,7 @@ import com.health.system.oss.valdator.QcloudGroup;
 import com.health.system.oss.valdator.QiniuGroup;
 import com.health.system.service.ISysConfigService;
 import com.health.system.service.ISysOssService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,14 +33,13 @@ import java.util.Date;
  */
 @RestController
 @RequestMapping("oss")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysOssController extends BaseController {
     private final static String KEY = CloudConstant.CLOUD_STORAGE_CONFIG_KEY;
 
-    @Autowired
-    private ISysOssService sysOssService;
+    private final ISysOssService sysOssService;
 
-    @Autowired
-    private ISysConfigService sysConfigService;
+    private final ISysConfigService sysConfigService;
 
     /**
      * 云存储配置信息

@@ -29,7 +29,7 @@ public class CaptchaConfig {
         // 验证码图片高度 默认为50
         properties.setProperty("kaptcha.image.height", "60");
         // 验证码文本字符大小 默认为40
-        properties.setProperty("kaptcha.textproducer.font.size", "35");
+        properties.setProperty("kaptcha.textproducer.font.size", "30");
         // KAPTCHA_SESSION_KEY
         properties.setProperty("kaptcha.session.key", "kaptchaCodeMath");
         // 验证码文本生成器
