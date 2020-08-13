@@ -21,7 +21,7 @@ public class CaptchaConfig {
         // 是否有边框 默认为true 我们可以自己设置yes，no
         properties.setProperty("kaptcha.border", "yes");
         // 边框颜色 默认为Color.BLACK
-        properties.setProperty("kaptcha.border.color", "105,179,90");
+        properties.setProperty("kaptcha.border.color", "blue");
         // 验证码文本字符颜色 默认为Color.BLACK
         properties.setProperty("kaptcha.textproducer.font.color", "blue");
         // 验证码图片宽度 默认为200
@@ -35,7 +35,7 @@ public class CaptchaConfig {
         // 验证码文本生成器
         properties.setProperty("kaptcha.textproducer.impl", "com.health.gateway.config.KaptchaTextCreator");
         // 验证码文本字符间距 默认为2
-        properties.setProperty("kaptcha.textproducer.char.space", "3");
+        properties.setProperty("kaptcha.textproducer.char.space", "6");
         // 验证码文本字符长度 默认为5
         properties.setProperty("kaptcha.textproducer.char.length", "6");
         // 验证码文本字体样式 默认为new Font("Arial", 1, fontSize), new Font("Courier", 1,
@@ -48,7 +48,7 @@ public class CaptchaConfig {
         // 图片样式 水纹com.google.code.kaptcha.impl.WaterRipple
         // 鱼眼com.google.code.kaptcha.impl.FishEyeGimpy
         // 阴影com.google.code.kaptcha.impl.ShadowGimpy
-        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.ShadowGimpy");
+        properties.setProperty("kaptcha.obscurificator.impl", "com.google.code.kaptcha.impl.WaterRipple");
         Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
