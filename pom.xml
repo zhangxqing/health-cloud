@@ -57,6 +57,7 @@
             <dependency>
                 <groupId>com.github.ulisesbocchio</groupId>
                 <artifactId>jasypt-spring-boot</artifactId>
+                <version>${jasypt-version}</version>
             </dependency>
             <!--nacos-->
             <dependency>
