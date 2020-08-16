@@ -37,7 +37,7 @@ public class RedisConfig {
         redisTemplate.setValueSerializer(fastJsonRedisSerializer);
         redisTemplate.setConnectionFactory(factory);
         // 设置白名单---非常重要********
-        ParserConfig.getGlobalInstance().addAccept("com.ruoyi");
+        ParserConfig.getGlobalInstance().addAccept("com.health");
         return redisTemplate;
     }
 

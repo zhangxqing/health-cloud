@@ -47,11 +47,17 @@
         <org.yaml>1.23</org.yaml>
         <pom.nacos.namespace>8a4bda3d-f183-4afa-85f3-8db1d8e9c1c4</pom.nacos.namespace>
         <nacos-discovery.version>2.2.0.RELEASE</nacos-discovery.version>
+        <jasypt-version>3.0.2</jasypt-version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+            <!--yml加密-->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot</artifactId>
+            </dependency>
             <!--nacos-->
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
