@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   devtools:
     restart:
       enabled: true
@@ -33,27 +35,6 @@ spring:
         - CacheRequest
         - ImgCodeFilter
         - StripPrefix=1
-      # 代码生成
-      - id: health-gen
-        uri: lb://health-gen
-        predicates:
-        - Path=/gen/**
-        filters:
-        - StripPrefix=1
-      # dfs
-      - id: health-dfs
-        uri: lb://health-dfs
-        predicates:
-        - Path=/dfs/**
-        filters:
-        - StripPrefix=1
-      # act
-      - id: health-activiti
-        uri: lb://health-activiti
-        predicates:
-        - Path=/act/**
-        filters:
-        - StripPrefix=1
       #system 模块
       - id: health-system
         uri: lb://health-system
@@ -62,26 +43,26 @@ spring:
         filters:
         # 限流配置
         - StripPrefix=1
-        - name: RequestRateLimiter
-          args:
-            key-resolver: '#{@remoteAddrKeyResolver}'
-            redis-rate-limiter.replenishRate: 10
-            redis-rate-limiter.burstCapacity: 20
+#        - name: RequestRateLimiter
+#          args:
+#            key-resolver: '#{@remoteAddrKeyResolver}'
+#            redis-rate-limiter.replenishRate: 10
+#            redis-rate-limiter.burstCapacity: 20
           # 降级配置
-        - name: Hystrix
-          args:
-            name: fallbackcmd
-            fallbackUri: 'forward:/fallback'
+#        - name: Hystrix
+#          args:
+#            name: fallbackcmd
+#            fallbackUri: 'forward:/fallback'
 
-hystrix:
-  command:
-    default:  #default全局有效，service id指定应用有效
-      execution:
-        timeout:
-          enabled: true
-        isolation:
-          thread:
-            timeoutInMilliseconds: 5000 #断路器超时时间，默认1000ms
+#hystrix:
+#  command:
+#    default:  #default全局有效，service id指定应用有效
+#      execution:
+#        timeout:
+#          enabled: true
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000 #断路器超时时间，默认1000ms
 
 # 暴露监控端点
 management:

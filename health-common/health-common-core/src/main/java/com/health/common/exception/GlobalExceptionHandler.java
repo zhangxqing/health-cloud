@@ -1,5 +1,6 @@
 package com.health.common.exception;
 
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.health.common.core.domain.JsonResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,11 +12,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.lang.reflect.UndeclaredThrowableException;
+
 /**
  * 异常处理器
  *
- * @author zmr
- * @author lucas
+ * @author zq
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -41,6 +43,13 @@ public class GlobalExceptionHandler {
         }
         logger.error("运行时异常:", e);
         return JsonResult.error(e.getMessage());
+    }
+
+    @ExceptionHandler(UndeclaredThrowableException.class)
+    public JsonResult notFount(BlockException e) {
+        e.getMessage();
+        logger.error("Too Many Request");
+        return JsonResult.currentLimitingerror("请求太频繁,请稍后再试!");
     }
 
     /**

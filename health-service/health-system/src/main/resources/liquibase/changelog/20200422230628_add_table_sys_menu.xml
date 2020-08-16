@@ -118,18 +118,6 @@
             INSERT INTO `sys_menu` VALUES (2010, '表单构建', '', NULL, 3, '', 1, 'C', '0', 'tool:build:view', '#', NULL, NULL, NULL, NULL, '', '2019-05-30 18:49:16', '', '2019-05-30 18:52:43', '');
             INSERT INTO `sys_menu` VALUES (2011, '生成配置', 'genEdit', 'gen/GenEdit', 3, '', 1, 'M', '1', 'tool:gen:edit', '#', NULL, NULL, 0, NULL, '', '2019-08-20 22:30:24', '', '2019-12-26 11:38:19', '');
             INSERT INTO `sys_menu` VALUES (2012, '百度外链', 'baidu', NULL, 3, '_blank', 1, 'C', '0', '', '#', 'http://www.baidu.com', NULL, 0, NULL, '', '2019-12-26 10:19:01', '', '2019-12-26 12:27:15', '');
-            INSERT INTO `sys_menu` VALUES (2013, '流程管理', 'act', 'PageView', 0, '', 12, 'M', '0', NULL, 'gateway', NULL, NULL, 0, 0, '', '2020-01-03 12:16:51', '', NULL, '');
-            INSERT INTO `sys_menu` VALUES (2014, '模型管理', 'modelList', 'activiti/ModelList', 2013, '', 4, 'C', '0', 'activiti:models:view', '#', NULL, NULL, 0, 0, '', '2020-01-03 12:22:03', '', '2020-01-08 11:36:19', '');
-            INSERT INTO `sys_menu` VALUES (2015, '流程列表', 'procDefList', 'activiti/ProcDefList', 2024, '', 1, 'C', '1', 'activiti:prof:view', '#', '/act/procDef/list', NULL, 0, 0, '', '2020-01-03 12:22:03', '', '2020-01-14 13:15:17', '');
-            INSERT INTO `sys_menu` VALUES (2016, '运行中流程', 'procInstRuns', 'activiti/ProcInstRuns', 2013, '', 6, 'C', '0', 'activiti:procInst:view', '#', NULL, NULL, 0, 0, '', '2020-01-03 12:22:03', '', '2020-01-10 18:41:27', '');
-            INSERT INTO `sys_menu` VALUES (2017, '结束的流程', 'procInstFinished', 'activiti/ProcInstFinished', 2013, '', 7, 'C', '0', 'activiti:procInst:view', '#', NULL, NULL, 0, 0, '', '2020-01-03 12:22:03', '', '2020-01-10 18:41:58', '');
-            INSERT INTO `sys_menu` VALUES (2018, '我的申请', 'businessList', 'activiti/BusinessList', 2013, '', 1, 'C', '0', '', '#', NULL, NULL, 0, 0, '', '2020-01-03 12:22:03', '', '2020-01-14 12:55:34', '');
-            INSERT INTO `sys_menu` VALUES (2019, '请假', 'leave', 'activiti/modules/Leave', 2013, '', 10, 'C', '1', '', '#', NULL, NULL, 0, 0, '', '2020-01-07 10:26:13', '', '2020-01-07 13:18:49', '');
-            INSERT INTO `sys_menu` VALUES (2020, '我的待办', 'tasking', 'activiti/Tasking', 2013, '', 2, 'M', '0', NULL, '#', NULL, NULL, 0, 0, '', '2020-01-07 18:54:38', '', '2020-01-08 11:35:48', '');
-            INSERT INTO `sys_menu` VALUES (2021, '我的已办', 'taskdone', 'activiti/Taskdone', 2013, '', 3, 'M', '0', NULL, '#', NULL, NULL, 0, 0, '', '2020-01-07 18:54:38', '', '2020-01-08 11:35:54', '');
-            INSERT INTO `sys_menu` VALUES (2022, '报销', 'purchase', 'activiti/modules/Purchase', 2013, '', 10, 'C', '1', '', '#', NULL, NULL, 0, 0, '', '2020-01-07 10:26:13', '', '2020-01-07 13:18:49', '');
-            INSERT INTO `sys_menu` VALUES (2023, '流程节点配置', 'procDefNode', 'activiti/ProcDefNode', 2024, '', 2, 'C', '1', 'activiti:prof:edit', '#', '/act/procDef/node', NULL, 0, 0, '', '2020-01-14 12:54:36', '', '2020-01-14 13:15:47', '');
-            INSERT INTO `sys_menu` VALUES (2024, '流程定义', 'procDef', 'RouteView', 2013, '', 5, 'C', '0', '', '#', NULL, '/act/procDef/list', 1, 0, '', '2020-01-14 13:10:47', '', '2020-01-14 13:20:26', '');
         </sql>
     </changeSet>
 </databaseChangeLog>

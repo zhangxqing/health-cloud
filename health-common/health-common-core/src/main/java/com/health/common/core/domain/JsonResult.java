@@ -21,6 +21,10 @@ public class JsonResult extends HashMap<String, Object> {
         return error(500, msg);
     }
 
+    public static JsonResult currentLimitingerror(String msg) {
+        return error(429, msg);
+    }
+
     public static JsonResult error(int code, String msg) {
         JsonResult r = new JsonResult();
         r.put("code", code);

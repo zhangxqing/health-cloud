@@ -46,11 +46,23 @@
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
         <org.yaml>1.23</org.yaml>
         <pom.nacos.namespace>8a4bda3d-f183-4afa-85f3-8db1d8e9c1c4</pom.nacos.namespace>
+        <nacos-discovery.version>2.2.0.RELEASE</nacos-discovery.version>
     </properties>
 
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
+            <!--nacos-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>${alibaba-cloud.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+                <version>${alibaba-cloud.version}</version>
+            </dependency>
             <!--cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

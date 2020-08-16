@@ -1,6 +1,7 @@
 package com.health.system.controller;
 
 import cn.hutool.core.convert.Convert;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.health.common.annotation.LoginUser;
 import com.health.common.auth.annotation.HasPermissions;
 import com.health.common.constant.UserConstants;
@@ -10,14 +11,10 @@ import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
 import com.health.common.utils.RandomUtil;
 import com.health.system.domain.SysUser;
+import com.health.system.domain.dto.SysUserDto;
 import com.health.system.service.ISysMenuService;
 import com.health.system.service.ISysUserService;
-import com.health.system.domain.dto.SysUserDto;
 import com.health.system.util.PasswordUtil;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +34,26 @@ public class SysUserController extends BaseController {
     private final ISysUserService sysUserService;
 
     private final ISysMenuService sysMenuService;
+    private final PayFactory payFactory;
+
+//    @SentinelResource(value = "/user/test")
+    @GetMapping("/test")
+    public JsonResult get() {
+        return JsonResult.ok("天下武功,唯快不破,test版");
+    }
+
+//    @SentinelResource(value = "/user/demo")
+    @GetMapping("/demo")
+    @OperLog(title = "用户管理", businessType = BusinessType.OTHER)
+    public String demo(String type) {
+        PayService payService= payFactory.createPay(type);
+        return payService.pay();
+    }
+
+    @GetMapping("/header")
+    public JsonResult host(@RequestBody SysUserDto sysUserDto) {
+        return JsonResult.ok("天下武功,唯快不破,header版");
+    }
 
     /**
      * 查询用户
@@ -82,8 +99,7 @@ public class SysUserController extends BaseController {
      * 查询用户列表(分页)
      */
     @GetMapping("list")
-    @ApiOperation(value = "查询用户列表(分页)", notes="查询用户列表(分页)")
-    public JsonResult list(@RequestBody SysUser sysUser) {
+    public JsonResult list(SysUserDto sysUser) {
         startPage();
         return result(sysUserService.selectUserList(sysUser));
     }
@@ -104,7 +120,7 @@ public class SysUserController extends BaseController {
         }
         sysUserDto.setSalt(RandomUtil.randomStr(6));
         sysUserDto.setPassword(
-                PasswordUtil.encryptPassword(sysUserDto.getLoginName(), sysUserDto.getPassword(), sysUserDto.getSalt()));
+                PasswordUtil.encryptPassword(sysUserDto.getLoginName(), "123456", sysUserDto.getSalt()));
         sysUserDto.setCreateBy(getLoginName());
         return toAjax(sysUserService.insertUser(sysUserDto));
     }
@@ -127,7 +143,7 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 修改用户信息
+     * 查询用户信息
      *
      * @param sysUser
      * @return

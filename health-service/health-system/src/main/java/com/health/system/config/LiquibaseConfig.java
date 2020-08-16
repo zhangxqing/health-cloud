@@ -32,7 +32,7 @@ public class LiquibaseConfig {
 
     @Bean
     public SpringLiquibase liquibase() {
-        log.info("grademed服务liquibase初始化成功");
+        log.info("health-system,服务liquibase初始化成功");
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setDataSource(dataSource);
         liquibase.setChangeLog(changeLog);

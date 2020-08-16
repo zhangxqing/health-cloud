@@ -35,7 +35,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
      * 排除过滤的 uri 地址
      * swagger排除自行添加
      */
-    private static final String[] whiteList = {"/auth/login", "/user/register", "/system/v2/api-docs"};
+    private static final String[] whiteList = {"/auth/login", "/user/register", "/system/v2/api-docs","/system/user/test","/system/user/demo"};
 
     @Resource(name = "stringRedisTemplate")
     private ValueOperations<String, String> ops;
@@ -51,17 +51,17 @@ public class AuthFilter implements GlobalFilter, Ordered {
         String token = exchange.getRequest().getHeaders().getFirst(Constants.TOKEN);
         // token为空
         if (StringUtils.isBlank(token)) {
-            return setUnauthorizedResponse(exchange, "token can't null or empty string");
+            return setUnauthorizedResponse(exchange, "token不能为空或者空字符串!");
         }
         String userStr = ops.get(Constants.ACCESS_TOKEN + token);
         if (StringUtils.isBlank(userStr)) {
-            return setUnauthorizedResponse(exchange, "token verify error");
+            return setUnauthorizedResponse(exchange, "token验证错误!");
         }
         JSONObject jo = JSONObject.parseObject(userStr);
         String userId = jo.getString("userId");
         // 查询token信息
         if (StringUtils.isBlank(userId)) {
-            return setUnauthorizedResponse(exchange, "token verify error");
+            return setUnauthorizedResponse(exchange, "token验证错误!");
         }
         // 设置userId到request里，后续根据userId，获取用户信息
         ServerHttpRequest mutableReq = exchange.getRequest().mutate().header(Constants.CURRENT_ID, userId)
