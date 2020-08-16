@@ -11,23 +11,23 @@ spring:
         server-addr: localhost:8848 #远程注册服务地址
         namespace: @pom.nacos.namespace@ #远程注册配置命名空间
     sentinel:
-#      datasource:
-#        ds1:
-#          nacos:
-#            server-addr: localhost:8848
-#            dataId: ${spring.application.name}-api
-#            groupId: SENTINEL_GROUP
-#            namespace: @pom.nacos.namespace@
-#            dataType: json
-#            ruleType: GW_API_GROUP
-#        ds2:
-#          nacos:
-#            server-addr: localhost:8848
-#            dataId: ${spring.application.name}-flow-rules
-#            groupId: SENTINEL_GROUP
-#            namespace: @pom.nacos.namespace@
-#            dataType: json
-#            ruleType: GW_FLOW
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-api
+            groupId: SENTINEL_GROUP
+            namespace: @pom.nacos.namespace@
+            dataType: json
+            ruleType: GW_API_GROUP
+        ds2:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP
+            namespace: @pom.nacos.namespace@
+            dataType: json
+            ruleType: GW_FLOW
 #    sentinel:
 #      datasource:
 #        ds1:
