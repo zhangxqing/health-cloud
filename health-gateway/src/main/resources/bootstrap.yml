@@ -10,24 +10,24 @@ spring:
       discovery:
         server-addr: localhost:8848 #远程注册服务地址
         namespace: @pom.nacos.namespace@ #远程注册配置命名空间
-    sentinel:
-      datasource:
-        ds1:
-          nacos:
-            server-addr: localhost:8848
-            dataId: ${spring.application.name}-api
-            groupId: SENTINEL_GROUP
-            namespace: @pom.nacos.namespace@
-            dataType: json
-            ruleType: GW_API_GROUP
-        ds2:
-          nacos:
-            server-addr: localhost:8848
-            dataId: ${spring.application.name}-flow-rules
-            groupId: SENTINEL_GROUP
-            namespace: @pom.nacos.namespace@
-            dataType: json
-            ruleType: GW_FLOW
+#    sentinel:
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: localhost:8848
+#            dataId: ${spring.application.name}-api
+#            groupId: SENTINEL_GROUP
+#            namespace: @pom.nacos.namespace@
+#            dataType: json
+#            ruleType: GW_API_GROUP
+#        ds2:
+#          nacos:
+#            server-addr: localhost:8848
+#            dataId: ${spring.application.name}-flow-rules
+#            groupId: SENTINEL_GROUP
+#            namespace: @pom.nacos.namespace@
+#            dataType: json
+#            ruleType: GW_FLOW
 #    sentinel:
 #      datasource:
 #        ds1:
@@ -38,14 +38,14 @@ spring:
 #          file:
 #            file: "classpath: gateway.json"
 #            rule-type: gw-flow
-      transport:
-        dashboard: 127.0.0.1:8849
-      filter:
-        enabled: true
-      scg.fallback:
-        mode: response
-        response-body: '{"code":"429","message":"请求太频繁,请稍后再试"}'
-      scg:
-        order: -1000
+#      transport:
+#        dashboard: 127.0.0.1:8849
+#      filter:
+#        enabled: true
+#      scg.fallback:
+#        mode: response
+#        response-body: '{"code":"429","message":"请求太频繁,请稍后再试"}'
+#      scg:
+#        order: -1000
 
 

@@ -41,11 +41,11 @@ public class SignatureDemo {
 		LocalDateTime expirationDateTime = LocalDateTime.now().plusDays(7);//url的有效时间10年
 		Date expiration = Date.from(expirationDateTime.atZone(ZoneId.systemDefault()).toInstant());
 		SignatureDemo demo = new SignatureDemo();
-		String endpoint = "https://fjoss.xstore.ctyun.cn";// endpoint形式为：http://ip:port或https://rgwdomain
+		String endpoint = "10.130.1.241";// endpoint形式为：http://ip:port或https://rgwdomain
 		AmazonS3 amazonS3 = demo.buildAmazonS3("wdt2aKC7l9cTZlGoG67W", "Jzzo5RnkgprXi4D0JcXRH5Xw0zxFNZH6PeqovPr2", endpoint);
 		String bucket = "rt-live";
 		// https://vod-transcode-nk4d.fjoss.xstore.ctyun.cn/a35933e8cb8b4998ac2d392141194a1a/100000000102.MP4
-		String key = "2020-08-12/2020081214155867980_net.m3u8";
+		String key = "2020-08-18/1234567890_gen.m3u8";
 		String presignedUrl = amazonS3.generatePresignedUrl(bucket, key,
 				demo.getExpireTime(10000), HttpMethod.GET).toString();
 		String decode = URLDecoder.decode(presignedUrl, "UTF-8");

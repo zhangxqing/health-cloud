@@ -18,15 +18,15 @@ spring:
       enabled: true
       transport:
         dashboard: localhost:8849
-#      datasource:
-#        ds1:
-#          nacos:
-#            server-addr: localhost:8848
-#            dataId: ${spring.application.name}-flow-rules
-#            groupId: SENTINEL_GROUP
-#            namespace: @pom.nacos.namespace@
-#            dataType: json
-#            ruleType: FLOW
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP
+            namespace: @pom.nacos.namespace@
+            dataType: json
+            ruleType: FLOW
 
 
 

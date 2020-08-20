@@ -54,16 +54,15 @@ spring:
 #            name: fallbackcmd
 #            fallbackUri: 'forward:/fallback'
 
-#hystrix:
-#  command:
-#    default:  #default全局有效，service id指定应用有效
-#      execution:
-#        timeout:
-#          enabled: true
-#        isolation:
-#          thread:
-#            timeoutInMilliseconds: 10000 #断路器超时时间，默认1000ms
-
+hystrix:
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000 #断路器超时时间，默认1000ms
 # 暴露监控端点
 management:
   endpoints:

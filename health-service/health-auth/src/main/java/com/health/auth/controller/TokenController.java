@@ -1,11 +1,12 @@
 package com.health.auth.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.health.auth.form.LoginForm;
 import com.health.auth.service.AccessTokenService;
 import com.health.auth.service.SysLoginService;
 import com.health.common.core.domain.JsonResult;
-import com.health.system.domain.SysUser;
 import com.health.system.domain.dto.SysUserDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author zq
  */
 @RestController
+@Slf4j
 public class TokenController {
     @Autowired
     private AccessTokenService tokenService;
@@ -24,6 +26,7 @@ public class TokenController {
     @Autowired
     private SysLoginService sysLoginService;
 
+    @SentinelResource(value = "/auth/login")
     @PostMapping("login")
     public JsonResult login(@RequestBody LoginForm form) {
         // 用户登录

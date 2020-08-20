@@ -34,20 +34,11 @@ public class SysUserController extends BaseController {
     private final ISysUserService sysUserService;
 
     private final ISysMenuService sysMenuService;
-    private final PayFactory payFactory;
 
-//    @SentinelResource(value = "/user/test")
+    @SentinelResource(value = "/user/test")
     @GetMapping("/test")
     public JsonResult get() {
         return JsonResult.ok("天下武功,唯快不破,test版");
-    }
-
-//    @SentinelResource(value = "/user/demo")
-    @GetMapping("/demo")
-    @OperLog(title = "用户管理", businessType = BusinessType.OTHER)
-    public String demo(String type) {
-        PayService payService= payFactory.createPay(type);
-        return payService.pay();
     }
 
     @GetMapping("/header")
