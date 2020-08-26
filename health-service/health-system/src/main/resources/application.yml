@@ -7,7 +7,7 @@ logging:
     org.springframework: warn
 spring:
   profiles:
-    active: dev
+    active: @profileActive@
   devtools:
     restart:
       enabled: false
