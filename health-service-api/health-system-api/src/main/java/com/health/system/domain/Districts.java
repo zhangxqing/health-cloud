@@ -1,8 +1,13 @@
 package com.health.system.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.health.common.core.domain.BaseEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.Date;
 
 /**
  * 地区表 districts
@@ -10,6 +15,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author zq
  * @date 2018-12-19
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class Districts extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -58,83 +65,30 @@ public class Districts extends BaseEntity {
      */
     private String operator;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    /**
+     * 创建者
+     */
+    private String createBy;
 
-    public Integer getId() {
-        return id;
-    }
+    /**
+     * 创建时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
+    /**
+     * 更新者
+     */
+    private String updateBy;
 
-    public Integer getPid() {
-        return pid;
-    }
+    /**
+     * 更新时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
 
-    public void setDeep(Integer deep) {
-        this.deep = deep;
-    }
-
-    public Integer getDeep() {
-        return deep;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPname() {
-        return pname;
-    }
-
-    public void setPname(String pname) {
-        this.pname = pname;
-    }
-
-    public void setPinyin(String pinyin) {
-        this.pinyin = pinyin;
-    }
-
-    public String getPinyin() {
-        return pinyin;
-    }
-
-    public void setPinyinShor(String pinyinShor) {
-        this.pinyinShor = pinyinShor;
-    }
-
-    public String getPinyinShor() {
-        return pinyinShor;
-    }
-
-    public void setExtName(String extName) {
-        this.extName = extName;
-    }
-
-    public String getExtName() {
-        return extName;
-    }
-
-    public void setOperator(String operator) {
-        this.operator = operator;
-    }
-
-    public String getOperator() {
-        return operator;
-    }
-
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE).append("id", getId()).append("pid", getPid())
-                .append("deep", getDeep()).append("name", getName()).append("pinyin", getPinyin())
-                .append("pinyinShor", getPinyinShor()).append("extName", getExtName())
-                .append("createTime", getCreateTime()).append("updateTime", getUpdateTime())
-                .append("operator", getOperator()).toString();
-    }
+    /**
+     * 备注
+     */
+    private String remark;
 }

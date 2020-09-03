@@ -18,7 +18,7 @@ public interface ISysUserService {
      * @param user 用户信息
      * @return 用户信息集合信息
      */
-    List<SysUserDto> selectUserList(SysUser user);
+    List<SysUserDto> selectUserList(SysUserDto user);
 
     /**
      * 通过用户名查询用户

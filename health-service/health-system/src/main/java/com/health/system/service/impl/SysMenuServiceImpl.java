@@ -23,13 +23,9 @@ import java.util.*;
  */
 @Service
 public class SysMenuServiceImpl implements ISysMenuService {
-    public static final String PREMISSION_STRING = "perms[\"{0}\"]";
 
     @Autowired
     private SysMenuMapper menuMapper;
-
-    @Autowired
-    private SysRoleMenuMapper roleMenuMapper;
 
     /**
      * 根据用户查询菜单
@@ -171,6 +167,26 @@ public class SysMenuServiceImpl implements ISysMenuService {
     @Override
     public int updateMenu(SysMenu menu) {
         return menuMapper.updateMenu(menu);
+    }
+
+    /**
+     * 根据父节点的ID获取所有子节点
+     *
+     * @param list     分类表
+     * @param parentId 传入的父节点ID
+     * @return String
+     */
+    public List<SysMenu> getChildPerms(List<SysMenu> list, int parentId) {
+        List<SysMenu> returnList = new ArrayList<>();
+        for (Iterator<SysMenu> iterator = list.iterator(); iterator.hasNext(); ) {
+            SysMenu t = (SysMenu) iterator.next();
+            // 一、根据传入的某个父节点ID,遍历该父节点的所有子节点
+            if (t.getParentId() == parentId) {
+                recursionFn(list, t);
+                returnList.add(t);
+            }
+        }
+        return returnList;
     }
 
     /**

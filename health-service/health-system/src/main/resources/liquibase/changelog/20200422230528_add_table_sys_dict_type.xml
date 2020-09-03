@@ -26,7 +26,6 @@
             INSERT INTO `sys_dict_type` VALUES (7, '通知状态', 'sys_notice_status', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '通知状态列表');
             INSERT INTO `sys_dict_type` VALUES (8, '操作类型', 'sys_oper_type', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '操作类型列表');
             INSERT INTO `sys_dict_type` VALUES (9, '系统状态', 'sys_common_status', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '登录状态列表');
-            INSERT INTO `sys_dict_type` VALUES (10, '请假类型', 'act_leave_type', '0', '', '2020-01-07 14:05:42', '', NULL, '请假类型');
         </sql>
     </changeSet>
 </databaseChangeLog>

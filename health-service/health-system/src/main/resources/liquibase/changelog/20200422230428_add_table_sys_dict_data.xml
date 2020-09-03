@@ -47,17 +47,6 @@
             INSERT INTO `sys_dict_data` VALUES (24, 8, '清空数据', '9', 'sys_oper_type', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '清空操作');
             INSERT INTO `sys_dict_data` VALUES (25, 1, '成功', '0', 'sys_common_status', '', 'primary', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '正常状态');
             INSERT INTO `sys_dict_data` VALUES (26, 2, '失败', '1', 'sys_common_status', '', 'danger', 'N', '0', 'admin', '2018-03-16 11:33:00', 'ry', '2018-03-16 11:33:00', '停用状态');
-            INSERT INTO `sys_dict_data` VALUES (35, 1, '年假', '1', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:06:17', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (36, 2, '事假', '2', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:06:28', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (37, 3, '病假', '3', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:06:35', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (38, 4, '调休', '4', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:06:47', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (39, 5, '产假', '5', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:07:01', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (40, 6, '陪产假', '6', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:07:08', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (41, 7, '婚假', '7', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:08:04', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (42, 8, '例假', '8', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:08:15', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (43, 9, '丧假', '9', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:08:24', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (44, 10, '哺乳假', '10', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:08:39', '', NULL, NULL);
-            INSERT INTO `sys_dict_data` VALUES (45, 11, '流产假', '11', 'act_leave_type', NULL, NULL, 'N', '0', '', '2020-01-07 14:08:48', '', NULL, NULL);
         </sql>
     </changeSet>
 </databaseChangeLog>
