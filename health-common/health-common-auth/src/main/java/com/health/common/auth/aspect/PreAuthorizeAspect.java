@@ -42,7 +42,7 @@ public class PreAuthorizeAspect {
         if (has(authority)) {
             return point.proceed();
         } else {
-            throw new ForbiddenException();
+            throw new ForbiddenException("权限不足");
         }
     }
 
@@ -52,10 +52,10 @@ public class PreAuthorizeAspect {
         String tmpUserKey = request.getHeader(Constants.CURRENT_ID);
         if (Optional.ofNullable(tmpUserKey).isPresent()) {
             Long userId = Long.valueOf(tmpUserKey);
-            log.debug("userId:{}", userId);
-            if (userId == 1L) {
-                return true;
-            }
+//            log.debug("userId:{}", userId);
+//            if (userId == 1L) {
+//                return true;
+//            }
             return sysMenuClient.selectPermsByUserId(userId).stream().anyMatch(authority::equals);
         }
         return false;
