@@ -107,6 +107,12 @@
             <artifactId>health-common-swagger</artifactId>
             <version>${health.version}</version>
         </dependency>
+        <!-- api模块 -->
+        <dependency>
+            <groupId>com.health.cloud</groupId>
+            <artifactId>health-common-result</artifactId>
+            <version>${health.version}</version>
+        </dependency>
         <!-- 权限模块 -->
         <dependency>
             <groupId>com.health.cloud</groupId>

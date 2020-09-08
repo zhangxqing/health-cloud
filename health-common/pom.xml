@@ -15,5 +15,6 @@
         <module>health-common-log</module>
         <module>health-common-auth</module>
         <module>health-common-swagger</module>
+        <module>health-common-result</module>
     </modules>
 </project>

@@ -9,6 +9,7 @@ import com.health.common.core.controller.BaseController;
 import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
+import com.health.common.result.annotation.ResponseResult;
 import com.health.common.utils.RandomUtil;
 import com.health.system.domain.SysUser;
 import com.health.system.domain.dto.SysUserDto;
@@ -16,11 +17,11 @@ import com.health.system.service.ISysMenuService;
 import com.health.system.service.ISysUserService;
 import com.health.system.util.PasswordUtil;
 import lombok.RequiredArgsConstructor;
-import org.jasypt.encryption.StringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -37,17 +38,11 @@ public class SysUserController extends BaseController {
 
     private final ISysMenuService sysMenuService;
 
-    @Autowired
-    @Qualifier("jasyptStringEncryptor")
-    private StringEncryptor stringEncryptor;
-
     @SentinelResource(value = "/user/test")
     @GetMapping("/test")
-    public JsonResult get() {
-        System.out.println(stringEncryptor.encrypt("rTang@"));
-        System.out.println(stringEncryptor.encrypt("root"));
-        System.out.println(stringEncryptor.encrypt("Tang875@"));
-        return JsonResult.ok("天下武功,唯快不破,test版");
+    @ResponseResult
+    public String get() {
+        return "111111";
     }
 
     @GetMapping("/header")

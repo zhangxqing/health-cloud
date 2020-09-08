@@ -8,6 +8,9 @@ import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author zq
+ */
 @Configuration
 @EnableEncryptableProperties
 public class JasyptAutoConfiguration {

@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
     public JsonResult notFount(BlockException e) {
         e.getMessage();
         logger.error("Too Many Request");
-        return JsonResult.currentLimitingerror("请求太频繁,请稍后再试!");
+        return JsonResult.error(HttpStatus.TOO_MANY_REQUESTS.value(),"请求太频繁,请稍后再试!");
     }
 
     /**
