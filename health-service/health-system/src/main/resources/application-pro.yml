@@ -2,9 +2,9 @@
 spring:
   redis:
     database: 1
-    host: 127.0.0.1
+    host: 8.129.35.113
     port: 6379
-    password: HEALTHCODER@h+2vOyy3wjekvYGTYNwRwIxc1RmhMsPRYvXVf5e9jes=     # 密码（默认为空）
+    password: HEALTHCODER@b7A3LQqdwPASG4aZbXN8hE52yt9NN/pfRtTGjpYidUE=     # 密码（默认为空）
     timeout: 6000ms  # 连接超时时长（毫秒）
     lettuce:
       pool:
@@ -18,14 +18,14 @@ spring:
     druid:
       # 主库数据源
       master:
-        url: jdbc:mysql://localhost:3306/health_cloud?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://8.129.35.113:3306/health_cloud?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: HEALTHCODER@2eFBb3LNTeg2ALbWQ5iBZ4qWb9jadUEc
         password: HEALTHCODER@wseyckVK5cZWJKCwd/nFBAmnxVCt/kNw
       # 从库数据源
       slave:
         #从数据源开关/默认关闭
         enabled: false
-        url: jdbc:mysql://localhost:3306/ry_cloud_read?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://8.129.35.113:3306/ry_cloud_read?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: HEALTHCODER@2eFBb3LNTeg2ALbWQ5iBZ4qWb9jadUEc
         password: HEALTHCODER@wseyckVK5cZWJKCwd/nFBAmnxVCt/kNw
       # 初始连接数

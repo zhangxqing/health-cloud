@@ -8,4 +8,6 @@ public interface ServiceNameConstants {
      * system模块
      */
     String SYSTEM_SERVICE = "health-system";
+
+    String GATEWAY_SERVICE = "health-gateway";
 }

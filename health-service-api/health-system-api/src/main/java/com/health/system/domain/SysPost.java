@@ -1,16 +1,23 @@
 package com.health.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.health.common.annotation.Excel;
 import com.health.common.core.domain.BaseEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.Date;
 
 /**
  * 岗位表 sys_post
  *
  * @author zq
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysPost extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -50,67 +57,30 @@ public class SysPost extends BaseEntity {
      */
     private boolean flag = false;
 
-    public Long getPostId() {
-        return postId;
-    }
+    /**
+     * 创建者
+     */
+    private String createBy;
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
-    }
+    /**
+     * 创建时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
-    public String getPostCode() {
-        return postCode;
-    }
+    /**
+     * 更新者
+     */
+    private String updateBy;
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
+    /**
+     * 更新时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
 
-    public String getPostName() {
-        return postName;
-    }
-
-    public void setPostName(String postName) {
-        this.postName = postName;
-    }
-
-    public String getPostSort() {
-        return postSort;
-    }
-
-    public void setPostSort(String postSort) {
-        this.postSort = postSort;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public boolean isFlag() {
-        return flag;
-    }
-
-    public void setFlag(boolean flag) {
-        this.flag = flag;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("postId", getPostId())
-                .append("postCode", getPostCode())
-                .append("postName", getPostName())
-                .append("postSort", getPostSort())
-                .append("status", getStatus())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
+    /**
+     * 备注
+     */
+    private String remark;
 }

@@ -1,5 +1,6 @@
 package com.health.common.utils;
 
+import com.health.common.constant.ServiceNameConstants;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,21 +72,34 @@ public final class DefaultProfileUtil {
         } catch (UnknownHostException e) {
             log.warn("无法确定主机名，使用“localhost”作为回退");
         }
-        log.info("\n----------------------------------------------------------\n\t" +
-                        "Application '{}' is running! Access URLs:\n\t" +
-                        "Local: \t\t{}://localhost:{}{}{}\n\t" +
-                        "External: \t{}://{}:{}{}{}\n\t" +
-                        "Profile(s): \t{}\n----------------------------------------------------------",
-                env.getProperty("spring.application.name"),
-                protocol,
-                serverPort,
-                contextPath,
-                "doc.html",
-                protocol,
-                hostAddress,
-                serverPort,
-                contextPath,
-                "doc.html",
-                env.getActiveProfiles());
+        String property = env.getProperty("spring.application.name");
+        assert property != null;
+        if(property.equals(ServiceNameConstants.GATEWAY_SERVICE)){
+            log.info("\n----------------------------------------------------------\n\t" +
+                            "Application '{}' is running! Access URLs:\n\t" +
+                            "Local: \t\t{}://localhost:{}{}{}\n\t" +
+                            "External: \t{}://{}:{}{}{}\n\t" +
+                            "Profile(s): \t{}\n----------------------------------------------------------",
+                    env.getProperty("spring.application.name"),
+                    protocol,
+                    serverPort,
+                    contextPath,
+                    "doc.html",
+                    protocol,
+                    hostAddress,
+                    serverPort,
+                    contextPath,
+                    "doc.html",
+                    env.getActiveProfiles());
+        }else {
+            log.info("\n----------------------------------------------------------\n\t" +
+                            "Application '{}' is running! Access URLs:\n\t" +
+                            "External: \tIP地址:{} 端口:{}\n\t" +
+                            "Profile(s): \t{}\n----------------------------------------------------------",
+                    env.getProperty("spring.application.name"),
+                    hostAddress,
+                    serverPort,
+                    env.getActiveProfiles());
+        }
     }
 }

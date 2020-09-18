@@ -2,7 +2,6 @@ package com.health.system.controller;
 
 import com.health.common.core.controller.BaseController;
 import com.health.common.core.domain.JsonResult;
-import com.health.system.domain.SysConfig;
 import com.health.system.domain.dto.SysConfigDto;
 import com.health.system.service.ISysConfigService;
 import lombok.RequiredArgsConstructor;

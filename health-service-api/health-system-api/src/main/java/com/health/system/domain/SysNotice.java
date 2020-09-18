@@ -1,15 +1,22 @@
 package com.health.system.domain;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.health.common.core.domain.BaseEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.Date;
 
 /**
  * 通知公告表 sys_notice
  *
  * @author zq
  */
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysNotice extends BaseEntity {
     private static final long serialVersionUID = 1L;
 
@@ -39,59 +46,30 @@ public class SysNotice extends BaseEntity {
      */
     private String status;
 
-    public Long getNoticeId() {
-        return noticeId;
-    }
+    /**
+     * 创建者
+     */
+    private String createBy;
 
-    public void setNoticeId(Long noticeId) {
-        this.noticeId = noticeId;
-    }
+    /**
+     * 创建时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
-    public void setNoticeTitle(String noticeTitle) {
-        this.noticeTitle = noticeTitle;
-    }
+    /**
+     * 更新者
+     */
+    private String updateBy;
 
-    public String getNoticeTitle() {
-        return noticeTitle;
-    }
+    /**
+     * 更新时间
+     */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateTime;
 
-    public void setNoticeType(String noticeType) {
-        this.noticeType = noticeType;
-    }
-
-    public String getNoticeType() {
-        return noticeType;
-    }
-
-    public void setNoticeContent(String noticeContent) {
-        this.noticeContent = noticeContent;
-    }
-
-    public String getNoticeContent() {
-        return noticeContent;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("noticeId", getNoticeId())
-                .append("noticeTitle", getNoticeTitle())
-                .append("noticeType", getNoticeType())
-                .append("noticeContent", getNoticeContent())
-                .append("status", getStatus())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
+    /**
+     * 备注
+     */
+    private String remark;
 }

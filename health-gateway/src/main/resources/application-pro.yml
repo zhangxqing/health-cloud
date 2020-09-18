@@ -1,9 +1,9 @@
 spring:
   redis:
     database: 1
-    host: 127.0.0.1
+    host: 8.129.35.113
     port: 6379
-    password: HEALTHCODER@X0kFopmlDnWjhU6N9YjCjrYFFunprZzUpbzJ8lBOyr8=     # 密码（默认为空）
+    password: HEALTHCODER@b7A3LQqdwPASG4aZbXN8hE52yt9NN/pfRtTGjpYidUE=     # 密码（默认为空）
     timeout: 6000ms  # 连接超时时长（毫秒）
     lettuce:
       pool:

@@ -17,11 +17,11 @@ import com.health.system.service.ISysMenuService;
 import com.health.system.service.ISysUserService;
 import com.health.system.util.PasswordUtil;
 import lombok.RequiredArgsConstructor;
+import org.jasypt.encryption.StringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -38,6 +38,10 @@ public class SysUserController extends BaseController {
 
     private final ISysMenuService sysMenuService;
 
+    @Autowired
+    @Qualifier("jasyptStringEncryptor")
+    private StringEncryptor stringEncryptor;
+
     @SentinelResource(value = "/user/test")
     @GetMapping("/test")
     @ResponseResult
@@ -48,6 +52,11 @@ public class SysUserController extends BaseController {
     @GetMapping("/header")
     public JsonResult host(@RequestBody SysUserDto sysUserDto) {
         return JsonResult.ok("天下武功,唯快不破,header版");
+    }
+
+    @GetMapping("/encrypt")
+    public String encrypt(String str){
+        return stringEncryptor.encrypt(str);
     }
 
     /**

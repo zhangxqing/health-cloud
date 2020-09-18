@@ -5,8 +5,6 @@ import com.health.common.core.controller.BaseController;
 import com.health.common.core.domain.JsonResult;
 import com.health.common.log.annotation.OperLog;
 import com.health.common.log.enums.BusinessType;
-import com.health.system.domain.SysRole;
-import com.health.system.domain.SysRoleDept;
 import com.health.system.domain.dto.SysRoleDto;
 import com.health.system.service.ISysRoleService;
 import lombok.RequiredArgsConstructor;
