@@ -21,8 +21,7 @@ public class PublishFactory {
      * @param message  消息
      * @param args     列表
      */
-    public static void recordLogininfor(final String username, final String status, final String message,
-                                        final Object... args) {
+    public static void recordLogininfor(final String username, final String status, final String message, final Object... args) {
         HttpServletRequest request = ServletUtils.getRequest();
         final UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
         final String ip = IpUtils.getIpAddr(request);
