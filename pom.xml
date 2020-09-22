@@ -49,6 +49,7 @@
         <nacos.group>DEFAULT_GROUP</nacos.group>
         <nacos-discovery.version>2.2.0.RELEASE</nacos-discovery.version>
         <jasypt-version>3.0.2</jasypt-version>
+        <maven-version>2.1.7.RELEASE</maven-version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -114,14 +115,6 @@
                 <artifactId>liquibase-core</artifactId>
                 <version>${liquibase.version}</version>
             </dependency>
-            <!--cloud -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
             <dependency>
                 <groupId>de.codecentric</groupId>
@@ -130,7 +123,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
 
             <!-- SpringBoot的依赖配置 -->
             <dependency>
@@ -314,6 +306,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
