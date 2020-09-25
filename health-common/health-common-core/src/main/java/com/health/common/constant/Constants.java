@@ -21,6 +21,7 @@ public class Constants {
      */
     public static final String FAIL = "1";
 
+
     /**
      * 登录成功
      */
