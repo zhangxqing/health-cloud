@@ -45,7 +45,9 @@
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
         <org.yaml>1.23</org.yaml>
-        <nacos.namespace>8a4bda3d-f183-4afa-85f3-8db1d8e9c1c4</nacos.namespace>
+        <nacos.host>localhost</nacos.host>
+        <nacos.port>8848</nacos.port>
+        <nacos.namespace>3b306393-d299-44f6-a4f8-ef0fc28cde8a</nacos.namespace>
         <nacos.group>DEFAULT_GROUP</nacos.group>
         <nacos-discovery.version>2.2.0.RELEASE</nacos-discovery.version>
         <jasypt-version>3.0.2</jasypt-version>

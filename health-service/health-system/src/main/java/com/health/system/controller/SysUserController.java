@@ -56,7 +56,7 @@ public class SysUserController extends BaseController {
 
     @GetMapping("/encrypt")
     public String encrypt(String str){
-        return stringEncryptor.encrypt(str);
+        return stringEncryptor.decrypt(str);
     }
 
     /**
