@@ -24,6 +24,10 @@ public class CacheRequestFilter extends AbstractGatewayFilterFactory<CacheReques
         super(Config.class);
     }
 
+    /**
+     * 定义过滤器名称
+     * @return 过滤器bean名称
+     */
     @Override
     public String name() {
         return "CacheRequest";

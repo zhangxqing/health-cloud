@@ -31,7 +31,7 @@ import java.util.Set;
  * @date 2019-05-20
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class SysUserController extends BaseController {
     private final ISysUserService sysUserService;
@@ -67,7 +67,7 @@ public class SysUserController extends BaseController {
         return sysUserService.selectUserById(userId);
     }
 
-    @GetMapping("info")
+    @GetMapping("/info")
     public SysUserDto info(@LoginUser SysUserDto sysUserDto) {
         sysUserDto.setButtons(sysMenuService.selectPermsByUserId(sysUserDto.getUserId()));
         return sysUserDto;

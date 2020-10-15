@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
   profiles:
@@ -31,8 +31,8 @@ spring:
         predicates:
         - Path=/system/**
         filters:
-        # 限流配置
         - StripPrefix=1
+          # 限流配置
 #        - name: RequestRateLimiter
 #          args:
 #            key-resolver: '#{@remoteAddrKeyResolver}'

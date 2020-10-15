@@ -23,7 +23,7 @@ spring:
       datasource:
         ds1:
           nacos:
-            server-addr: localhost:8848
+            server-addr: @nacos.host@:@nacos.port@
             dataId: ${spring.application.name}-flow-rules
             groupId: SENTINEL_GROUP
             namespace: @nacos.namespace@

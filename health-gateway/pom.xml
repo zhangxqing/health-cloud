@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.health</groupId>
+        <artifactId>health-cloud</artifactId>
+        <version>1.1.0-SNAPSHOT</version>
+    </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.health.gateway</groupId>
@@ -8,12 +14,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>health-gateway</name>
     <description>gateway网关服务</description>
-
-    <parent>
-        <groupId>com.health.cloud</groupId>
-        <artifactId>health-cloud</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
-    </parent>
 
     <dependencies>
         <dependency>
@@ -65,6 +65,19 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <exclusions>
+                <!--排除nacos-client的包，不排除因网络不问题会报错无法连接到nacos问题(不影像使用)-->
+                <exclusion>
+                    <groupId>com.alibaba.nacos</groupId>
+                    <artifactId>nacos-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--重新引入nacos-client包1.2.0,解决网络不稳定引起无法连接nacos报错-->
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>${nacos.client.version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -80,7 +93,7 @@
         </dependency>
         <!-- common模块 -->
         <dependency>
-            <groupId>com.health.cloud</groupId>
+            <groupId>com.health</groupId>
             <artifactId>health-common-core</artifactId>
             <version>${health.version}</version>
         </dependency>
