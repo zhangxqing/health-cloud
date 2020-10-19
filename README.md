@@ -14,22 +14,27 @@ health-cloud
 |  |
 |  ├──health-common-redis --redis工具包
 |  |
-|  ├──health-common-log --日志工具包
+|  ├──health-common-log --日志工具包(依赖 health-system-api)
 |  |
-|  ├──health-common-auth --权限工具包
+|  ├──health-common-auth --权限工具包(依赖 health-system-api)
+|  | 
+|  ├──health-common-result --统一返回工具包 (依赖 health-common-auth)
+|  |
+|  ├──health-common-swagger --api文档包
 |
 |
-├──health-eureka --注册中心
 |
-├──health-gateway --网关
+├──health-gateway --网关(依赖 health-common-core)
 |
 ├──health-service-api --服务api模块
 |  |
-|  ├──health-system-api --系统业务api
+|  ├──health-system-api --系统业务api(依赖 health-common-core,health-common-swagger)
 |
 ├──health-service --微服务
 |  |
-|  ├──health-system --系统业务
+|  ├──health-system --系统业务(依赖 health-system-api,health-common-log，health-common-core，health-common-swagger,health-common-result,health-common-auth,health-common-redis)
+|  |
+|  ├──health-auth --认证服务(依赖 health-system-api,health-common-redis,health-common-log)
 
 ```
 
