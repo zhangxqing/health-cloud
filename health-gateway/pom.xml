@@ -155,6 +155,10 @@
                     <imageName>${project.artifactId}</imageName>
                     <baseImage>openjdk:8-jdk-alpine</baseImage>
                     <maintainer>zhangqing/846455480qq.com</maintainer>
+                    <!--指定标签-->
+                    <imageTags>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
                     <workdir>/ROOT</workdir>
                     <cmd>["java", "-version"]</cmd>
                     <entryPoint>["java", "-jar", "${project.build.finalName}.jar"]</entryPoint>
