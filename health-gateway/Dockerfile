@@ -1,5 +1,5 @@
 # 基础镜像
-FROM openjdk:8-jdk-alpine
+FROM docker.io/openjdk:8-jdk-alpine
 # 作者
 MAINTAINER zhangqing/846455480qq.com
 VOLUME /tmp

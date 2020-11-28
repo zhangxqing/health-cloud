@@ -153,7 +153,7 @@
                 <version>1.0.0</version>
                 <configuration>
                     <imageName>${project.artifactId}</imageName>
-                    <baseImage>openjdk:8-jdk-alpine</baseImage>
+                    <baseImage>docker.io/openjdk:8-jdk-alpine</baseImage>
                     <!--<maintainer>zhangqing/846455480qq.com</maintainer>-->
                     <!--指定标签-->
                     <imageTags>
