@@ -4,7 +4,6 @@ import cn.hutool.core.util.IdUtil;
 import com.health.common.constant.Constants;
 import com.health.common.redis.annotation.RedisEvict;
 import com.health.common.redis.util.RedisUtils;
-import com.health.system.domain.SysUser;
 import com.health.system.domain.dto.SysUserDto;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class AccessTokenService {
         // 生成token
         String token = IdUtil.fastSimpleUUID();
         // 保存或更新用户token
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>(16);
         map.put("userId", sysUserDto.getUserId());
         map.put("token", token);
         map.put("expire", EXPIRE);

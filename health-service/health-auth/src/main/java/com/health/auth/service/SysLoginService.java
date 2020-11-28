@@ -34,15 +34,6 @@ public class SysLoginService {
      * 登录
      */
     public SysUserDto login(String username, String password) {
-        // 验证码校验
-        // if
-        // (!StringUtils.isEmpty(ServletUtils.getRequest().getAttribute(ShiroConstants.CURRENT_CAPTCHA)))
-        // {
-        // AsyncManager.me().execute(AsyncFactory.recordLogininfor(username,
-        // Constants.LOGIN_FAIL,
-        // MessageUtils.message("user.jcaptcha.error")));
-        // throw new CaptchaException();
-        // }
         // 用户名或密码为空 错误
         if (StringUtils.isAnyBlank(username, password)) {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("not.null"));
@@ -64,14 +55,6 @@ public class SysLoginService {
         }
         // 查询用户信息
         SysUserDto userDto = userService.selectSysUserByUsername(username);
-        // if (user == null && maybeMobilePhoneNumber(username))
-        // {
-        // user = userService.selectUserByPhoneNumber(username);
-        // }
-        // if (user == null && maybeEmail(username))
-        // {
-        // user = userService.selectUserByEmail(username);
-        // }
         if (userDto == null) {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.not.exists"));
             throw new UserNotExistsException();
@@ -93,24 +76,6 @@ public class SysLoginService {
         recordLoginInfo(userDto);
         return userDto;
     }
-
-    // private boolean maybeEmail(String username)
-    // {
-    // if (!username.matches(UserConstants.EMAIL_PATTERN))
-    // {
-    // return false;
-    // }
-    // return true;
-    // }
-    //
-    // private boolean maybeMobilePhoneNumber(String username)
-    // {
-    // if (!username.matches(UserConstants.MOBILE_PHONE_NUMBER_PATTERN))
-    // {
-    // return false;
-    // }
-    // return true;
-    // }
 
     /**
      * 记录登录信息

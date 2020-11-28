@@ -14,8 +14,8 @@ public class PasswordUtil {
 
 
     public static void main(String[] args) {
-        String hash = Md5Utils.hash("yangguo" + "yangguo" + "eJ7dBh");
+        String hash = Md5Utils.hash("yangguo1" + "yangguo" + "eJ7dBh");
         System.out.println(hash);
-        System.out.println(Md5Utils.hash("yangguo" + "yangguo" + "eJ7dBh"));
+        System.out.println(Md5Utils.hash("yangguo1" + "yangguo" + "eJ7dBh"));
     }
 }
