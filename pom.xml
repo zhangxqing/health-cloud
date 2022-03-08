@@ -40,7 +40,7 @@
         <swagger.version>2.9.2</swagger.version>
         <swagger-ui.version>1.9.5</swagger-ui.version>
         <guava.version>26.0-jre</guava.version>
-        <liquibase.version>3.8.5</liquibase.version>
+        <liquibase.version>4.8.0</liquibase.version>
         <mapstruct.version>1.2.0.Final</mapstruct.version>
         <mybatis-plus.version>3.1.2</mybatis-plus.version>
     </properties>
